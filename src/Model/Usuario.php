@@ -109,14 +109,14 @@ class Usuario {
     public function toArray(): array
     {
         return [
-            'id' => $this->id,
+            'id' => $this->id ?? null,
             'nome' => $this->nome,
             'email' => $this->email,
             'cpf' => $this->cpf,
             'hash_senha' => $this->hash_senha,
             'permissao' => $this->permissao,
             'data_criacao' => $this->data_criacao->format('Y-m-d H:i:s'),
-            'status' => $this->status
+            'status' => (int) $this->status
         ];
     }
 }
