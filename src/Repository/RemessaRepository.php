@@ -6,6 +6,7 @@ use DateTimeImmutable;
 use Mateus\ProtocolTrackerV2\Interfaces\RemessaRepositoryInterface;
 use Mateus\ProtocolTrackerV2\Model\Remessa;
 use PDO;
+use PDOStatement;
 
 class RemessaRepository implements RemessaRepositoryInterface
 {
@@ -18,7 +19,10 @@ class RemessaRepository implements RemessaRepositoryInterface
 
     public function all(): array
     {
-        return [];
+        $sqlQuery = 'SELECT * FROM remessas ORDER BY data_recebimento DESC;';
+        $stmt = $this->connection->query($sqlQuery);
+
+        return $this->hidrataLista($stmt);
     }
 
     public function search(?string $numero = null, ?DateTimeImmutable $dataInicio = null, ?DateTimeImmutable $dataFim = null): array
@@ -35,8 +39,20 @@ class RemessaRepository implements RemessaRepositoryInterface
     {
 
     }
+
     public function delete($id): void
     {
 
+    }
+
+    private function hidrataLista(PDOStatement $stmt): array
+    {
+        $listaDeRemessas = [];
+
+        while($dadosRemessa = $stmt->fetch()){
+            $listaDeRemessas[] = Remessa::fromArray($dadosRemessa);
+        }
+
+        return $listaDeRemessas;
     }
 }
