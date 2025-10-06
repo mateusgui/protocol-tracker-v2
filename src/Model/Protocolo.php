@@ -25,72 +25,52 @@ class Protocolo {
     /**
      * @return string|null id
      */
-    public function getId(): ?string {
-        return $this->id;
-    }
+    public function getId(): ?string { return $this->id; }
 
     /**
      * @return string id_remessa
      */
-    public function getIdRemessa(): string {
-        return $this->id_remessa;
-    }
+    public function getIdRemessa(): string { return $this->id_remessa; }
 
     /**
      * @return string numero_protocolo
      */
-    public function getNumeroProtocolo(): string {
-        return $this->numero_protocolo;
-    }
+    public function getNumeroProtocolo(): string { return $this->numero_protocolo; }
 
     /**
      * @return DateTimeImmutable|null data_preparacao
      */
-    public function getDataPreparacao(): ?DateTimeImmutable {
-        return $this->data_preparacao;
-    }
+    public function getDataPreparacao(): ?DateTimeImmutable { return $this->data_preparacao; }
 
     /**
      * @return int|null id_preparador
      */
-    public function getIdPreparador(): ?int {
-        return $this->id_preparador;
-    }
+    public function getIdPreparador(): ?int { return $this->id_preparador; }
 
     /**
      * @return DateTimeImmutable|null data_digitalizacao
      */
-    public function getDataDigitalizacao(): ?DateTimeImmutable {
-        return $this->data_digitalizacao;
-    }
+    public function getDataDigitalizacao(): ?DateTimeImmutable { return $this->data_digitalizacao; }
 
     /**
      * @return int|null id_digitalizador
      */
-    public function getIdDigitalizador(): ?int {
-        return $this->id_digitalizador;
-    }
+    public function getIdDigitalizador(): ?int { return $this->id_digitalizador; }
 
     /**
      * @return string status
      */
-    public function getStatus(): string {
-        return $this->status;
-    }
+    public function getStatus(): string { return $this->status; }
 
     /**
      * @return int|null quantidade_paginas
      */
-    public function getQuantidadePaginas(): ?int {
-        return $this->quantidade_paginas;
-    }
+    public function getQuantidadePaginas(): ?int { return $this->quantidade_paginas; }
 
     /**
      * @return string|null observacoes
      */
-    public function getObservacoes(): ?string {
-        return $this->observacoes;
-    }
+    public function getObservacoes(): ?string { return $this->observacoes; }
 
     /**
      * Converte um array associativo em Protocolo
