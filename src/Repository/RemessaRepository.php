@@ -41,11 +41,6 @@ class RemessaRepository implements RemessaRepositoryInterface
 
     }
 
-    public function delete($id): void
-    {
-
-    }
-
     private function hidrataLista(PDOStatement $stmt): array
     {
         $listaDeRemessas = [];

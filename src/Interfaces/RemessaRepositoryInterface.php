@@ -11,5 +11,4 @@ interface RemessaRepositoryInterface
     public function search(?string $numero = null, ?DateTimeImmutable $dataInicio = null, ?DateTimeImmutable $dataFim = null): array;
     public function add(Remessa $remessa): void;
     public function update(Remessa $remessa): void;
-    public function delete($id): void;
 }
