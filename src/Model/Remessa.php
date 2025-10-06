@@ -93,6 +93,10 @@ class Remessa {
         );
     }
 
+    /**
+     * Converte uma Remessa em array associativo
+     * @return array
+     */
     public function toArray(): array
     {
         return [
