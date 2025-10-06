@@ -22,51 +22,37 @@ class Remessa {
     /**
      * @return string id
      */
-    public function getId(): string {
-        return $this->id;
-    }
+    public function getId(): string { return $this->id; }
 
     /**
      * @return DateTimeImmutable|null data_recebimento
      */
-    public function getDataRecebimento(): ?DateTimeImmutable {
-        return $this->data_recebimento;
-    }
+    public function getDataRecebimento(): ?DateTimeImmutable { return $this->data_recebimento; }
 
     /**
      * @return DateTimeImmutable|null data_entrega
      */
-    public function getDataEntrega(): ?DateTimeImmutable {
-        return $this->data_entrega;
-    }
+    public function getDataEntrega(): ?DateTimeImmutable { return $this->data_entrega; }
 
     /**
      * @return string status
      */
-    public function getStatus(): string {
-        return $this->status;
-    }
+    public function getStatus(): string { return $this->status; }
 
     /**
      * @return int|null quantidade_protocolos
      */
-    public function getQuantidadeProtocolos(): ?int {
-        return $this->quantidade_protocolos;
-    }
+    public function getQuantidadeProtocolos(): ?int { return $this->quantidade_protocolos; }
 
     /**
      * @return int id_administrador
      */
-    public function getIdAdministrador(): int {
-        return $this->id_administrador;
-    }
+    public function getIdAdministrador(): int { return $this->id_administrador; }
 
     /**
      * @return string|null observacoes
      */
-    public function getObservacoes(): ?string {
-        return $this->observacoes;
-    }
+    public function getObservacoes(): ?string { return $this->observacoes; }
 
     /**
      * Converte um array associativo em Remessa
