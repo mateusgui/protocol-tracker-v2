@@ -3,7 +3,6 @@
 namespace Mateus\ProtocolTrackerV2\Model;
 
 use DateTimeImmutable;
-use DateTimeZone;
 use Exception;
 
 class Usuario {
