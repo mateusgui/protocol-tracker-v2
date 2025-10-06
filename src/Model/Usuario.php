@@ -21,9 +21,9 @@ class Usuario {
 
     //GETTERS
     /**
-     * @return int id
+     * @return int|null id
      */
-    public function getId(): int {
+    public function getId(): ?int {
         return $this->id;
     }
 
