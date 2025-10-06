@@ -23,58 +23,42 @@ class Usuario {
     /**
      * @return int|null id
      */
-    public function getId(): ?int {
-        return $this->id;
-    }
+    public function getId(): ?int { return $this->id; }
 
     /**
      * @return int nome
      */
-    public function getNome(): string {
-        return $this->nome;
-    }
+    public function getNome(): string { return $this->nome; }
 
     /**
      * @return int email
      */
-    public function getEmail(): string {
-        return $this->email;
-    }
+    public function getEmail(): string { return $this->email; }
 
     /**
      * @return int cpf
      */
-    public function getCpf(): string {
-        return $this->cpf;
-    }
+    public function getCpf(): string { return $this->cpf; }
 
     /**
      * @return int hash_senha
      */
-    public function getHashSenha(): string {
-        return $this->hash_senha;
-    }
+    public function getHashSenha(): string { return $this->hash_senha; }
 
     /**
      * @return int permissao
      */
-    public function getPermissao(): string {
-        return $this->permissao;
-    }
+    public function getPermissao(): string { return $this->permissao; }
 
     /**
      * @return int data_criacao
      */
-    public function getDataCriacao(): DateTimeImmutable {
-        return $this->data_criacao;
-    }
+    public function getDataCriacao(): DateTimeImmutable { return $this->data_criacao; }
 
     /**
      * @return bool status
      */
-    public function getStatus(): bool {
-        return $this->status;
-    }
+    public function getStatus(): bool { return $this->status; }
 
     /**
      * Converte um array associativo em Usuario
