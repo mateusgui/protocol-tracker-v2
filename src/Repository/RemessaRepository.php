@@ -20,6 +20,7 @@ class RemessaRepository implements RemessaRepositoryInterface
     public function all(): array
     {
         $sqlQuery = "SELECT * FROM remessas ORDER BY data_recebimento DESC;";
+
         $stmt = $this->connection->query($sqlQuery);
 
         return $this->hidrataLista($stmt);
@@ -32,13 +33,19 @@ class RemessaRepository implements RemessaRepositoryInterface
 
     public function add(Remessa $remessa): void
     {
-        $sqlQuery = "INSERT INTO remessas;";
-        //MEXENDO AQUI
+        $sqlQuery = "INSERT INTO remessas (id, data_recebimento, data_entrega, status, quantidade_protocolos, id_administrador, observacoes) VALUES (:id, :data_recebimento, :data_entrega, :status, :quantidade_protocolos, :id_administrador, :observacoes);";
+        
+        $stmt = $this->connection->prepare($sqlQuery);
+
+        $remessaArray = $remessa->toArray();
+
+        $stmt->execute($remessaArray); //Indexação automática no prepared statement
     }
 
     public function update(Remessa $remessa): void
     {
-
+        $sqlQuery = "UPDATE remessas;";
+        //MEXENDO AQUI
     }
 
     private function hidrataLista(PDOStatement $stmt): array
