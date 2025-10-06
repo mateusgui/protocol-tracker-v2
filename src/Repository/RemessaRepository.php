@@ -19,7 +19,7 @@ class RemessaRepository implements RemessaRepositoryInterface
 
     public function all(): array
     {
-        $sqlQuery = 'SELECT * FROM remessas ORDER BY data_recebimento DESC;';
+        $sqlQuery = "SELECT * FROM remessas ORDER BY data_recebimento DESC;";
         $stmt = $this->connection->query($sqlQuery);
 
         return $this->hidrataLista($stmt);
