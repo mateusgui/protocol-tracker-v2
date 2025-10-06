@@ -91,14 +91,14 @@ class Usuario {
         }
 
         return new self(
-            $array['id'],
+            (int) $array['id'],
             $array['nome'],
             $array['email'],
             $array['cpf'],
             $array['hash_senha'],
             $array['permissao'],
             $data_criacao,
-            $array['status']
+            (bool) $array['status']
         );
     }
 
@@ -116,7 +116,7 @@ class Usuario {
             'hash_senha' => $this->hash_senha,
             'permissao' => $this->permissao,
             'data_criacao' => $this->data_criacao->format('Y-m-d H:i:s'),
-            'status' => (int) $this->status
+            'status' => $this->status
         ];
     }
 }
