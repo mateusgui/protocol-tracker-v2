@@ -32,7 +32,8 @@ class RemessaRepository implements RemessaRepositoryInterface
 
     public function add(Remessa $remessa): void
     {
-
+        $sqlQuery = "INSERT INTO remessas;";
+        //MEXENDO AQUI
     }
 
     public function update(Remessa $remessa): void
