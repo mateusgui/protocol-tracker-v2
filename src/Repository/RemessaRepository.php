@@ -42,7 +42,7 @@ class RemessaRepository implements RemessaRepositoryInterface
 
     public function update(Remessa $remessa): void
     {
-        $sqlQuery = "UPDATE remessas SET data_recebimento = :data_recebimento, data_entrega = :data_entrega, status = :status, quantidade_protocolos = :quantidade_protocolos, observacoes = :observacoes WHERE id = :id;";
+        $sqlQuery = "UPDATE remessas SET data_recebimento = :data_recebimento, data_entrega = :data_entrega, status = :status, observacoes = :observacoes WHERE id = :id;";
 
         $remessaArray = $remessa->toArray();
         
@@ -50,7 +50,6 @@ class RemessaRepository implements RemessaRepositoryInterface
         $stmt->bindValue(':data_recebimento', $remessaArray['data_recebimento']);
         $stmt->bindValue(':data_entrega', $remessaArray['data_entrega']);
         $stmt->bindValue(':status', $remessaArray['status']);
-        $stmt->bindValue(':quantidade_protocolos', $remessaArray['quantidade_protocolos']);
         $stmt->bindValue(':observacoes', $remessaArray['observacoes']);
         $stmt->bindValue(':id', $remessaArray['id']);
         
