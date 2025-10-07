@@ -46,7 +46,18 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         $protocoloArray = $protocolo->toArray();
 
         $stmt = $this->connection->prepare($sqlQuery);
-        $stmt->execute($protocoloArray);
+        $stmt->bindValue(':id_remessa', $protocoloArray['id_remessa']);
+        $stmt->bindValue(':numero_protocolo', $protocoloArray['numero_protocolo']);
+        $stmt->bindValue(':data_preparacao', $protocoloArray['data_preparacao']);
+        $stmt->bindValue(':id_preparador', $protocoloArray['id_preparador']);
+        $stmt->bindValue(':data_digitalizacao', $protocoloArray['data_digitalizacao']);
+        $stmt->bindValue(':id_digitalizador', $protocoloArray['id_digitalizador']);
+        $stmt->bindValue(':status', $protocoloArray['status']);
+        $stmt->bindValue(':quantidade_paginas', $protocoloArray['quantidade_paginas']);
+        $stmt->bindValue(':observacoes', $protocoloArray['observacoes']);
+        $stmt->bindValue(':id', $protocoloArray['id']);
+
+        $stmt->execute();
     }
 
     public function movimentarProtocolo(string $id, string $status): void
