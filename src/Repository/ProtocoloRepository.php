@@ -3,7 +3,9 @@
 namespace Mateus\ProtocolTrackerV2\Repository;
 
 use Mateus\ProtocolTrackerV2\Interfaces\ProtocoloRepositoryInterface;
+use Mateus\ProtocolTrackerV2\Model\Protocolo;
 use PDO;
+use PDOStatement;
 
 class ProtocoloRepository implements ProtocoloRepositoryInterface
 {
@@ -12,5 +14,60 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
     public function __construct(PDO $connection)
     {
         $this->connection = $connection;
+    }
+
+    public function all(): array
+    {
+        $sqlQuery = "SELECT * FROM protocolos;";
+        $stmt = $this->connection->query($sqlQuery);
+
+        return $this->hidrataLista($stmt);
+    }
+
+    public function add(Protocolo $protocolo): void
+    {
+        $sqlQuery = "INSERT INTO protocolos (id, id_remessa, numero_protocolo, status) VALUES (:id, :id_remessa, :numero_protocolo, :status);";
+
+        $protocoloArray = $protocolo->toArray();
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':id', $protocoloArray['id']);
+        $stmt->bindValue(':id_remessa', $protocoloArray['id_remessa']);
+        $stmt->bindValue(':numero_protocolo', $protocoloArray['numero_protocolo']);
+        $stmt->bindValue(':status', $protocoloArray['status']);
+
+        $stmt->execute();
+    }
+
+    public function update(Protocolo $protocolo): void
+    {
+        $sqlQuery = "UPDATE protocolos SET id_remessa = :id_remessa, numero_protocolo = :numero_protocolo, data_preparacao = :data_preparacao, id_preparador = :id_preparador, data_digitalizacao = :data_digitalizacao, id_digitalizador = :id_digitalizador, status = :status, quantidade_paginas = :quantidade_paginas, observacoes = :observacoes WHERE id = :id;";
+
+        $protocoloArray = $protocolo->toArray();
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->execute($protocoloArray);
+    }
+
+    public function movimentarProtocolo(string $id, string $status): void
+    {
+        $sqlQuery = "UPDATE protocolos SET status = :status WHERE id = :id;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':status', $status);
+        $stmt->bindValue(':id', $id);
+
+        $stmt->execute();
+    }
+
+    private function hidrataLista(PDOStatement $stmt): array
+    {
+        $listaDeProtocolos = [];
+
+        while($dadosProtocolo = $stmt->fetch()){
+            $listaDeProtocolos[] = Protocolo::fromArray($dadosProtocolo);
+        }
+
+        return $listaDeProtocolos;
     }
 }
