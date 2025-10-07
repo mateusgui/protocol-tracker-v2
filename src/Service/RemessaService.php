@@ -44,7 +44,7 @@ class RemessaService
         $this->remessaRepository->add($remessa);
     }
 
-    public function atualizarRemessa(Usuario $usuarioLogado, string $data_recebimento, string $data_entrega, string $status, int $quantidade_protocolos, string $observacoes, string $id): void
+    public function atualizarRemessa(Usuario $usuarioLogado, string $data_recebimento, ?string $data_entrega, string $status, ?int $quantidade_protocolos, ?string $observacoes, string $id): void
     {
         if($usuarioLogado->getPermissao() !== 'administrador') {
             throw new Exception("Apenas administradores podem editar remessas.");
