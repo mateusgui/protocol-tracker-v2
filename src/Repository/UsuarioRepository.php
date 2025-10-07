@@ -42,6 +42,40 @@ class UsuarioRepository implements UsuarioRepositoryInterface
         return Usuario::fromArray($dadosUsuario);
     }
 
+    public function findByCpf(string $cpf): ?Usuario
+    {
+        $sqlQuery = "SELECT * FROM usuarios WHERE cpf = :cpf;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':cpf', $cpf);
+
+        $stmt->execute();
+
+        $dadosUsuario = $stmt->fetch();
+        if ($dadosUsuario === false) {
+            return null;
+        }
+
+        return Usuario::fromArray($dadosUsuario);
+    }
+
+    public function findByEmail(string $email): ?Usuario
+    {
+        $sqlQuery = "SELECT * FROM usuarios WHERE email = :email;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':email', $email);
+
+        $stmt->execute();
+
+        $dadosUsuario = $stmt->fetch();
+        if ($dadosUsuario === false) {
+            return null;
+        }
+
+        return Usuario::fromArray($dadosUsuario);
+    }
+
     public function add(Usuario $usuario): void
     {
         $sqlQuery = "INSERT INTO usuarios (nome, email, cpf, hash_senha, permissao) VALUES (:nome, :email, :cpf, :hash_senha, :permissao);";
