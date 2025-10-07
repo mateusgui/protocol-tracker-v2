@@ -28,14 +28,13 @@ class RemessaRepository implements RemessaRepositoryInterface
 
     public function add(Remessa $remessa): void
     {
-        $sqlQuery = "INSERT INTO remessas (id, data_recebimento, status, id_administrador) VALUES (:id, :data_recebimento, :status, :id_administrador);";
+        $sqlQuery = "INSERT INTO remessas (id, data_recebimento, id_administrador) VALUES (:id, :data_recebimento, :id_administrador);";
         
         $remessaArray = $remessa->toArray();
         
         $stmt = $this->connection->prepare($sqlQuery);
         $stmt->bindValue(':id', $remessaArray['id']);
         $stmt->bindValue(':data_recebimento', $remessaArray['data_recebimento']);
-        $stmt->bindValue(':status', $remessaArray['status']);
         $stmt->bindValue(':id_administrador', $remessaArray['id_administrador']);
         
         $stmt->execute();
