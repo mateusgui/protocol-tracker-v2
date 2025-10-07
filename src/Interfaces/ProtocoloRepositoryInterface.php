@@ -11,6 +11,6 @@ interface ProtocoloRepositoryInterface
     public function findByNumber(string $numero_protocolo): ?Protocolo;
     public function add(Protocolo $protocolo): void;
     public function update(Protocolo $protocolo): void;
-    public function preparaProtocolo(string $id, string $status, string $data_preparacao, int $id_preparador): void;
-    public function digitalizaProtocolo(string $id, string $status, string $data_digitalizacao, int $id_digitalizador): void;
+    public function preparaProtocolo(string $id, string $data_preparacao, int $id_preparador): void;
+    public function digitalizaProtocolo(string $id, string $data_digitalizacao, int $id_digitalizador, int $quantidade_paginas): void;
 }

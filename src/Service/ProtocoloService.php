@@ -123,8 +123,44 @@ class ProtocoloService
         $this->protocoloRepository->update($protocolo);
     }
 
-    public function movimentarProtocolo(string $id, string $status): void
+    public function prepararProtocolo(string $idProtocolo, Usuario $preparador): void
     {
+        if ($preparador->getPermissao() !== 'preparador') {
+            throw new Exception("Apenas preparadores podem executar esta ação.");
+        }
 
+        $protocolo = $this->protocoloRepository->findById($idProtocolo);
+        if ($protocolo === null) {
+            throw new Exception("Protocolo informado não foi localizado.");
+        }
+        if ($protocolo->getStatus() !== 'RECEBIDO') {
+            throw new Exception("Apenas protocolos com status 'RECEBIDO' podem ser preparados.");
+        }
+
+        $data_preparacao = new DateTimeImmutable('now')->format('Y-m-d H:i:s');
+
+        $this->protocoloRepository->preparaProtocolo($idProtocolo, $data_preparacao, $preparador->getId());
+    }
+
+    public function digitalizarProtocolo(string $idProtocolo, int $quantidade_paginas, Usuario $digitalizador): void
+    {
+        if ($digitalizador->getPermissao() !== 'digitalizador') {
+            throw new Exception("Apenas digitalizadores podem executar esta ação.");
+        }
+
+        $protocolo = $this->protocoloRepository->findById($idProtocolo);
+        if ($protocolo === null) {
+            throw new Exception("Protocolo informado não foi localizado.");
+        }
+        if ($protocolo->getStatus() !== 'PREPARADO') {
+            throw new Exception("Apenas protocolos com status 'PREPARADO' podem ser digitalizados.");
+        }
+        if ($quantidade_paginas < 1) {
+            throw new Exception("A quantidade de páginas deve ser maior que zero.");
+        }
+
+        $data_digitalizacao = new DateTimeImmutable('now')->format('Y-m-d H:i:s');
+
+        $this->protocoloRepository->digitalizaProtocolo($idProtocolo, $data_digitalizacao, $digitalizador->getId(), $quantidade_paginas);
     }
 }
