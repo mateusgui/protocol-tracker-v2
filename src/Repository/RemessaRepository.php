@@ -74,6 +74,28 @@ class RemessaRepository implements RemessaRepositoryInterface
         $stmt->execute();
     }
 
+    //Vai ser chamado sempre que um protocolo for criado e vinculado à uma remessa
+    public function adicionaProtocolo(string $id): void
+    {
+        $sqlQuery = "SELECT quantidade_protocolos FROM remessas WHERE id = :id;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':id', $id);
+
+        $resultado = $stmt->fetch();
+
+        $quantidade_protocolos = (int)$resultado['quantidade_protocolos'];
+        $quantidade_protocolos++;
+
+        $sqlQuery = "UPDATE remessas SET quantidade_protocolos = :quantidade_protocolos WHERE id = :id;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':quantidade_protocolos', $quantidade_protocolos);
+        $stmt->bindValue(':id', $id);
+
+        $stmt->execute();
+    }
+
     private function hidrataLista(PDOStatement $stmt): array
     {
         $listaDeRemessas = [];
