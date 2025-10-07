@@ -11,4 +11,5 @@ interface RemessaRepositoryInterface
     public function findById(string $id): ?Remessa;
     public function add(Remessa $remessa): void;
     public function update(Remessa $remessa): void;
+    public function adicionaProtocolo(string $id): void;
 }
