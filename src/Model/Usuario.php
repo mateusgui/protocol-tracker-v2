@@ -26,32 +26,32 @@ class Usuario {
     public function getId(): ?int { return $this->id; }
 
     /**
-     * @return int nome
+     * @return string nome
      */
     public function getNome(): string { return $this->nome; }
 
     /**
-     * @return int email
+     * @return string email
      */
     public function getEmail(): string { return $this->email; }
 
     /**
-     * @return int cpf
+     * @return string cpf
      */
     public function getCpf(): string { return $this->cpf; }
 
     /**
-     * @return int hash_senha
+     * @return string hash_senha
      */
     public function getHashSenha(): string { return $this->hash_senha; }
 
     /**
-     * @return int permissao
+     * @return string permissao
      */
     public function getPermissao(): string { return $this->permissao; }
 
     /**
-     * @return int data_criacao
+     * @return DateTimeImmutable data_criacao
      */
     public function getDataCriacao(): DateTimeImmutable { return $this->data_criacao; }
 

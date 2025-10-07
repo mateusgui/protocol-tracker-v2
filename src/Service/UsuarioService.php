@@ -12,7 +12,7 @@ class UsuarioService
         private UsuarioRepositoryInterface $usuarioRepository
     ) {}
 
-    public function add(string $nome, string $email, string $cpf, string $senha, string $permissao): void
+    public function novoUsuario(string $nome, string $email, string $cpf, string $senha, string $permissao): void
     {
         $this->validaCpf($cpf);
         $this->validaSenha($senha);
@@ -48,14 +48,58 @@ class UsuarioService
         $this->usuarioRepository->add($usuario);
     }
 
-    public function update(): void
+    public function atualizaUsuario(string $nome, string $email, string $cpf, string $permissao, bool $status, int $id): void
     {
+        $usuarioAntigo = $this->usuarioRepository->findById($id);
+        if ($usuarioAntigo === null) {
+            throw new Exception("O usuário informado não existe");
+        }
 
+        $this->validaCpf($cpf);
+        $this->validaEmail($email);
+
+        if($this->usuarioRepository->findByCpf($cpf) !== null && $usuarioAntigo->getCpf() !== $cpf){
+            throw new Exception("O CPF informado já está cadastrado");
+        }
+
+        if($this->usuarioRepository->findByEmail($email) !== null && $usuarioAntigo->getEmail() !== $email){
+            throw new Exception("O email informado já está cadastrado");
+        }
+
+        if($permissao !== 'preparador' && $permissao !== 'digitalizador' && $permissao !== 'administrador'){
+            throw new Exception("Permissão selecionada não existe");
+        }
+
+        $usuario = new Usuario(
+            $id,
+            $nome,
+            $email,
+            $cpf,
+            $usuarioAntigo->getHashSenha(),
+            $permissao,
+            $usuarioAntigo->getDataCriacao(),
+            $status
+        );
+
+        $this->usuarioRepository->update($usuario);
     }
 
     public function alteraSenha(int $id, string $senha): void
     {
+        $usuario = $this->usuarioRepository->findById($id);
+        if ($usuario === null) {
+            throw new Exception("O usuário informado não existe");
+        }
 
+        if(!$usuario->getStatus()){
+            throw new Exception("Não é possível redefinir a senha de usuários inativos");
+        }
+
+        $this->validaSenha($senha);
+
+        $hash_senha = password_hash($senha, PASSWORD_ARGON2ID);
+
+        $this->usuarioRepository->alteraSenha($id, $hash_senha);
     }
 
     private function validaCpf(string $cpf): void
