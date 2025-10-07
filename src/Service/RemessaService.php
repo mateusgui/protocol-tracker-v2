@@ -73,7 +73,7 @@ class RemessaService
         }
         
         $remessa = new Remessa(
-            $remessaAntiga->getId(),
+            $id,
             $data_recebimento,
             $data_entrega,
             $status,
