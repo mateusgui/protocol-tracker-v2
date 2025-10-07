@@ -60,6 +60,7 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         $stmt->execute();
     }
 
+    //Método para preparadores e digitalizadores utilizarem
     public function movimentarProtocolo(string $id, string $status): void
     {
         $sqlQuery = "UPDATE protocolos SET status = :status WHERE id = :id;";
