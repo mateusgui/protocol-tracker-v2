@@ -8,6 +8,7 @@ use Mateus\ProtocolTrackerV2\Model\Remessa;
 interface RemessaRepositoryInterface
 {
     public function all(): array;
+    public function findById(string $id): ?Remessa;
     public function add(Remessa $remessa): void;
     public function update(Remessa $remessa): void;
 }
