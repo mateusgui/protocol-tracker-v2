@@ -44,7 +44,13 @@ class RemessaRepository implements RemessaRepositoryInterface
             $parametros[':dataFim'] = $dataFim->format('Y-m-d H:i:s');
         }
 
-        $sqlQuery = "SELECT * FROM remessas WHERE " . implode(' AND ', $sqlConditions) . " ORDER BY data_recebimento DESC;";
+        $sqlQuery = "SELECT * FROM remessas"; 
+
+        if (!empty($sqlConditions)) {
+            $sqlQuery .= ' WHERE ' . implode(' AND ', $sqlConditions);
+        }
+
+        $sqlQuery .= " ORDER BY data_recebimento DESC;";
 
         $stmt = $this->connection->prepare($sqlQuery);
         $stmt->execute($parametros);
