@@ -3,18 +3,20 @@
 namespace Mateus\ProtocolTrackerV2\Service;
 
 use Mateus\ProtocolTrackerV2\Interfaces\RemessaRepositoryInterface;
+use Mateus\ProtocolTrackerV2\Interfaces\UsuarioRepositoryInterface;
 
 class RemessaService
 {
     public function __construct(
-        private RemessaRepositoryInterface $remessaRepository
+        private RemessaRepositoryInterface $remessaRepository,
+        private UsuarioRepositoryInterface $usuarioRepository
     ) {}
 
     public function add($data_recebimento, $id_administrador): void
     {
         //$sqlQuery = "INSERT INTO remessas (id, data_recebimento, id_administrador) VALUES (:id, :data_recebimento, :id_administrador);";
 
-        
+
 
     }
 
