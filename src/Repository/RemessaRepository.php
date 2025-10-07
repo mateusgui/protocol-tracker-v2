@@ -26,38 +26,6 @@ class RemessaRepository implements RemessaRepositoryInterface
         return $this->hidrataLista($stmt);
     }
 
-    public function search(?string $numero = null, ?DateTimeImmutable $dataInicio = null, ?DateTimeImmutable $dataFim = null): array
-    {
-        $sqlConditions = [];
-        $parametros = [];
-
-        if (!empty($numero)) {
-            $sqlConditions[] = "numero = :numero";
-            $parametros[':numero'] = $numero;
-        }
-        if ($dataInicio !== null) {
-            $sqlConditions[] = "criado_em >= :dataInicio";
-            $parametros[':dataInicio'] = $dataInicio->format('Y-m-d H:i:s');
-        }
-        if ($dataFim !== null) {
-            $sqlConditions[] = "criado_em <= :dataFim";
-            $parametros[':dataFim'] = $dataFim->format('Y-m-d H:i:s');
-        }
-
-        $sqlQuery = "SELECT * FROM remessas"; 
-
-        if (!empty($sqlConditions)) {
-            $sqlQuery .= ' WHERE ' . implode(' AND ', $sqlConditions);
-        }
-
-        $sqlQuery .= " ORDER BY data_recebimento DESC;";
-
-        $stmt = $this->connection->prepare($sqlQuery);
-        $stmt->execute($parametros);
-
-        return $this->hidrataLista($stmt);
-    }
-
     public function add(Remessa $remessa): void
     {
         $sqlQuery = "INSERT INTO remessas (id, data_recebimento, data_entrega, status, quantidade_protocolos, id_administrador, observacoes) VALUES (:id, :data_recebimento, :data_entrega, :status, :quantidade_protocolos, :id_administrador, :observacoes);";
