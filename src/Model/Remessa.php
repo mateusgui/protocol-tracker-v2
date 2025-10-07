@@ -9,7 +9,7 @@ class Remessa {
 
     public function __construct(
         private readonly string $id,
-        private readonly ?DateTimeImmutable $data_recebimento,
+        private readonly DateTimeImmutable $data_recebimento,
         private readonly ?DateTimeImmutable $data_entrega,
         private readonly string $status,
         private readonly ?int $quantidade_protocolos,
@@ -27,7 +27,7 @@ class Remessa {
     /**
      * @return DateTimeImmutable|null data_recebimento
      */
-    public function getDataRecebimento(): ?DateTimeImmutable { return $this->data_recebimento; }
+    public function getDataRecebimento(): DateTimeImmutable { return $this->data_recebimento; }
 
     /**
      * @return DateTimeImmutable|null data_entrega
@@ -87,7 +87,7 @@ class Remessa {
     {
         return [
             'id' => $this->id,
-            'data_recebimento' => $this->data_recebimento?->format('Y-m-d H:i:s'),
+            'data_recebimento' => $this->data_recebimento->format('Y-m-d H:i:s'),
             'data_entrega' => $this->data_entrega?->format('Y-m-d H:i:s'),
             'status' => $this->status,
             'quantidade_protocolos' => $this->quantidade_protocolos ?? 0,
