@@ -24,6 +24,23 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         return $this->hidrataLista($stmt);
     }
 
+    public function findByNumber(string $numero_protocolo): ?Protocolo
+    {
+        $sqlQuery = "SELECT * FROM protocolos WHERE numero_protocolo = :numero_protocolo;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':numero_protocolo', $numero_protocolo);
+
+        $stmt->execute();
+
+        $dadosProtocolo = $stmt->fetch();
+        if ($dadosProtocolo === false) {
+            return null;
+        }
+
+        return Protocolo::fromArray($dadosProtocolo);
+    }
+
     public function add(Protocolo $protocolo): void
     {
         $sqlQuery = "INSERT INTO protocolos (id, id_remessa, numero_protocolo, status) VALUES (:id, :id_remessa, :numero_protocolo, :status);";
