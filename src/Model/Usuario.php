@@ -15,7 +15,7 @@ class Usuario {
         private readonly string $hash_senha,
         private readonly string $permissao,
         private readonly ?DateTimeImmutable $data_criacao,
-        private readonly bool $status
+        private readonly ?bool $status
     )
     {}
 
@@ -100,7 +100,7 @@ class Usuario {
             'hash_senha' => $this->hash_senha,
             'permissao' => $this->permissao,
             'data_criacao' => $this->data_criacao?->format('Y-m-d H:i:s'),
-            'status' => $this->status
+            'status' => $this->status ?? null
         ];
     }
 }
