@@ -28,7 +28,28 @@ class RemessaRepository implements RemessaRepositoryInterface
 
     public function search(?string $numero = null, ?DateTimeImmutable $dataInicio = null, ?DateTimeImmutable $dataFim = null): array
     {
-        return [];
+        $sqlConditions = [];
+        $parametros = [];
+
+        if (!empty($numero)) {
+            $sqlConditions[] = "numero = :numero";
+            $parametros[':numero'] = $numero;
+        }
+        if ($dataInicio !== null) {
+            $sqlConditions[] = "criado_em >= :dataInicio";
+            $parametros[':dataInicio'] = $dataInicio->format('Y-m-d H:i:s');
+        }
+        if ($dataFim !== null) {
+            $sqlConditions[] = "criado_em <= :dataFim";
+            $parametros[':dataFim'] = $dataFim->format('Y-m-d H:i:s');
+        }
+
+        $sqlQuery = "SELECT * FROM remessas WHERE " . implode(' AND ', $sqlConditions) . " ORDER BY data_recebimento DESC;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->execute($parametros);
+
+        return $this->hidrataLista($stmt);
     }
 
     public function add(Remessa $remessa): void
