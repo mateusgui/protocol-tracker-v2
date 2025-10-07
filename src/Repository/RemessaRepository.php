@@ -54,6 +54,7 @@ class RemessaRepository implements RemessaRepositoryInterface
         $stmt->bindValue(':quantidade_protocolos', $remessaArray['quantidade_protocolos']);
         $stmt->bindValue(':observacoes', $remessaArray['observacoes']);
         $stmt->bindValue(':id', $remessaArray['id']);
+        
         $stmt->execute();
     }
 
