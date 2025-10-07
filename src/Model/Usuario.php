@@ -14,7 +14,7 @@ class Usuario {
         private readonly string $cpf,
         private readonly string $hash_senha,
         private readonly string $permissao,
-        private readonly DateTimeImmutable $data_criacao,
+        private readonly ?DateTimeImmutable $data_criacao,
         private readonly bool $status
     )
     {}
@@ -69,7 +69,7 @@ class Usuario {
     {
         
         try {
-            $data_criacao = new DateTimeImmutable($array['data_criacao']);
+            $data_criacao = isset($array['data_criacao']) ? new DateTimeImmutable($array['data_criacao']) : null;
         } catch (Exception $e) {
             throw new Exception("Falha ao criar data");
         }
@@ -99,7 +99,7 @@ class Usuario {
             'cpf' => $this->cpf,
             'hash_senha' => $this->hash_senha,
             'permissao' => $this->permissao,
-            'data_criacao' => $this->data_criacao->format('Y-m-d H:i:s'),
+            'data_criacao' => $this->data_criacao?->format('Y-m-d H:i:s'),
             'status' => $this->status
         ];
     }
