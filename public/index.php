@@ -51,7 +51,19 @@ try {
     $url = $_SERVER['PATH_INFO'];
     $method = $_SERVER['REQUEST_METHOD'];
 
-    var_dump($_SERVER);
+    switch ($url) {
+        case '/':
+            if ($usuario_esta_logado) {
+                header('Location: /home');
+            } else {
+                header('Location: /login');
+            }
+            exit();
+        
+        default:
+            # code...
+            break;
+    }
 
 } catch (Exception $e) {
     http_response_code(500);
