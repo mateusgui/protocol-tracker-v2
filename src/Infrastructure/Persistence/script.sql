@@ -11,12 +11,14 @@ CREATE TABLE usuarios (
 
 CREATE TABLE remessas (
     id CHAR(36) PRIMARY KEY,
+    numero_remessa INT NOT NULL AUTO_INCREMENT,
     data_recebimento DATETIME NOT NULL,
     data_entrega DATETIME NULL,
     status VARCHAR(32) NOT NULL DEFAULT 'RECEBIDO',
     quantidade_protocolos INT UNSIGNED NULL,
     id_administrador INT NOT NULL,
     observacoes TEXT NULL,
+    UNIQUE KEY (numero_remessa),
     FOREIGN KEY (id_administrador) REFERENCES usuarios(id)
 );
 
