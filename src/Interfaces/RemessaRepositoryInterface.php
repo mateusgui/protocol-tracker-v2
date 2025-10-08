@@ -9,6 +9,7 @@ interface RemessaRepositoryInterface
 {
     public function all(): array;
     public function findById(string $id): ?Remessa;
+    public function findByNumeroRemessa(int $numero_remessa): ?Remessa;
     public function add(Remessa $remessa): void;
     public function update(Remessa $remessa): void;
     public function adicionaProtocolo(string $id): void;
