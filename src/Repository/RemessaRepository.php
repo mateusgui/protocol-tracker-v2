@@ -28,10 +28,27 @@ class RemessaRepository implements RemessaRepositoryInterface
 
     public function findById(string $id): ?Remessa
     {
-        $sqlQuery = "SELECT * FROM remessa WHERE id = :id;";
+        $sqlQuery = "SELECT * FROM remessas WHERE id = :id;";
 
         $stmt = $this->connection->prepare($sqlQuery);
         $stmt->bindValue(':id', $id);
+
+        $stmt->execute();
+
+        $dadosRemessa = $stmt->fetch();
+        if ($dadosRemessa === false) {
+            return null;
+        }
+
+        return Remessa::fromArray($dadosRemessa);
+    }
+
+    public function findByNumeroRemessa(int $numero_remessa): ?Remessa
+    {
+        $sqlQuery = "SELECT * FROM remessas WHERE numero_remessa = :numero_remessa;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':numero_remessa', $numero_remessa);
 
         $stmt->execute();
 
