@@ -74,17 +74,23 @@ try {
             //CONTROLLER
             break;
 
-        //----- rota views preparadores -----
+        /*----- 
+        rota views preparadores 
+        ----- */
         case '/preparadores':
             //CHAMADA CONTROLLER
             break;
 
-        //----- rota views digitalizadores -----
+        /*----- 
+        rota views digitalizadores 
+        ----- */
         case '/digitalizadores':
             //CHAMADA CONTROLLER
             break;
 
-        //----- rota views administrador -----
+        /*----- 
+        rota views administrador 
+        ----- */
         case '/admin':
             //CHAMADA CONTROLLER
             break;
