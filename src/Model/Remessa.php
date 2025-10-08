@@ -9,6 +9,7 @@ class Remessa {
 
     public function __construct(
         private readonly string $id,
+        private readonly int $numero_remessa,
         private readonly DateTimeImmutable $data_recebimento,
         private readonly ?DateTimeImmutable $data_entrega,
         private readonly string $status,
@@ -23,6 +24,11 @@ class Remessa {
      * @return string id
      */
     public function getId(): string { return $this->id; }
+
+    /**
+     * @return int numero_remessa
+     */
+    public function getNumeroRemessa(): int { return $this->numero_remessa; }
 
     /**
      * @return DateTimeImmutable|null data_recebimento
@@ -62,7 +68,7 @@ class Remessa {
     public static function fromArray(array $array): self
     {
         try {
-            $data_recebimento = isset($array['data_recebimento']) ? new DateTimeImmutable($array['data_recebimento']) :  null;
+            $data_recebimento = new DateTimeImmutable($array['data_recebimento']);
             $data_entrega = isset($array['data_entrega']) ? new DateTimeImmutable($array['data_entrega']) : null;
         } catch (Exception $e) {
             throw new Exception("Falha ao criar data");
@@ -70,6 +76,7 @@ class Remessa {
 
         return new self(
             $array['id'],
+            (int) $array['numero_remessa'],
             $data_recebimento,
             $data_entrega,
             $array['status'],
@@ -87,12 +94,13 @@ class Remessa {
     {
         return [
             'id' => $this->id,
+            'numero_remessa' => $this->numero_remessa,
             'data_recebimento' => $this->data_recebimento->format('Y-m-d H:i:s'),
             'data_entrega' => $this->data_entrega?->format('Y-m-d H:i:s'),
             'status' => $this->status,
-            'quantidade_protocolos' => $this->quantidade_protocolos ?? 0,
+            'quantidade_protocolos' => $this->quantidade_protocolos,
             'id_administrador' => $this->id_administrador,
-            'observacoes' => $this->observacoes ?? ''
+            'observacoes' => $this->observacoes
         ];
     }
 }
