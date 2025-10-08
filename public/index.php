@@ -48,7 +48,8 @@ try {
 
     // LÓGICA DE ROTEAMENTO 
     // ---------------------
-    $url = $_SERVER['PATH_INFO'];
+    $url = $_SERVER['REQUEST_URI'];
+    $url = parse_url($url, PHP_URL_PATH);
     $method = $_SERVER['REQUEST_METHOD'];
 
     switch ($url) {
@@ -60,8 +61,37 @@ try {
             }
             exit();
         
+        case '/login':
+            echo "CHEGOU";
+            //CONTROLLER
+            break;
+
+        case '/logout':
+            //CONTROLLER
+            break;
+
+        case '/home':
+            //CONTROLLER
+            break;
+
+        //----- rota views preparadores -----
+        case '/preparadores':
+            //CHAMADA CONTROLLER
+            break;
+
+        //----- rota views digitalizadores -----
+        case '/digitalizadores':
+            //CHAMADA CONTROLLER
+            break;
+
+        //----- rota views administrador -----
+        case '/admin':
+            //CHAMADA CONTROLLER
+            break;
+        
+        //NOT FOUND
         default:
-            # code...
+            http_response_code(500);
             break;
     }
 
