@@ -26,7 +26,7 @@
             
             <nav>
                 <ul>
-                    <?php if ($permissao === 'preparador' || $permissao === null): ?>
+                    <?php if ($permissao === 'preparador'): ?>
                         <li class="has-submenu">
                             <a><span class="material-icons-outlined">description</span> Recebidos</a>
                             <ul class="submenu">
@@ -47,7 +47,7 @@
                         </li>
                     <?php endif; ?>
 
-                    <?php if ($permissao === 'digitalizador' || $permissao === null): ?>
+                    <?php if ($permissao === 'digitalizador'): ?>
                         <li class="has-submenu">
                             <a><span class="material-icons-outlined">description</span> Preparados</a>
                             <ul class="submenu">
@@ -68,7 +68,7 @@
                         </li>
                     <?php endif; ?>
 
-                    <?php if ($permissao === 'administrador' || $permissao === null): ?>
+                    <?php if ($permissao === 'administrador'): ?>
                         <li class="has-submenu">
                             <a><span class="material-icons-outlined">folder</span> Remessas</a>
                             <ul class="submenu">
