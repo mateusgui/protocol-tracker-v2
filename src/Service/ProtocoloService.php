@@ -123,13 +123,13 @@ class ProtocoloService
         $this->protocoloRepository->update($protocolo);
     }
 
-    public function prepararProtocolo(string $idProtocolo, Usuario $preparador): void
+    public function prepararProtocolo(string $id, Usuario $preparador): void
     {
         if ($preparador->getPermissao() !== 'preparador') {
             throw new Exception("Apenas preparadores podem executar esta ação.");
         }
 
-        $protocolo = $this->protocoloRepository->findById($idProtocolo);
+        $protocolo = $this->protocoloRepository->findById($id);
         if ($protocolo === null) {
             throw new Exception("Protocolo informado não foi localizado.");
         }
@@ -139,16 +139,16 @@ class ProtocoloService
 
         $data_preparacao = new DateTimeImmutable('now')->format('Y-m-d H:i:s');
 
-        $this->protocoloRepository->preparaProtocolo($idProtocolo, $data_preparacao, $preparador->getId());
+        $this->protocoloRepository->preparaProtocolo($id, $data_preparacao, $preparador->getId());
     }
 
-    public function digitalizarProtocolo(string $idProtocolo, int $quantidade_paginas, Usuario $digitalizador): void
+    public function digitalizarProtocolo(string $id, int $quantidade_paginas, Usuario $digitalizador): void
     {
         if ($digitalizador->getPermissao() !== 'digitalizador') {
             throw new Exception("Apenas digitalizadores podem executar esta ação.");
         }
 
-        $protocolo = $this->protocoloRepository->findById($idProtocolo);
+        $protocolo = $this->protocoloRepository->findById($id);
         if ($protocolo === null) {
             throw new Exception("Protocolo informado não foi localizado.");
         }
@@ -161,6 +161,6 @@ class ProtocoloService
 
         $data_digitalizacao = new DateTimeImmutable('now')->format('Y-m-d H:i:s');
 
-        $this->protocoloRepository->digitalizaProtocolo($idProtocolo, $data_digitalizacao, $digitalizador->getId(), $quantidade_paginas);
+        $this->protocoloRepository->digitalizaProtocolo($id, $data_digitalizacao, $digitalizador->getId(), $quantidade_paginas);
     }
 }
