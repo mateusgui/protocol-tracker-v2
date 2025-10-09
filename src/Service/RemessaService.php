@@ -33,6 +33,7 @@ class RemessaService
 
         $remessa = new Remessa(
             $id,
+            null,
             $data_recebimento,
             null,
             'RECEBIDO',
@@ -44,19 +45,19 @@ class RemessaService
         $this->remessaRepository->add($remessa);
     }
 
-    public function atualizarRemessa(Usuario $usuarioLogado, string $data_recebimento, ?string $data_entrega, string $status, ?int $quantidade_protocolos, ?string $observacoes, string $id): void
+    public function atualizarRemessa(Usuario $usuarioLogado, string $data_recebimento, ?string $data_entrega, string $status, ?string $observacoes, string $id): void
     {
         if($usuarioLogado->getPermissao() !== 'administrador') {
             throw new Exception("Apenas administradores podem editar remessas.");
         }
         
         $remessaAntiga = $this->remessaRepository->findById($id);
-        if(empty($remessaAntiga)){
+        if($remessaAntiga === null){
             throw new Exception("Remessa informada não foi localizada");
         }
 
-        $data_recebimento = is_null($data_recebimento) ? null : new DateTimeImmutable($data_recebimento);
-        $data_entrega = is_null($data_entrega) ? null : new DateTimeImmutable($data_entrega);
+        $data_recebimento = empty($data_recebimento) ? null : new DateTimeImmutable($data_recebimento);
+        $data_entrega = empty($data_entrega) ? null : new DateTimeImmutable($data_entrega);
 
         if($data_recebimento && $data_entrega){
             if($data_entrega < $data_recebimento){
@@ -67,17 +68,14 @@ class RemessaService
         if($status !== 'RECEBIDO' && $status !== 'ENTREGUE'){
             throw new Exception("O status informado é inválido");
         }
-
-        if($quantidade_protocolos < 0){
-            throw new Exception("A quantidade de protocolos não pode ser menor do que zero");
-        }
         
         $remessa = new Remessa(
             $id,
+            $remessaAntiga->getNumeroRemessa(),
             $data_recebimento,
             $data_entrega,
             $status,
-            $quantidade_protocolos,
+            $remessaAntiga->getQuantidadeProtocolos(),
             $usuarioLogado->getId(),
             $observacoes
         );
