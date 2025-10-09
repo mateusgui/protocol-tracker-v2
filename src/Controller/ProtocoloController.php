@@ -80,4 +80,22 @@ class ProtocoloController
     {
 
     }
+
+    //GET
+    public function buscarProtocolos()
+    {
+
+    }
+
+    //GET
+    public function dashboardPreparados()
+    {
+
+    }
+
+    //GET
+    public function dashboardDigitalizados()
+    {
+
+    }
 }
