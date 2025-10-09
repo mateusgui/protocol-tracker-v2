@@ -40,7 +40,7 @@ a {
 
 /* === ESTILOS DA SIDEBAR === */
 .sidebar {
-    width: 250px;
+    width: 300px;
     background-color: var(--cor-fundo-sidebar);
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     padding: 1.5rem;
@@ -804,4 +804,51 @@ textarea {
     color: var(--cor-fontes-sidebar-active);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+}
+
+
+/* === ESTILOS PARA O MENU ACORDEÃO DA SIDEBAR === */
+/* Garante que o <li> seja posicionado corretamente */
+.sidebar nav ul li {
+    position: relative;
+}
+
+/* Adiciona a seta (ícone) para itens que têm submenu */
+.sidebar nav ul li.has-submenu > a::after {
+    content: 'expand_more'; /* Ícone de seta para baixo do Google Icons */
+    font-family: 'Material Icons Outlined';
+    position: absolute;
+    right: 15px; /* Alinha a seta à direita */
+    transition: transform 0.3s ease-in-out; /* Animação da rotação da seta */
+}
+
+/* Gira a seta para cima quando o menu está aberto (classe 'open' adicionada via JS) */
+.sidebar nav ul li.has-submenu.open > a::after {
+    transform: rotate(180deg);
+}
+
+/* Estilo do submenu (começa "fechado") */
+.sidebar .submenu {
+    list-style: none;
+    max-height: 0; /* Começa com altura zero, efetivamente escondido */
+    overflow: hidden; /* Esconde o conteúdo que transborda */
+    transition: max-height 0.4s ease-in-out; /* A mágica da animação de deslizar */
+    border-radius: 6px;
+    margin: 0 10px; /* Pequeno recuo */
+}
+
+/* Estilo dos links dentro do submenu */
+.sidebar .submenu li a {
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+/* Garante que os ícones nos links principais fiquem alinhados */
+.sidebar nav ul li > a {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }

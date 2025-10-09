@@ -71,4 +71,36 @@ document.addEventListener('DOMContentLoaded', () => {
         lengthMenu: [5, 10, 25, 50, 100],
     });
 
+    // --- LÓGICA PARA O MENU ACORDEÃO DA SIDEBAR ---
+    const submenuToggleLinks = document.querySelectorAll('.has-submenu > a');
+
+    submenuToggleLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            // Previne a ação padrão do link (que seria ir para '#')
+            event.preventDefault();
+
+            const parentLi = this.parentElement;
+
+            // Fecha todos os outros submenus que possam estar abertos
+            document.querySelectorAll('.has-submenu.open').forEach(openLi => {
+                if (openLi !== parentLi) {
+                    openLi.classList.remove('open');
+                    openLi.querySelector('.submenu').style.maxHeight = '0px';
+                }
+            });
+
+            // Alterna a classe 'open' no <li> clicado
+            parentLi.classList.toggle('open');
+            
+            const submenu = this.nextElementSibling;
+            if (parentLi.classList.contains('open')) {
+                // Se abriu, define a altura máxima com base no tamanho real do conteúdo
+                submenu.style.maxHeight = submenu.scrollHeight + 'px';
+            } else {
+                // Se fechou, volta a altura máxima para zero
+                submenu.style.maxHeight = '0px';
+            }
+        });
+    });
+
 });

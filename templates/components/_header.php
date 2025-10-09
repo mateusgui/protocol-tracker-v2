@@ -26,37 +26,87 @@
             
             <nav>
                 <ul>
-                    <?php $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); ?>
-                    <li><a href="/home" class="<?= ($uri === '/home') ? 'active' : '' ?>"><span class="material-icons-outlined">add</span> Novo Protocolo</a></li>
-                    <li><a href="/busca" class="<?= ($uri === '/busca') ? 'active' : '' ?>"><span class="material-icons-outlined">search</span> Buscar Protocolos</a></li>
-                    <li><a href="/dashboard" class="<?= ($uri === '/dashboard') ? 'active' : '' ?>"><span class="material-icons-outlined">speed</span> Dashboard</a></li>
+                    <?php if ($permissao === 'preparador' || $permissao === null): ?>
+                        <li class="has-submenu">
+                            <a><span class="material-icons-outlined">description</span> Recebidos</a>
+                            <ul class="submenu">
+                                <li><a href="/preparadores/recebidos">Protocolos Recebidos</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a><span class="material-icons-outlined">show_chart</span> Preparados</a>
+                            <ul class="submenu">
+                                <li><a href="/preparadores/preparados">Protocolos Preparados</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a><span class="material-icons-outlined">group</span> Equipe</a>
+                            <ul class="submenu">
+                                <li><a href="/equipe/dashboard">Produtividade Equipe</a></li>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
 
-                    <?php if (isset($isAdmin) && $isAdmin === true): ?>
-                        <li class="menu-admin-separator"><hr></li>
-    
-                        <li class="menu-admin-title">
-                            <span>ADMINISTRAÇÃO</span>
+                    <?php if ($permissao === 'digitalizador' || $permissao === null): ?>
+                        <li class="has-submenu">
+                            <a><span class="material-icons-outlined">description</span> Preparados</a>
+                            <ul class="submenu">
+                                <li><a href="/digitalizadores/preparados">Protocolos Preparados</a></li>
+                            </ul>
                         </li>
+                        <li class="has-submenu">
+                            <a><span class="material-icons-outlined">show_chart</span> Digitalizados</a>
+                            <ul class="submenu">
+                                <li><a href="/digitalizadores/digitalizados">Protocolos Digitalizados</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a><span class="material-icons-outlined">group</span> Equipe</a>
+                            <ul class="submenu">
+                                <li><a href="/equipe/dashboard">Produtividade Equipe</a></li>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
 
-                        <li>
-                            <a href="/admin/protocolos" class="<?= (str_starts_with($uri, '/admin/protocolos')) ? 'active' : '' ?>">
-                                <span class="material-icons-outlined">description</span> Protocolos
-                            </a>
+                    <?php if ($permissao === 'administrador' || $permissao === null): ?>
+                        <li class="has-submenu">
+                            <a><span class="material-icons-outlined">folder</span> Remessas</a>
+                            <ul class="submenu">
+                                <li><a href="/admin/remessas/nova-remessa">Nova Remessa</a></li>
+                                <li><a href="/admin/remessas/visualizar-remessas">Visualizar Remessas</a></li>
+                                <li><a href="/admin/remessas/dashboard">Visualizar Remessas</a></li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="/admin/dashboard" class="<?= (str_starts_with($uri, '/admin/dashboard')) ? 'active' : '' ?>">
-                                <span class="material-icons-outlined">show_chart</span> Produtividade Geral
-                            </a>
+                        <li class="has-submenu">
+                            <a><span class="material-icons-outlined">description</span> Protocolos</a>
+                            <ul class="submenu">
+                                <li><a href="/admin/protocolos/buscar-protocolos">Buscar Protocolos</a></li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="/admin/usuarios" class="<?= (str_starts_with($uri, '/admin/usuarios')) ? 'active' : '' ?>">
-                                <span class="material-icons-outlined">group</span> Usuarios
-                            </a>
+                        <li class="has-submenu">
+                            <a><span class="material-icons-outlined">content_cut</span> Preparação</a>
+                            <ul class="submenu">
+                                <li><a href="/admin/preparacao/dashboard">Dashboard Preparados</a></li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="/admin/auditoria" class="<?= (str_starts_with($uri, '/admin/auditoria')) ? 'active' : '' ?>">
-                                <span class="material-icons-outlined">inventory</span> Auditoria
-                            </a>
+                        <li class="has-submenu">
+                            <a><span class="material-icons-outlined">adf_scanner</span> Digitalização</a>
+                            <ul class="submenu">
+                                <li><a href="/admin/digitalizacao/dashboard">Dashboard Digitalizados</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a><span class="material-icons-outlined">person</span> Usuários</a>
+                            <ul class="submenu">
+                                <li><a href="/admin/usuarios/novo-usuario">Novo Usuário</a></li>
+                                <li><a href="/admin/usuarios/visualizar-usuarios">Visualizar Usuários</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a><span class="material-icons-outlined">group</span> Equipe</a>
+                            <ul class="submenu">
+                                <li><a href="/admin/equipe/dashboard">Produtividade Equipe</a></li>
+                            </ul>
                         </li>
                     <?php endif; ?>
                 </ul>
