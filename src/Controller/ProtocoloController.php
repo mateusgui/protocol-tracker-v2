@@ -98,4 +98,10 @@ class ProtocoloController
     {
 
     }
+
+    //GET
+    public function adminDashboardEquipe()
+    {
+        
+    }
 }
