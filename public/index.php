@@ -63,15 +63,15 @@ try {
         
         case '/login':
             echo "CHEGOU";
-            //CONTROLLER
+            //LoginController->login();
             break;
 
         case '/logout':
-            //CONTROLLER
+            //LoginController->logout();
             break;
 
         case '/home':
-            //CONTROLLER
+            //LoginController->home(); - MENSAGEM BEM VINDO
             break;
 
         /*----- 
@@ -79,7 +79,7 @@ try {
         ----- */
         case '/equipe/dashboard':
             if($method === 'GET'){
-                //CARREGAR DASHBOARD DE PRODUÇÃO DA EQUIPE
+                //ProtocoloController->dashboardEquipe();
             }
             break;
 
@@ -88,45 +88,44 @@ try {
         ----- */
         case '/preparadores/recebidos':
             if($method === 'GET'){
-                //CARREGAR LISTA DE PROTOCOLOS COM STATUS RECEBIDO
+                //ProtocoloController->preparadores_listaRecebidos();
             }
             break;
 
         case '/preparadores/movimentar-protocolo':
             if($method === 'GET'){
-                //CARREGAR TELA PARA PREENCHER DADOS ANTES DE MOVIMENTAR
+                //ProtocoloController->exibirPrepararProtocolo();
             } else if($method === 'POST'){
-                //CONFIRMA A MOVIMENTAÇÃO
+                //ProtocoloController->prepararProtocolo();
             }
             break;
 
         case '/preparadores/preparados':
             if($method === 'GET'){
-                //CARREGAR LISTA DE PROTOCOLOS COM STATUS PREPARADO
+                //ProtocoloController->preparadores_listaPreparados();
             }
             break;
 
         /*----- 
         rota views digitalizadores 
         ----- */
-
         case '/digitalizadores/preparados':
             if($method === 'GET'){
-                //CARREGAR LISTA DE PROTOCOLOS COM STATUS PREPARADO
+                //ProtocoloController->digitalizadores_listaPreparados();
             }
             break;
 
         case '/digitalizadores/movimentar-protocolo':
             if($method === 'GET'){
-                //CARREGAR TELA PARA PREENCHER DADOS ANTES DE MOVIMENTAR
+                //ProtocoloController->exibirDigitalizarProtocolo();
             } else if($method === 'POST'){
-                //CONFIRMA A MOVIMENTAÇÃO
+                //ProtocoloController->DigitalizarProtocolo();
             }
             break;
 
         case '/digitalizadores/digitalizados':
             if($method === 'GET'){
-                //CARREGAR LISTA DE PROTOCOLOS COM STATUS DIGITALIADO
+                //ProtocoloController->digitalizadores_listaDigitalizados();
             }
             break;
 
@@ -135,45 +134,45 @@ try {
         ----- */
         case '/admin/remessas/nova-remessa':
             if($method === 'GET'){
-                //CARREGAR TELA DE NOVA REMESSA
+                //RemessaController->exibirNovaRemessa();
             } else if($method === 'POST'){
-                //ENVIA DADOS PARA CRIAR REMESSA - Service = novaRemessa(Usuario $usuarioLogado, string $data_recebimento): void
+                //RemessaController->novaRemessa();
             }
             break;
 
         case '/admin/remessas/visualizar-remessas':
             if($method === 'GET'){
-                //CARREGAR TELA DE BUSCA DE REMESSAS
+                //RemessaController->exibirRemessas();
             }
             break;
 
         case '/admin/remessas/editar-remessa':
             if($method === 'GET'){
-                //CARREGAR TELA PARA EDITAR UMA REMESSA
+                //RemessaController->exibirEditarRemessa();
             } else if($method === 'POST'){
-                //ENVIA DADOS PARA EDIÇÃO DA REMESSA
+                //RemessaController->editarRemessa();
             }
             break;
 
         case '/admin/remessas/protocolos':
             if($method === 'GET'){
-                //CARREGAR TELA PARA ADICIONAR UM PROTOCOLO NA REMESSA E LISTAGEM DOS PROTOCOLOS DAQUELA REMESSA
+                //RemessaController->exibirProtocolos();
             } else if($method === 'POST'){
-                //ENVIA DADOS PARA CRIAR PROTOCOLO E VINCULAR À REMESSA ATUAL
+                //RemessaController->novoProtocolo();
             }
             break;
 
         case '/admin/remessas/editar-protocolo':
             if($method === 'GET'){
-                //CARREGAR TELA PARA EDITAR DADOS DO PROTOCOLO
+                //RemessaController->exibirEditarProtocolo();
             } else if($method === 'POST'){
-                //ENVIA DADOS PARA EDITAR O PROTOCOLO
+                //RemessaController->editarProtocolo();
             }
             break;
 
         case '/admin/remessas/dashboard':
             if($method === 'GET'){
-                //CARREGAR TELA DASHBOARD POR REMESSA
+                //RemessaController->dashboardRemessa();
             }
             break;
 
@@ -182,7 +181,7 @@ try {
         ----- */
         case '/admin/protocolos/buscar-protocolos':
             if($method === 'GET'){
-                //CARREGAR TELA BUSCA DE TODOS OS PROTOCOLOS
+                //ProtocoloController->buscarProtocolos();
             }
             break;
 
@@ -191,7 +190,7 @@ try {
         ----- */
         case '/admin/preparacao/dashboard':
             if($method === 'GET'){
-                //CARREGAR TELA DASHBOARD DE PREPARAÇÃO
+                //ProtocoloController->dashboardPreparados();
             }
             break;
 
@@ -200,7 +199,7 @@ try {
         ----- */
         case '/admin/digitalizacao/dashboard':
             if($method === 'GET'){
-                //CARREGAR TELA DASHBOARD DE DIGITALIZAÇÃO
+                //ProtocoloController->dashboardDigitalizados();
             }
             break;
 
@@ -209,31 +208,31 @@ try {
         ----- */
         case '/admin/usuarios/novo-usuario':
             if($method === 'GET'){
-                //CARREGAR TELA PARA CADASTRAR NOVO USUÁRIO
+                //UsuarioController->exibirNovoUsuario();
             } else if($method === 'POST'){
-                //ENVIA DADOS PARA CRIAÇÃO DO USUÁRIO
+                //UsuarioController->novoUsuario();
             }
             break;
 
         case '/admin/usuarios/visualizar-usuarios':
             if($method === 'GET'){
-                //CARREGAR TELA DE LISTAGEM DE USUARIOS
+                //UsuarioController->exibirUsuarios();
             }
             break;
 
         case '/admin/usuarios/editar-usuario':
             if($method === 'GET'){
-                //CARREGAR TELA PARA EDIÇÃO DO USUÁRIO
+                //UsuarioController->exibirEditarUsuario();
             } else if($method === 'POST'){
-                //ENVIA DADOS PARA EDIÇÃO DO USUÁRIO
+                //UsuarioController->editarUsuario();
             }
             break;
 
         case '/admin/usuarios/resetar-senha':
             if($method === 'GET'){
-                //CARREGAR TELA PARA RESET DE SENHA
+                //UsuarioController->exibirResetarSenhaUsuario();
             } else if($method === 'POST'){
-                //ENVIA DADOS PARA RESET DA SENHA
+                //UsuarioController->resetarSenhaUsuario();
             }
             break;
 
@@ -242,7 +241,7 @@ try {
         ----- */
         case '/admin/equipe/dashboard':
             if($method === 'GET'){
-                //CARREGAR TELA DASHBOARD GERAL DA EQUIPE
+                //ProtocoloController->adminDashboardEquipe();
             }
             break;
         
