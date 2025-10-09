@@ -1,6 +1,11 @@
 <?php
 
+use Mateus\ProtocolTrackerV2\Controller\Admin\RemessaController;
+use Mateus\ProtocolTrackerV2\Controller\Admin\UsuarioController;
+use Mateus\ProtocolTrackerV2\Controller\LoginController;
+use Mateus\ProtocolTrackerV2\Controller\ProtocoloController;
 use Mateus\ProtocolTrackerV2\Infrastructure\Persistence\ConnectionCreator;
+use Mateus\ProtocolTrackerV2\Infrastructure\Persistence\ConnectionCreatorSqlite;
 use Mateus\ProtocolTrackerV2\Repository\ProtocoloRepository;
 use Mateus\ProtocolTrackerV2\Repository\RemessaRepository;
 use Mateus\ProtocolTrackerV2\Repository\UsuarioRepository;
@@ -16,7 +21,8 @@ require __DIR__ . '/../vendor/autoload.php';
 
 try {
     
-    $connection = ConnectionCreator::createConnection();
+    //$connection = ConnectionCreator::createConnection();
+    $connection = ConnectionCreatorSqlite::createConnectionSqlite(); 
 
     //Repositórios
     $protocoloRepository = new ProtocoloRepository($connection);
@@ -29,6 +35,12 @@ try {
     $protocoloService = new ProtocoloService($protocoloRepository, $remessaRepository, $usuarioRepository);
     $remessaService = new RemessaService($remessaRepository, $usuarioRepository);
     $usuarioService = new UsuarioService($usuarioRepository);
+
+    //Controllers
+    $remessaController = new RemessaController($remessaRepository, $remessaService, $protocoloRepository, $protocoloService, $usuarioRepository);
+    $usuarioController = new UsuarioController($usuarioRepository, $usuarioService);
+    $loginController = new LoginController($usuarioRepository, $usuarioService, $loginService);
+    $protocoloController = new ProtocoloController($protocoloRepository, $protocoloService, $usuarioRepository);
 
     //Verificando autenticação
     $usuario_esta_logado = isset($_SESSION['usuario_logado_id']);
@@ -63,21 +75,21 @@ try {
         
         case '/login':
             if($method === 'GET'){
-                //LoginController->exibirLogin();
+                $loginController->exibirLogin();
             } else if($method === 'POST'){
-                //LoginController->login();
+                $loginController->login();
             }
             break;
 
         case '/logout':
             if($method === 'GET'){
-                //LoginController->logout();
+                $loginController->logout();
             }
             break;
 
         case '/home':
             if($method === 'GET'){
-                //LoginController->home(); - MENSAGEM BEM VINDO
+                $loginController->home();
             }
             break;
 
