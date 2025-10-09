@@ -22,6 +22,10 @@ class LoginService
     {
         $usuario = $this->usuarioRepository->findByCpf($cpf);
 
+        if(!$usuario){
+            throw new Exception("Usuário não localizado");
+        }
+
         if(!$usuario->getStatus()){
             throw new Exception("Usuário inativo");
         }

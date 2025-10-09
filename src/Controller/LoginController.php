@@ -70,7 +70,7 @@ class LoginController
 
     public function home(?string $erro = null)
     {
-        $titulo_da_pagina = "Bem Vindo ao Protocol Tracker";
+        $titulo_da_pagina = "Home";
         $usuario_logado = $this->usuario_logado;
         $permissao = $this->permissao;
 

@@ -1,0 +1,807 @@
+/* === RESET BÁSICO E ESTILOS GLOBAIS === */
+:root {
+    --cor-fundo-sidebar: #ffffff;
+    --cor-fundo-sidebar-hover: #f2f6ff;
+    --cor-fontes-sidebar: #454545;
+    --cor-fundo-header: #2563eb;
+    --cor-fontes-header: #ffffff;
+    --cor-bordas: #ddd;
+    --cor-fundo-body: #f0f2f5;
+    --cor-fontes-body: #394034;
+    --cor-fundo-sidebar-active: #dbe6ff;
+    --cor-fontes-sidebar-active: #2563eb;
+    --cor-bordas-focus: #80bdff;
+    --cor-fontes-main-button: #ffffff;
+    --cor-main-button: #2563eb;
+    --cor-fontes-cards: #696969;
+    --cor-icones-header: #969696;
+    --cor-icones-header-hover: #007bff;
+    --cor-primaria-erro: #ff2c2c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--cor-fundo-body);
+    color: var(--cor-fontes-body);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* === ESTILOS DA SIDEBAR === */
+.sidebar {
+    width: 250px;
+    background-color: var(--cor-fundo-sidebar);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    padding: 1.5rem;
+    flex-shrink: 0;
+}
+
+.sidebar nav ul {
+    list-style: none;
+}
+
+.sidebar nav ul li a {
+    display: block;
+    color: var(--cor-fontes-sidebar);
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.sidebar nav ul li a:hover {
+    background-color: var(--cor-fundo-sidebar-hover);
+    text-decoration: none;
+}
+
+.sidebar nav ul li a.active {
+    background-color: var(--cor-fundo-sidebar-active);
+    color: var(--cor-fontes-sidebar-active);
+}
+
+.sidebar-logo {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* === ESTILOS PARA O CABEÇALHO === */
+.content-header {
+    width: 100%;
+    margin: 0 auto 1.4rem auto;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--cor-fundo-header);
+    color: var(--cor-fontes-header);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    padding: 1rem;
+}
+
+.content-header span {
+    color: var(--cor-fontes-header);
+}
+
+.content-header p {
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.action-icon {
+    color: var(--cor-icones-header);
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.action-icon:hover {
+    color: var(--cor-icones-header-hover);
+    text-decoration: none;
+}
+
+.action-icon .material-icons-outlined {
+    font-size: 36px;
+}
+
+.div-conteudo-principal {
+    width: 100%;
+}
+
+.container-principal {
+    display: flex;
+    flex-grow: 1;
+}
+
+.conteudo-principal {
+    flex-grow: 1;
+    overflow-y: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* === ESTILOS DE FORMULÁRIOS E CONTEÚDO === */
+.conteudo-principal h2,
+.conteudo-principal p {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+}
+
+.conteudo-principal h2 {
+    font-size: 1.8rem;
+    color: var(--cor-fontes-body);
+    margin-bottom: 1.0rem;
+    align-self: center;
+}
+
+.conteudo-principal p {
+    margin-bottom: 1.5rem;
+    color: var(--cor-fontes-cards);
+}
+
+.protocolo-form {
+    max-width: 800px;
+    width: 100%;
+    background-color: var(--cor-fundo-sidebar);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* === NOVA REGRA PARA A LINHA DO FORMULÁRIO === */
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group {
+    flex-grow: 1;
+}
+
+.form-group label {
+    width: 100%;
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group textarea {
+    width: 100%;
+    height: 40px;
+    padding: 0.8rem;
+    border: 1px solid var(--cor-bordas);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input[type="date"],
+.form-group input[type="month"],
+.form-group select {
+    width: 100%;
+    height: 40px;
+    padding: 0.8rem;
+    color: var(--cor-icones-header);
+    border: 1px solid var(--cor-bordas);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group select {
+    padding: 0.5rem;
+}
+
+.form-group textarea {
+    min-height: 150px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--cor-bordas-focus);
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+textarea {
+    resize: none;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.protocolo-form .form-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.form-actions button {
+    font-weight: bold;
+    color: var(--cor-fontes-main-button);
+    background-color: var(--cor-main-button);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-decoration: none;
+}
+
+.form-actions button:hover {
+    opacity: 90%;
+}
+
+
+/* === ESTILOS DO AVISO DE ERRO === */
+.error-message {
+    color: #ffffff;
+    background-color: var(--cor-primaria-erro);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 6px;
+}
+
+/* === ESTILOS DO AVISO DE SUCESSO === */
+.flash-message {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.flash-message.fade-out {
+    opacity: 0;
+}
+
+/* === ESTILOS PARA A PÁGINA DE BUSCA === */
+.container-principal-busca {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.busca-form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.busca-form-container, .listagem-container {
+    width: 100%;
+    max-width: 1400px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    margin: 0 auto;
+    background-color: var(--cor-fundo-sidebar);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.busca-form .form-row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+}
+
+.busca-form .form-group {
+    flex-grow: 1;
+}
+
+.busca-form .form-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 1.5rem;
+}
+
+.busca-form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* === ESTILOS BOTÕES GENÉRICOS === */
+.btn-buscar, .btn-limpar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-decoration: none;
+}
+
+.btn-limpar {
+    color: var(--cor-fontes-body);
+    background-color: var(--cor-bordas);
+}
+
+.btn-limpar:hover {
+    opacity: 90%;
+    text-decoration: none;
+}
+
+/* === ESTILOS TABELA DE LISTAGEM === */
+.listagem-container h3 {
+    margin-bottom: 1rem;
+}
+
+.protocolos-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.protocolos-table th, .protocolos-table td {
+    padding: 7px;
+    border: 2px solid var(--cor-bordas);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.protocolos-table thead {
+    background-color: var(--cor-bordas);
+}
+
+
+.nenhum-resultado {
+    text-align: center;
+    padding: 20px;
+    color: var(--cor-fontes-body);
+}
+
+/* Alinhamento da coluna de Ações */
+.acoes-header {
+    text-align: center;
+}
+
+.acoes-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Estilos dos botões de Ação (Editar/Excluir) */
+.btn-acao {
+    display: inline-flex;
+    padding: 6px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: #fff;
+}
+
+.btn-editar {
+    background-color: #ffc107;
+}
+.btn-editar:hover {
+    background-color: #e0a800;
+    text-decoration: none;
+}
+
+.btn-excluir {
+    background-color: #dc3545;
+}
+.btn-excluir:hover {
+    background-color: #c82333;
+}
+
+.material-icons-outlined {
+    vertical-align: middle;
+}
+
+/* === ESTILOS PARA OS BOTÕES DE EDIÇÃO === */
+.form-actions-edit {
+    display: flex;
+    gap: 15px;
+    margin-top: 1.5rem;
+}
+
+.btn-salvar, .btn-cancelar {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-decoration: none;
+}
+
+.btn-salvar {
+    background-color: var(--cor-main-button);
+    color: var(--cor-fontes-main-button);
+    font-weight: bold;
+}
+
+.btn-salvar:hover {
+    opacity: 90%;
+}
+
+.btn-cancelar {
+    background-color: var(--cor-bordas);
+    color: var(--cor-fontes-body);
+}
+
+.btn-cancelar:hover {
+    opacity: 90%;
+    text-decoration: none;
+}
+
+/* === ESTILOS ADICIONAIS PARA A PÁGINA DE DASHBOARD === */
+.dashboard-container {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.dashboard-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.metric-card {
+    background-color: var(--cor-fundo-sidebar);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 25px;
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+}
+
+.metric-card .label {
+    font-size: 1.0rem;
+    color: var(--cor-fontes-cards);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.metric-card .value {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.metric-card .dia {
+    color: #007bff;
+}
+
+.metric-card .mes {
+    color: #ffc400;
+}
+
+.metric-card .total {
+    color: #00d659;
+}
+
+/* === ESTILOS PÁGINA 404 NOT FOUND === */
+.conteudo-principal.pagina-404 {
+    align-items: center;
+    justify-content: center;
+}
+
+.container-404 {
+    text-align: center;
+    max-width: 600px;
+}
+
+.imagem-404 img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.texto-404 h1 {
+    font-size: 2.5rem;
+    color: var(--cor-fontes-body);
+    margin-bottom: 1rem;
+}
+
+.texto-404 p {
+    font-size: 1.1rem;
+    color: var(--cor-fontes-cards);
+    margin-bottom: 2rem;
+}
+
+.btn-voltar-home {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff; /* Azul */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-decoration: none;
+}
+
+.btn-voltar-home:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+}
+
+/* === ESTILOS PARA PÁGINAS PÚBLICAS (LOGIN, CADASTRO, ETC.) === */
+.public-page-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+}
+
+.login-box {
+    background-color: var(--cor-fundo-sidebar);
+    padding: 1.5rem;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.login-logo {
+    text-align: center;
+}
+
+.login-logo img {
+    max-width: 200px;
+    height: auto;
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    color: var(--cor-fontes-body);
+}
+
+.login-box p {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--cor-fontes-body);
+}
+
+.login-form .form-actions button {
+    width: 100%;
+    background-color: var(--cor-fontes-sidebar-active);
+    display: block;
+}
+
+.login-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.login-form .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--cor-fontes-body);
+}
+
+.login-form .form-group input[type="text"],
+.login-form .form-group input[type="password"] {
+    width: 100%;
+    height: 45px;
+    padding: 0.8rem;
+    border: 1px solid var(--cor-bordas);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.login-form .form-group input[type="text"]:focus,
+.login-form .form-group input[type="password"]:focus {
+    outline: none;
+    border-color: var(--cor-bordas-focus);
+}
+
+.login-form .form-actions button:hover {
+    opacity: 90%;
+}
+
+.login-links a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9em;
+    color: var(--cor-fontes-body);
+    padding: 0.5rem 0.5rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.login-links {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.links-cadastro a {
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* === ESTILOS PARA O DROPDOWN DE USUÁRIO === */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--cor-fundo-sidebar);
+    min-width: 180px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 100;
+    padding: 8px 0;
+}
+
+.dropdown.show .dropdown-menu {
+    display: block;
+}
+
+/* Estilo dos links dentro do dropdown */
+.dropdown-menu a {
+    color: var(--cor-fontes-body);
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.95rem;
+}
+
+.dropdown-menu a:hover {
+    opacity: 90%;
+    text-decoration: none;
+}
+
+/* === ESTILOS PARA A MENSAGEM DE BOAS-VINDAS NO HEADER === */
+.header-actions .welcome-message {
+    color: var(--cor-fontes-body);
+    font-size: 0.95rem;
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+/* === AJUSTES FINOS PARA OS FILTROS DO DASHBOARD === */
+.dashboard-filters .form-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.dashboard-filters .form-actions {
+    margin-top: 0;
+}
+
+.dashboard-filters input[type="date"],
+.dashboard-filters input[type="month"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+}
+
+/* === ESTILOS ADICIONAIS PARA A LISTA DE USUÁRIOS === */
+.badge {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 10px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.badge-success {
+    background-color: #0dc037;
+}
+
+.badge-danger {
+    background-color: #df0e23;
+}
+
+.btn-ativar {
+    background-color: #17b87a;
+}
+.btn-ativar:hover {
+    background-color: #0e9c66;
+}
+
+.btn-desativar {
+    background-color: #6c757d;
+}
+.btn-desativar:hover {
+    background-color: #5a6268;
+}
+
+/* === ESTILOS PARA A SEÇÃO DE ADMIN NA SIDEBAR === */
+.menu-admin-separator hr {
+    border: none;
+    border-top: 1px solid var(--cor-fontes-sidebar);
+    margin: 10px 0;
+}
+
+.menu-admin-title span {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-align: center;
+    color: var(--cor-fontes-sidebar-active);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
