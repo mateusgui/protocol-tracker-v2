@@ -1,0 +1,93 @@
+<?php
+
+namespace Mateus\ProtocolTrackerV2\Controller;
+
+use Mateus\ProtocolTrackerV2\Model\Usuario;
+use Mateus\ProtocolTrackerV2\Repository\ProtocoloRepository;
+use Mateus\ProtocolTrackerV2\Repository\RemessaRepository;
+use Mateus\ProtocolTrackerV2\Repository\UsuarioRepository;
+use Mateus\ProtocolTrackerV2\Service\ProtocoloService;
+use Mateus\ProtocolTrackerV2\Service\RemessaService;
+
+class RemessaController
+{
+    private ?Usuario $usuario_logado = null;
+    private ?string $permissao = null;
+
+    public function __construct(
+        private RemessaRepository $remessaRepository,
+        private RemessaService $remessaService,
+        private ProtocoloRepository $protocoloRepository,
+        private ProtocoloService $protocoloService,
+        private UsuarioRepository $usuarioRepository
+    ) {
+        $id_usuario = $_SESSION['usuario_logado_id'] ?? null;
+        if ($id_usuario) {
+            $this->usuario_logado = $this->usuarioRepository->findById($id_usuario);
+        }
+        
+        if ($this->usuario_logado) {
+            $this->permissao = $this->usuario_logado->getPermissao();
+        }
+    }
+
+    //GET
+    public function exibirNovaRemessa()
+    {
+
+    }
+
+    //POST
+    public function novaRemessa()
+    {
+        
+    }
+
+    //GET
+    public function exibirRemessas()
+    {
+        
+    }
+
+    //GET
+    public function exibirEditarRemessa()
+    {
+        
+    }
+
+    //POST
+    public function editarRemessa()
+    {
+        
+    }
+
+    //GET
+    public function exibirProtocolos()
+    {
+        
+    }
+
+    //POST
+    public function novoProtocolo()
+    {
+        
+    }
+
+    //GET
+    public function exibirEditarProtocolo()
+    {
+        
+    }
+
+    //POST
+    public function editarProtocolo()
+    {
+        
+    }
+
+    //GET
+    public function dashboardRemessa()
+    {
+        
+    }
+}
