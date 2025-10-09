@@ -9,7 +9,7 @@ class Remessa {
 
     public function __construct(
         private readonly string $id,
-        private readonly int $numero_remessa,
+        private readonly ?int $numero_remessa,
         private readonly DateTimeImmutable $data_recebimento,
         private readonly ?DateTimeImmutable $data_entrega,
         private readonly string $status,
@@ -76,7 +76,7 @@ class Remessa {
 
         return new self(
             $array['id'],
-            (int) $array['numero_remessa'],
+            (int) $array['numero_remessa'] ?? null,
             $data_recebimento,
             $data_entrega,
             $array['status'],
