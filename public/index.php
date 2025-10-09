@@ -62,16 +62,23 @@ try {
             exit();
         
         case '/login':
-            echo "CHEGOU";
-            //LoginController->login();
+            if($method === 'GET'){
+                //LoginController->exibirLogin();
+            } else if($method === 'POST'){
+                //LoginController->login();
+            }
             break;
 
         case '/logout':
-            //LoginController->logout();
+            if($method === 'GET'){
+                //LoginController->logout();
+            }
             break;
 
         case '/home':
-            //LoginController->home(); - MENSAGEM BEM VINDO
+            if($method === 'GET'){
+                //LoginController->home(); - MENSAGEM BEM VINDO
+            }
             break;
 
         /*----- 
