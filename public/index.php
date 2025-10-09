@@ -75,24 +75,175 @@ try {
             break;
 
         /*----- 
+        rota views EQUIPE 
+        ----- */
+        case '/equipe/dashboard':
+            if($method === 'GET'){
+                //CARREGAR DASHBOARD DE PRODUÇÃO DA EQUIPE
+            }
+            break;
+
+        /*----- 
         rota views preparadores 
         ----- */
-        case '/preparadores':
-            //CHAMADA CONTROLLER
+        case '/preparadores/recebidos':
+            if($method === 'GET'){
+                //CARREGAR LISTA DE PROTOCOLOS COM STATUS RECEBIDO
+            }
+            break;
+
+        case '/preparadores/movimentar-protocolo':
+            if($method === 'GET'){
+                //CARREGAR TELA PARA PREENCHER DADOS ANTES DE MOVIMENTAR
+            } else if($method === 'POST'){
+                //CONFIRMA A MOVIMENTAÇÃO
+            }
+            break;
+
+        case '/preparadores/preparados':
+            if($method === 'GET'){
+                //CARREGAR LISTA DE PROTOCOLOS COM STATUS PREPARADO
+            }
             break;
 
         /*----- 
         rota views digitalizadores 
         ----- */
-        case '/digitalizadores':
-            //CHAMADA CONTROLLER
+
+        case '/digitalizadores/preparados':
+            if($method === 'GET'){
+                //CARREGAR LISTA DE PROTOCOLOS COM STATUS PREPARADO
+            }
+            break;
+
+        case '/digitalizadores/movimentar-protocolo':
+            if($method === 'GET'){
+                //CARREGAR TELA PARA PREENCHER DADOS ANTES DE MOVIMENTAR
+            } else if($method === 'POST'){
+                //CONFIRMA A MOVIMENTAÇÃO
+            }
+            break;
+
+        case '/digitalizadores/digitalizados':
+            if($method === 'GET'){
+                //CARREGAR LISTA DE PROTOCOLOS COM STATUS DIGITALIADO
+            }
             break;
 
         /*----- 
-        rota views administrador 
+        /ADMIN/REMESSAS
         ----- */
-        case '/admin':
-            //CHAMADA CONTROLLER
+        case '/admin/remessas/nova-remessa':
+            if($method === 'GET'){
+                //CARREGAR TELA DE NOVA REMESSA
+            } else if($method === 'POST'){
+                //ENVIA DADOS PARA CRIAR REMESSA - Service = novaRemessa(Usuario $usuarioLogado, string $data_recebimento): void
+            }
+            break;
+
+        case '/admin/remessas/visualizar-remessas':
+            if($method === 'GET'){
+                //CARREGAR TELA DE BUSCA DE REMESSAS
+            }
+            break;
+
+        case '/admin/remessas/editar-remessa':
+            if($method === 'GET'){
+                //CARREGAR TELA PARA EDITAR UMA REMESSA
+            } else if($method === 'POST'){
+                //ENVIA DADOS PARA EDIÇÃO DA REMESSA
+            }
+            break;
+
+        case '/admin/remessas/protocolos':
+            if($method === 'GET'){
+                //CARREGAR TELA PARA ADICIONAR UM PROTOCOLO NA REMESSA E LISTAGEM DOS PROTOCOLOS DAQUELA REMESSA
+            } else if($method === 'POST'){
+                //ENVIA DADOS PARA CRIAR PROTOCOLO E VINCULAR À REMESSA ATUAL
+            }
+            break;
+
+        case '/admin/remessas/editar-protocolo':
+            if($method === 'GET'){
+                //CARREGAR TELA PARA EDITAR DADOS DO PROTOCOLO
+            } else if($method === 'POST'){
+                //ENVIA DADOS PARA EDITAR O PROTOCOLO
+            }
+            break;
+
+        case '/admin/remessas/dashboard':
+            if($method === 'GET'){
+                //CARREGAR TELA DASHBOARD POR REMESSA
+            }
+            break;
+
+        /*----- 
+        /ADMIN/PROTOCOLOS
+        ----- */
+        case '/admin/protocolos/buscar-protocolos':
+            if($method === 'GET'){
+                //CARREGAR TELA BUSCA DE TODOS OS PROTOCOLOS
+            }
+            break;
+
+        /*----- 
+        /ADMIN/PREPARAÇÃO
+        ----- */
+        case '/admin/preparacao/dashboard':
+            if($method === 'GET'){
+                //CARREGAR TELA DASHBOARD DE PREPARAÇÃO
+            }
+            break;
+
+        /*----- 
+        /ADMIN/DIGITALIZAÇÃO
+        ----- */
+        case '/admin/digitalizacao/dashboard':
+            if($method === 'GET'){
+                //CARREGAR TELA DASHBOARD DE DIGITALIZAÇÃO
+            }
+            break;
+
+        /*----- 
+        /ADMIN/USUARIOS
+        ----- */
+        case '/admin/usuarios/novo-usuario':
+            if($method === 'GET'){
+                //CARREGAR TELA PARA CADASTRAR NOVO USUÁRIO
+            } else if($method === 'POST'){
+                //ENVIA DADOS PARA CRIAÇÃO DO USUÁRIO
+            }
+            break;
+
+        case '/admin/usuarios/visualizar-usuarios':
+            if($method === 'GET'){
+                //CARREGAR TELA DE LISTAGEM DE USUARIOS
+            }
+            break;
+
+        case '/admin/usuarios/editar-usuario':
+            if($method === 'GET'){
+                //CARREGAR TELA PARA EDIÇÃO DO USUÁRIO
+            } else if($method === 'POST'){
+                //ENVIA DADOS PARA EDIÇÃO DO USUÁRIO
+            }
+            break;
+
+        case '/admin/usuarios/resetar-senha':
+            if($method === 'GET'){
+                //CARREGAR TELA PARA RESET DE SENHA
+            } else if($method === 'POST'){
+                //ENVIA DADOS PARA RESET DA SENHA
+            }
+            break;
+
+        /*----- 
+        /ADMIN/EQUIPE
+        ----- */
+        case '/admin/equipe/dashboard':
+            if($method === 'GET'){
+                //CARREGAR TELA DASHBOARD GERAL DA EQUIPE
+            }
             break;
         
         //NOT FOUND
