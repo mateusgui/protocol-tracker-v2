@@ -1,6 +1,6 @@
 <?php
 
-namespace Mateus\ProtocolTrackerV2\Admin\Controller;
+namespace Mateus\ProtocolTrackerV2\Controller\Admin;
 
 use Mateus\ProtocolTrackerV2\Model\Usuario;
 use Mateus\ProtocolTrackerV2\Repository\ProtocoloRepository;
