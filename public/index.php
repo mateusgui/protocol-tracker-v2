@@ -175,9 +175,9 @@ try {
 
         case '/admin/remessas/protocolos':
             if($method === 'GET'){
-                //RemessaController->exibirProtocolos();
+                $remessaController->exibirProtocolos();
             } else if($method === 'POST'){
-                //RemessaController->novoProtocolo();
+                $remessaController->novoProtocolo();
             }
             break;
 

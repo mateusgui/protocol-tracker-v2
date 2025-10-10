@@ -57,11 +57,13 @@ class RemessaController
             $data_recebimento = $_POST['data_recebimento'] ?? '';
             $observacoes = $_POST['observacoes'] ?? null;
 
-            $this->remessaService->novaRemessa($usuario_logado, $data_recebimento, $observacoes);
+            $novaRemessa = $this->remessaService->novaRemessa($usuario_logado, $data_recebimento, $observacoes);
+            $idNovaRemessa = $novaRemessa->getId();
+            $urlRedirecionamento = "/admin/remessas/protocolos?id=" . $idNovaRemessa;
 
             $_SESSION['mensagem_sucesso'] = "Remessa criada com sucesso!";
 
-            header('Location: /admin/remessas/protocolos');
+            header('Location: ' . $urlRedirecionamento);
             exit();
 
         } catch (Exception $e) {
@@ -127,15 +129,45 @@ class RemessaController
     }
 
     //GET
-    public function exibirProtocolos()
+    public function exibirProtocolos(?string $erro = null)
     {
-        
+        try {
+            $id_remessa = $_GET['id'] ?? '';
+            $remessa = $this->remessaRepository->findById($id_remessa);
+
+            $listaProtocolos = $this->protocoloRepository->findByRemessa($id_remessa);
+
+            $titulo_da_pagina = "Lista de Protocolos";
+            $usuario_logado = $this->usuario_logado;
+            $permissao = $this->permissao;
+
+            require __DIR__ . '/../../../templates/admin/visualizar-protocolos.php';
+        } catch (Exception $e) {
+            $this->exibirRemessas($e->getMessage());
+        }
     }
 
     //POST
     public function novoProtocolo()
     {
-        
+        try {
+            //public function novoProtocolo(Usuario $usuarioLogado, string $id_remessa, string $numero_protocolo): void
+            $usuario_logado = $this->usuario_logado;
+            $id_remessa = $_POST['id_remessa'] ?? '';
+            $numero_protocolo = $_POST['numero_protocolo'] ?? '';
+
+            $this->protocoloService->novoProtocolo($usuario_logado, $id_remessa, $numero_protocolo);
+            $this->remessaRepository->adicionaProtocolo($id_remessa);
+
+            $_SESSION['mensagem_sucesso'] = "Protocolo criado com sucesso!";
+
+            $urlRedirecionamento = "/admin/remessas/protocolos?id=" . $id_remessa;
+
+            header('Location: ' . $urlRedirecionamento);
+            exit();
+        } catch (Exception $e) {
+            $this->exibirProtocolos($e->getMessage());
+        }
     }
 
     //GET

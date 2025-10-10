@@ -7,6 +7,7 @@
         <strong>Erro:</strong> <?= htmlspecialchars($erro) ?>
     </div>
 <?php endif; ?>
+
 <section class="listagem-container">
     <table id="tabela-remessas" class="protocolos-table datatable-js">
         <thead>

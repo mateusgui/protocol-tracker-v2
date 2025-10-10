@@ -17,7 +17,7 @@ class RemessaService
         private UsuarioRepositoryInterface $usuarioRepository
     ) {}
 
-    public function novaRemessa(Usuario $usuarioLogado, string $data_recebimento, ?string $observacoes): void
+    public function novaRemessa(Usuario $usuarioLogado, string $data_recebimento, ?string $observacoes): Remessa
     {
         if($usuarioLogado->getPermissao() !== 'administrador') {
             throw new Exception("Apenas administradores podem criar novas remessas.");
@@ -43,6 +43,8 @@ class RemessaService
         );
 
         $this->remessaRepository->add($remessa);
+
+        return $remessa;
     }
 
     public function atualizarRemessa(Usuario $usuarioLogado, string $data_recebimento, ?string $data_entrega, string $status, ?string $observacoes, string $id): void

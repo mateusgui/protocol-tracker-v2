@@ -24,6 +24,18 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         return $this->hidrataLista($stmt);
     }
 
+    public function findByRemessa(string $id_remessa): array
+    {
+        $sqlQuery = "SELECT * FROM protocolos WHERE id_remessa = :id_remessa;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':id_remessa', $id_remessa);
+
+        $stmt->execute();
+
+        return $this->hidrataLista($stmt);
+    }
+
     public function findById(string $id): ?Protocolo
     {
         $sqlQuery = "SELECT * FROM protocolos WHERE id = :id;";
