@@ -74,7 +74,7 @@
                             <ul class="submenu">
                                 <li><a href="/admin/remessas/nova-remessa">Nova Remessa</a></li>
                                 <li><a href="/admin/remessas/visualizar-remessas">Visualizar Remessas</a></li>
-                                <li><a href="/admin/remessas/dashboard">Visualizar Remessas</a></li>
+                                <li><a href="/admin/remessas/dashboard">Dashboard Remessas</a></li>
                             </ul>
                         </li>
                         <li class="has-submenu">
