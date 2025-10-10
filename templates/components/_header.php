@@ -21,7 +21,7 @@
     <div class="container-principal">
         <aside class="sidebar">
             <div class="sidebar-logo">
-                <img src="/assets/imgs/ProtocolTrackerLogo.png" alt="Logo Protocol Tracker">
+                <a href="/home"><img src="/assets/imgs/ProtocolTrackerLogo.png" alt="Logo Protocol Tracker"></a>
             </div>
             
             <nav>
