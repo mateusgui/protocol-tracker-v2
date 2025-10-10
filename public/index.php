@@ -153,7 +153,7 @@ try {
         ----- */
         case '/admin/remessas/nova-remessa':
             if($method === 'GET'){
-                //RemessaController->exibirNovaRemessa();
+                $remessaController->exibirNovaRemessa();
             } else if($method === 'POST'){
                 //RemessaController->novaRemessa();
             }

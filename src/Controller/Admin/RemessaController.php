@@ -2,6 +2,8 @@
 
 namespace Mateus\ProtocolTrackerV2\Controller\Admin;
 
+use Exception;
+use Mateus\ProtocolTrackerV2\Controller\LoginController;
 use Mateus\ProtocolTrackerV2\Model\Usuario;
 use Mateus\ProtocolTrackerV2\Repository\ProtocoloRepository;
 use Mateus\ProtocolTrackerV2\Repository\RemessaRepository;
@@ -34,7 +36,16 @@ class RemessaController
     //GET
     public function exibirNovaRemessa()
     {
+        try {
+            $titulo_da_pagina = "Nova Remessa";
+            $usuario_logado = $this->usuario_logado;
+            $permissao = $this->permissao;
 
+            require __DIR__ . '/../../../templates/admin/nova-remessa.php';
+        } catch (Exception $e) {
+            //retorno padrão de erro para todas as exibições primárias vindas do menu
+            $this->home($e->getMessage());
+        }
     }
 
     //POST
@@ -89,5 +100,14 @@ class RemessaController
     public function dashboardRemessa()
     {
         
+    }
+
+    private function home(?string $erro = null)
+    {
+        $titulo_da_pagina = "Home";
+        $usuario_logado = $this->usuario_logado;
+        $permissao = $this->permissao;
+
+        require __DIR__ . '/../../../templates/home.php';
     }
 }
