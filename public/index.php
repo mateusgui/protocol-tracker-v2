@@ -155,7 +155,7 @@ try {
             if($method === 'GET'){
                 $remessaController->exibirNovaRemessa();
             } else if($method === 'POST'){
-                //RemessaController->novaRemessa();
+                $remessaController->novaRemessa();
             }
             break;
 

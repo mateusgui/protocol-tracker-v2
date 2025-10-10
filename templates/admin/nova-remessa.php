@@ -8,7 +8,7 @@
     </div>
 <?php endif; ?>
 
-<form action="/home" method="post" class="protocolo-form">
+<form action="/admin/remessas/nova-remessa" method="post" class="protocolo-form">
     
     <div class="form-row">
         <div class="form-group">
@@ -18,13 +18,13 @@
 
         <div class="form-group">
             <label for="id_administrador">Responsável</label>
-            <input type="text" id="id_administrador" name="id_administrador" required placeholder="Ex: 2000">
+            <input type="text" id="nome_administrador" name="nome_administrador" value="<?= htmlspecialchars($usuario_logado->getNome()) ?>" readonly>
         </div>
     </div>
 
     <div class="form-group">
         <label for="observacoes">Observações:</label>
-        <textarea id="observacoes" name="observacoes" rows="3"></textarea>
+        <textarea id="observacoes" name="observacoes" rows="2"></textarea>
     </div>
 
     <div class="form-actions">

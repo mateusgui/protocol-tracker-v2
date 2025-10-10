@@ -51,7 +51,21 @@ class RemessaController
     //POST
     public function novaRemessa()
     {
-        
+        try {
+            //public function novaRemessa(Usuario $usuarioLogado, string $data_recebimento, ?string $observacoes): void
+            $usuario_logado = $this->usuario_logado;
+            $data_recebimento = $_POST['data_recebimento'] ?? '';
+            $observacoes = $_POST['observacoes'] ?? null;
+
+            $this->remessaService->novaRemessa($usuario_logado, $data_recebimento, $observacoes);
+
+            header('Location: /admin/remessas/protocolos');
+            exit();
+
+        } catch (Exception $e) {
+            //retorno padrão de erro para todas as exibições primárias vindas do menu
+            $this->home($e->getMessage());
+        }
     }
 
     //GET
