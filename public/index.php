@@ -161,15 +161,15 @@ try {
 
         case '/admin/remessas/visualizar-remessas':
             if($method === 'GET'){
-                //RemessaController->exibirRemessas();
+                $remessaController->exibirRemessas();
             }
             break;
 
         case '/admin/remessas/editar-remessa':
             if($method === 'GET'){
-                //RemessaController->exibirEditarRemessa();
+                $remessaController->exibirEditarRemessa();
             } else if($method === 'POST'){
-                //RemessaController->editarRemessa();
+                $remessaController->editarRemessa();
             }
             break;
 

@@ -439,6 +439,14 @@ textarea {
     text-decoration: none;
 }
 
+.btn-detalhes {
+    background-color: #2563eb;
+}
+.btn-detalhes:hover {
+    background-color: #1a4ebd;
+    text-decoration: none;
+}
+
 .btn-excluir {
     background-color: #dc3545;
 }
