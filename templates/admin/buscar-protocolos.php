@@ -48,7 +48,7 @@
                     <td><?= $protocolo['data_digitalizacao'] ? (new DateTimeImmutable($protocolo['data_digitalizacao']))->format('d/m/Y H:i') : 'N/A' ?></td>
                     <td><?= htmlspecialchars($protocolo['id_digitalizador'] ?? 'N/A') ?></td>
                     <td><?= htmlspecialchars($protocolo['quantidade_paginas'] ?? 'N/A') ?></td>
-                    <td><?= htmlspecialchars($protocolo['observacoes']) ?? '' ?></td>
+                    <td class="coluna-observacoes" title="<?= htmlspecialchars($protocolo['observacoes'] ?? '') ?>"><?= htmlspecialchars($protocolo['observacoes']) ?? '' ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

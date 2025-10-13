@@ -391,6 +391,14 @@ textarea {
     border-spacing: 0;
 }
 
+.protocolos-table .coluna-observacoes {
+    max-width: 300px;
+    width: 20%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .protocolos-table th, .protocolos-table td {
     padding: 7px;
     border: 2px solid var(--cor-bordas);
@@ -401,7 +409,6 @@ textarea {
 .protocolos-table thead {
     background-color: var(--cor-bordas);
 }
-
 
 .nenhum-resultado {
     text-align: center;
