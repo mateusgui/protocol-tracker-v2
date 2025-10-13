@@ -72,16 +72,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- LÓGICA PARA O MENU ACORDEÃO DA SIDEBAR ---
-    const submenuToggleLinks = document.querySelectorAll('.has-submenu > a');
+    // Aplica a altura correta para os menus que já carregam abertos
+    document.querySelectorAll('.has-submenu.open').forEach(openLi => {
+        const submenu = openLi.querySelector('.submenu');
+        if (submenu) {
+            submenu.style.maxHeight = submenu.scrollHeight + 'px';
+        }
+    });
 
+    const submenuToggleLinks = document.querySelectorAll('.has-submenu > a');
     submenuToggleLinks.forEach(link => {
         link.addEventListener('click', function(event) {
-            // Previne a ação padrão do link (que seria ir para '#')
             event.preventDefault();
-
             const parentLi = this.parentElement;
 
-            // Fecha todos os outros submenus que possam estar abertos
+            // Fecha todos os outros submenus abertos para ter apenas um aberto por vez
             document.querySelectorAll('.has-submenu.open').forEach(openLi => {
                 if (openLi !== parentLi) {
                     openLi.classList.remove('open');
@@ -89,15 +94,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Alterna a classe 'open' no <li> clicado
+            // Abre ou fecha o submenu atual
             parentLi.classList.toggle('open');
             
             const submenu = this.nextElementSibling;
             if (parentLi.classList.contains('open')) {
-                // Se abriu, define a altura máxima com base no tamanho real do conteúdo
                 submenu.style.maxHeight = submenu.scrollHeight + 'px';
             } else {
-                // Se fechou, volta a altura máxima para zero
                 submenu.style.maxHeight = '0px';
             }
         });

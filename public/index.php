@@ -234,31 +234,31 @@ try {
         ----- */
         case '/admin/usuarios/novo-usuario':
             if($method === 'GET'){
-                //UsuarioController->exibirNovoUsuario();
+                $usuarioController->exibirNovoUsuario();
             } else if($method === 'POST'){
-                //UsuarioController->novoUsuario();
+                $usuarioController->novoUsuario();
             }
             break;
 
         case '/admin/usuarios/visualizar-usuarios':
             if($method === 'GET'){
-                //UsuarioController->exibirUsuarios();
+                $usuarioController->exibirUsuarios();
             }
             break;
 
         case '/admin/usuarios/editar-usuario':
             if($method === 'GET'){
-                //UsuarioController->exibirEditarUsuario();
+                $usuarioController->exibirEditarUsuario();
             } else if($method === 'POST'){
-                //UsuarioController->editarUsuario();
+                $usuarioController->editarUsuario();
             }
             break;
 
         case '/admin/usuarios/resetar-senha':
             if($method === 'GET'){
-                //UsuarioController->exibirResetarSenhaUsuario();
+                $usuarioController->exibirResetarSenhaUsuario();
             } else if($method === 'POST'){
-                //UsuarioController->resetarSenhaUsuario();
+                $usuarioController->resetarSenhaUsuario();
             }
             break;
 

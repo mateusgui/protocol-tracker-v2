@@ -1,3 +1,8 @@
+<?
+    $url = $_SERVER['REQUEST_URI'];
+    $url = parse_url($url, PHP_URL_PATH);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

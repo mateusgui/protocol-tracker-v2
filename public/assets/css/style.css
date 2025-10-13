@@ -392,8 +392,8 @@ textarea {
 }
 
 .protocolos-table .coluna-observacoes {
-    max-width: 300px;
-    width: 20%;
+    max-width: 200px;
+    width: 10%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -752,6 +752,13 @@ textarea {
     white-space: nowrap;
 }
 
+.logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
 /* === AJUSTES FINOS PARA OS FILTROS DO DASHBOARD === */
 .dashboard-filters .form-row {
     display: flex;
@@ -867,4 +874,47 @@ textarea {
     display: flex;
     align-items: center;
     gap: 20px;
+}
+
+
+/* === ESTILOS ADICIONAIS PARA A LISTA DE USUÁRIOS === */
+
+/* Para o cabeçalho da listagem (título + botão "novo") */
+.listagem-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.listagem-header h3 {
+    margin-bottom: 0;
+}
+
+.btn-adicionar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff; /* Azul */
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.btn-adicionar:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+}
+
+/* Novo botão de Ação para Resetar Senha */
+.btn-reset-senha {
+    background-color: #6c757d; /* Cinza */
+}
+
+.btn-reset-senha:hover {
+    background-color: #5a6268;
 }
