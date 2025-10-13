@@ -110,6 +110,19 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         return Protocolo::fromArray($dadosProtocolo);
     }
 
+    public function countByStatus(string $id_remessa, string $status): int
+    {
+        $sqlQuery = "SELECT COUNT(*) FROM protocolos WHERE id_remessa = :id_remessa AND status = :status;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':id_remessa', $id_remessa);
+        $stmt->bindValue(':status', $status);
+
+        $stmt->execute();
+
+        return (int) $stmt->fetchColumn();
+    }
+
     public function add(Protocolo $protocolo): void
     {
         $sqlQuery = "INSERT INTO protocolos (id, id_remessa, numero_protocolo, status) VALUES (:id, :id_remessa, :numero_protocolo, :status);";

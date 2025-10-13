@@ -30,14 +30,14 @@ try {
     $usuarioRepository = new UsuarioRepository($connection);
 
     //Services
-    $dashboardService = new DashboardService($protocoloRepository);
+    $dashboardService = new DashboardService($protocoloRepository, $remessaRepository);
     $loginService = new LoginService($usuarioRepository);
     $protocoloService = new ProtocoloService($protocoloRepository, $remessaRepository, $usuarioRepository);
     $remessaService = new RemessaService($remessaRepository, $usuarioRepository);
     $usuarioService = new UsuarioService($usuarioRepository);
 
     //Controllers
-    $remessaController = new RemessaController($remessaRepository, $remessaService, $protocoloRepository, $protocoloService, $usuarioRepository);
+    $remessaController = new RemessaController($remessaRepository, $remessaService, $protocoloRepository, $protocoloService, $usuarioRepository, $dashboardService);
     $usuarioController = new UsuarioController($usuarioRepository, $usuarioService);
     $loginController = new LoginController($usuarioRepository, $usuarioService, $loginService);
     $protocoloController = new ProtocoloController($protocoloRepository, $protocoloService, $usuarioRepository);
@@ -198,7 +198,7 @@ try {
 
         case '/admin/remessas/dashboard':
             if($method === 'GET'){
-                //RemessaController->dashboardRemessa(); FALTA SÓ ESSE DO MÓDULO
+                $remessaController->dashboardRemessa();
             }
             break;
 

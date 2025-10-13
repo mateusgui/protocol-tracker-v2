@@ -11,6 +11,7 @@ interface ProtocoloRepositoryInterface
     public function findByRemessa(string $id_remessa): array;
     public function findById(string $id): ?Protocolo;
     public function findByNumber(string $numero_protocolo): ?Protocolo;
+    public function countByStatus(string $id_remessa, string $status): int;
     public function add(Protocolo $protocolo): void;
     public function update(Protocolo $protocolo): void;
     public function preparaProtocolo(string $id, string $data_preparacao, int $id_preparador): void;

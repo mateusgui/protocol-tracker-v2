@@ -8,6 +8,7 @@ use Mateus\ProtocolTrackerV2\Model\Usuario;
 use Mateus\ProtocolTrackerV2\Repository\ProtocoloRepository;
 use Mateus\ProtocolTrackerV2\Repository\RemessaRepository;
 use Mateus\ProtocolTrackerV2\Repository\UsuarioRepository;
+use Mateus\ProtocolTrackerV2\Service\DashboardService;
 use Mateus\ProtocolTrackerV2\Service\ProtocoloService;
 use Mateus\ProtocolTrackerV2\Service\RemessaService;
 
@@ -21,7 +22,8 @@ class RemessaController
         private RemessaService $remessaService,
         private ProtocoloRepository $protocoloRepository,
         private ProtocoloService $protocoloService,
-        private UsuarioRepository $usuarioRepository
+        private UsuarioRepository $usuarioRepository,
+        private DashboardService $dashboardService
     ) {
         $id_usuario = $_SESSION['usuario_logado_id'] ?? null;
         if ($id_usuario) {
@@ -224,9 +226,30 @@ class RemessaController
 
     //GET
     public function dashboardRemessa()
-    {
+{
+    try {
+        $id_remessa = $_GET['id_remessa'] ?? null;
         
+        $metricas = null;
+        $remessaSelecionada = null;
+        
+        $listaDeRemessas = $this->remessaRepository->all();
+
+        if ($id_remessa) {
+            $metricas = $this->dashboardService->metricaPorRemessa($id_remessa);
+            $remessaSelecionada = $this->remessaRepository->findById($id_remessa);
+        }
+
+        $titulo_da_pagina = "Dashboard por Remessa";
+        $usuario_logado = $this->usuario_logado;
+        $permissao = $this->permissao;
+
+        require __DIR__ . '/../../../templates/admin/remessa-dashboard.php';
+        
+    } catch (Exception $e) {
+        $this->home($e->getMessage());
     }
+}
 
     private function home(?string $erro = null)
     {
