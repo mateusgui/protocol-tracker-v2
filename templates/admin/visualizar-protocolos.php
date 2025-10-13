@@ -68,7 +68,7 @@
                     <td><?= $protocolo->getDataDigitalizacao() ? $protocolo->getDataDigitalizacao()->format('d/m/Y H:i') : 'Pendente' ?></td>
                     <td><?= htmlspecialchars($protocolo->getQuantidadePaginas() ?? 'N/A') ?></td>
                     <td class="acoes-cell">
-                        <a href="/admin/protocolos/editar?id=<?= htmlspecialchars($protocolo->getId()) ?>" class="btn-acao btn-editar" title="Editar Protocolo">
+                        <a href="/admin/remessas/editar-protocolo?id=<?= htmlspecialchars($protocolo->getId()) ?>" class="btn-acao btn-editar" title="Editar Protocolo">
                             <span class="material-icons-outlined">edit</span>
                         </a>
                     </td>

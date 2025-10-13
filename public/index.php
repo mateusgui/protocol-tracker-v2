@@ -174,18 +174,25 @@ try {
             break;
 
         case '/admin/remessas/protocolos':
-            if($method === 'GET'){
-                $remessaController->exibirProtocolos();
-            } else if($method === 'POST'){
+            if ($method === 'POST') {
                 $remessaController->novoProtocolo();
+            } else if($method === 'GET') {
+                $id_remessa = $_GET['id'] ?? null;
+
+                if ($id_remessa === null) {
+                    header('Location: /admin/remessas/visualizar-remessas');
+                    exit();
+                }
+
+                $remessaController->exibirProtocolos($id_remessa);
             }
             break;
 
         case '/admin/remessas/editar-protocolo':
             if($method === 'GET'){
-                //RemessaController->exibirEditarProtocolo();
+                $remessaController->exibirEditarProtocolo();
             } else if($method === 'POST'){
-                //RemessaController->editarProtocolo();
+                $remessaController->editarProtocolo();
             }
             break;
 

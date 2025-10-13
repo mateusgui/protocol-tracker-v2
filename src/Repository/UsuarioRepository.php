@@ -25,6 +25,18 @@ class UsuarioRepository implements UsuarioRepositoryInterface
         return $this->hidrataLista($stmt);
     }
 
+    public function allByPermissao(string $permissao): array
+    {
+        $sqlQuery = "SELECT * FROM usuarios WHERE permissao = :permissao";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':permissao', $permissao);
+
+        $stmt->execute();
+
+        return $this->hidrataLista($stmt);
+    }
+
     public function findById(int $id): ?Usuario
     {
         $sqlQuery = "SELECT * FROM usuarios WHERE id = :id;";

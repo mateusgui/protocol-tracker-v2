@@ -129,10 +129,10 @@ class RemessaController
     }
 
     //GET
-    public function exibirProtocolos(?string $erro = null)
+    public function exibirProtocolos(?string $id_remessa_param, ?string $erro = null)
     {
         try {
-            $id_remessa = $_GET['id'] ?? '';
+            $id_remessa = $id_remessa_param;
             $remessa = $this->remessaRepository->findById($id_remessa);
 
             $listaProtocolos = $this->protocoloRepository->findByRemessa($id_remessa);
@@ -150,10 +150,11 @@ class RemessaController
     //POST
     public function novoProtocolo()
     {
+        $id_remessa = $_POST['id_remessa'] ?? '';
+
         try {
             //public function novoProtocolo(Usuario $usuarioLogado, string $id_remessa, string $numero_protocolo): void
             $usuario_logado = $this->usuario_logado;
-            $id_remessa = $_POST['id_remessa'] ?? '';
             $numero_protocolo = $_POST['numero_protocolo'] ?? '';
 
             $this->protocoloService->novoProtocolo($usuario_logado, $id_remessa, $numero_protocolo);
@@ -166,20 +167,59 @@ class RemessaController
             header('Location: ' . $urlRedirecionamento);
             exit();
         } catch (Exception $e) {
-            $this->exibirProtocolos($e->getMessage());
+            $this->exibirProtocolos($id_remessa, $e->getMessage());
         }
     }
 
     //GET
     public function exibirEditarProtocolo()
     {
-        
+        try {
+            $id_protocolo = $_GET['id'] ?? null;
+            $protocolo = $this->protocoloRepository->findById($id_protocolo);
+
+            $listaDeRemessas = $this->remessaRepository->all();
+            $listaDePreparadores = $this->usuarioRepository->allByPermissao('preparador');
+            $listaDeDigitalizadores = $this->usuarioRepository->allByPermissao('digitalizador');
+
+            $titulo_da_pagina = "Editar Protocolo";
+            $usuario_logado = $this->usuario_logado;
+            $permissao = $this->permissao;
+
+            require __DIR__ . '/../../../templates/admin/editar-protocolo.php';
+        } catch (Exception $e) {
+            $this->home($e->getMessage());
+        }
     }
 
     //POST
     public function editarProtocolo()
     {
-        
+        try {
+            //public function atualizarProtocolo(Usuario $usuarioLogado, string $id_remessa, string $numero_protocolo, ?string $data_preparacao, ?int $id_preparador, ?string $data_digitalizacao, ?int $id_digitalizador, string $status, ?int $quantidade_paginas, ?string $observacoes, string $id): void
+            $usuario_logado = $this->usuario_logado;
+            $id_remessa = $_POST['id_remessa'] ?? '';
+            $numero_protocolo = $_POST['numero_protocolo'] ?? '';
+            $data_preparacao = !empty($_POST['data_preparacao']) ? $_POST['data_preparacao'] : null;
+            $id_preparador = !empty($_POST['id_preparador']) ? (int) $_POST['id_preparador'] : null;//nullable
+            $data_digitalizacao = !empty($_POST['data_digitalizacao']) ? $_POST['data_digitalizacao'] : null;
+            $id_digitalizador = !empty($_POST['id_digitalizador']) ? (int) $_POST['id_digitalizador'] : null;//nullable
+            $status = $_POST['status'] ?? '';
+            $quantidade_paginas = !empty($_POST['quantidade_paginas']) ? (int) $_POST['quantidade_paginas'] : null;//nullable
+            $observacoes = $_POST['observacoes'] ?? '';//nullable
+            $id = $_POST['id'] ?? '';
+
+            $this->protocoloService->atualizarProtocolo($usuario_logado, $id_remessa, $numero_protocolo, $data_preparacao, $id_preparador, $data_digitalizacao, $id_digitalizador, $status, $quantidade_paginas, $observacoes, $id);
+
+            $_SESSION['mensagem_sucesso'] = "Protocolo atualizado com sucesso!";
+
+            $urlRedirecionamento = "/admin/remessas/protocolos?id=" . $id_remessa;
+
+            header('Location: ' . $urlRedirecionamento);
+            exit();
+        } catch (Exception $e) {
+            $this->home($e->getMessage());
+        }
     }
 
     //GET
