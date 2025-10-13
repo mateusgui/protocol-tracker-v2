@@ -24,6 +24,46 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         return $this->hidrataLista($stmt);
     }
 
+    public function search(?string $numero_protocolo = null, ?string $numero_remessa = null): array
+    {
+        $sqlConditions = [];
+        $parametros = [];
+
+        if (!empty($numero_protocolo)) {
+            $sqlConditions[] = 'numero_protocolo = :numero_protocolo';
+            $parametros[':numero_protocolo'] = $numero_protocolo;
+        }
+        if (!empty($numero_remessa)) {
+            $sqlConditions[] = 'numero_remessa = :numero_remessa';
+            $parametros[':numero_remessa'] = $numero_remessa;
+        }
+
+        $sqlQuery = "SELECT
+        p.numero_protocolo AS numero_protocolo,
+        r.numero_remessa AS numero_remessa,
+        p.status AS status_protocolo,
+        p.data_preparacao AS data_preparacao,
+        p.id_preparador AS id_preparador,
+        p.data_digitalizacao AS data_digitalizacao,
+        p.id_digitalizador AS id_digitalizador,
+        p.quantidade_paginas AS quantidade_paginas,
+        p.observacoes AS observacoes
+        FROM protocolos as p
+        JOIN remessas as r
+        ON p.id_remessa = r.id";
+
+        if (!empty($sqlConditions)) {
+            $sqlQuery .= ' WHERE ' . implode(' AND ', $sqlConditions);
+        }
+
+        $sqlQuery .= ' ORDER BY r.numero_remessa, p.numero_protocolo;';
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->execute($parametros);
+
+        return $stmt->fetchAll();
+    }
+
     public function findByRemessa(string $id_remessa): array
     {
         $sqlQuery = "SELECT * FROM protocolos WHERE id_remessa = :id_remessa;";

@@ -198,7 +198,7 @@ try {
 
         case '/admin/remessas/dashboard':
             if($method === 'GET'){
-                //RemessaController->dashboardRemessa();
+                //RemessaController->dashboardRemessa(); FALTA SÓ ESSE DO MÓDULO
             }
             break;
 
@@ -207,7 +207,7 @@ try {
         ----- */
         case '/admin/protocolos/buscar-protocolos':
             if($method === 'GET'){
-                //ProtocoloController->buscarProtocolos();
+                $protocoloController->buscarProtocolos();
             }
             break;
 

@@ -7,6 +7,7 @@ use Mateus\ProtocolTrackerV2\Model\Protocolo;
 interface ProtocoloRepositoryInterface
 {
     public function all(): array;
+    public function search(?string $numero_protocolo = null, ?string $numero_remessa = null): array;
     public function findByRemessa(string $id_remessa): array;
     public function findById(string $id): ?Protocolo;
     public function findByNumber(string $numero_protocolo): ?Protocolo;

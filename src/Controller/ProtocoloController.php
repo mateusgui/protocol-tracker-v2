@@ -2,6 +2,7 @@
 
 namespace Mateus\ProtocolTrackerV2\Controller;
 
+use Exception;
 use Mateus\ProtocolTrackerV2\Model\Usuario;
 use Mateus\ProtocolTrackerV2\Repository\ProtocoloRepository;
 use Mateus\ProtocolTrackerV2\Repository\UsuarioRepository;
@@ -84,7 +85,21 @@ class ProtocoloController
     //GET
     public function buscarProtocolos()
     {
+        try {
+            $titulo_da_pagina = "Buscar Protocolos";
+            $usuario_logado = $this->usuario_logado;
+            $permissao = $this->permissao;
+            //public function search(?string $numero_protocolo = null, ?string $numero_remessa = null, ?string $status = null): array
 
+            $numero_protocolo = $_GET['numero_protocolo'] ?? null;
+            $numero_remessa = $_GET['numero_remessa'] ?? null;
+
+            $listaProtocolos = $this->protocoloRepository->search($numero_protocolo, $numero_remessa);
+
+            require __DIR__ . '/../../templates/admin/buscar-protocolos.php';
+        } catch (Exception $e) {
+            $this->home($e->getMessage());
+        }
     }
 
     //GET
@@ -103,5 +118,14 @@ class ProtocoloController
     public function adminDashboardEquipe()
     {
         
+    }
+
+    private function home(?string $erro = null)
+    {
+        $titulo_da_pagina = "Home";
+        $usuario_logado = $this->usuario_logado;
+        $permissao = $this->permissao;
+
+        require __DIR__ . '/../../templates/home.php';
     }
 }
