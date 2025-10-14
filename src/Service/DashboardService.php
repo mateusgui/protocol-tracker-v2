@@ -25,17 +25,19 @@ class DashboardService
         $digitalizados = $this->protocoloRepository->countByStatus($id_remessa, 'DIGITALIZADO');
 
         $totalProtocolos = $remessa->getQuantidadeProtocolos();
+        $totalPaginasDigitalizadas = $this->protocoloRepository->sumPagesByRemessaAndStatus($id_remessa, 'DIGITALIZADO');
 
-        $percentualConclusao = ($totalProtocolos > 0) ? ($digitalizados / $totalProtocolos) * 100 : 0;
+        $percentualDigitalizado = ($totalProtocolos > 0) ? ($digitalizados / $totalProtocolos) * 100 : 0;
 
         return [
             'numero_remessa' => $remessa->getNumeroRemessa(),
             'status_remessa' => $remessa->getStatus(),
             'total_protocolos' => $totalProtocolos,
+            'total_paginas_digitalizadas' => $totalPaginasDigitalizadas,
             'protocolos_aguardando_preparacao' => $aguardandoPreparacao,
             'protocolos_preparados' => $preparados,
             'protocolos_digitalizados' => $digitalizados,
-            'percentual_conclusao' => round($percentualConclusao, 2)
+            'percentual_digitalizado' => round($percentualDigitalizado, 2)
         ];
     }
 }

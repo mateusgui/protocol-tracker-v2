@@ -1,4 +1,4 @@
-<?php require __DIR__ . '/../components/_header.php'; ?>
+<?php require __DIR__ . '/components/_header.php'; ?>
 
 <div class="form-container busca-container">
     <form action="/admin/remessas/dashboard" method="get" class="busca-form">
@@ -63,4 +63,4 @@
     </div>
 <?php endif; ?>
 
-<?php require __DIR__ . '/../components/_footer.php'; ?>
+<?php require __DIR__ . '/components/_footer.php'; ?>

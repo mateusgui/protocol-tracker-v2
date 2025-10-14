@@ -226,30 +226,30 @@ class RemessaController
 
     //GET
     public function dashboardRemessa()
-{
-    try {
-        $id_remessa = $_GET['id_remessa'] ?? null;
-        
-        $metricas = null;
-        $remessaSelecionada = null;
-        
-        $listaDeRemessas = $this->remessaRepository->all();
+    {
+        try {
+            $id_remessa = $_GET['id_remessa'] ?? null;
+            
+            $metricas = null;
+            $remessaSelecionada = null;
+            
+            $listaDeRemessas = $this->remessaRepository->all();
 
-        if ($id_remessa) {
-            $metricas = $this->dashboardService->metricaPorRemessa($id_remessa);
-            $remessaSelecionada = $this->remessaRepository->findById($id_remessa);
+            if ($id_remessa) {
+                $metricas = $this->dashboardService->metricaPorRemessa($id_remessa);
+                $remessaSelecionada = $this->remessaRepository->findById($id_remessa);
+            }
+
+            $titulo_da_pagina = "Dashboard por Remessa";
+            $usuario_logado = $this->usuario_logado;
+            $permissao = $this->permissao;
+
+            require __DIR__ . '/../../../templates/admin/remessa-dashboard.php';
+            
+        } catch (Exception $e) {
+            $this->home($e->getMessage());
         }
-
-        $titulo_da_pagina = "Dashboard por Remessa";
-        $usuario_logado = $this->usuario_logado;
-        $permissao = $this->permissao;
-
-        require __DIR__ . '/../../../templates/admin/remessa-dashboard.php';
-        
-    } catch (Exception $e) {
-        $this->home($e->getMessage());
     }
-}
 
     private function home(?string $erro = null)
     {

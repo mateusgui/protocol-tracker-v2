@@ -5,7 +5,6 @@
     <table class="protocolos-table datatable-js">
         <thead>
             <tr>
-                <th>Nº da Remessa</th>
                 <th>Nº do Protocolo</th>
                 <th>Observações</th>
                 <th class="acoes-header">Ação</th>
@@ -14,8 +13,6 @@
         <tbody>
             <?php foreach ($listaProtocolosRecebidos as $protocolo): ?>
                 <tr>
-                    <td>
-                        </td>
                     <td><?= htmlspecialchars($protocolo->getNumeroProtocolo()) ?></td>
                     <td class="coluna-observacoes" title="<?= htmlspecialchars($protocolo->getObservacoes() ?? '') ?>">
                         <?= htmlspecialchars($protocolo->getObservacoes() ?? 'N/A') ?>

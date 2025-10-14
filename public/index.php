@@ -40,7 +40,7 @@ try {
     $remessaController = new RemessaController($remessaRepository, $remessaService, $protocoloRepository, $protocoloService, $usuarioRepository, $dashboardService);
     $usuarioController = new UsuarioController($usuarioRepository, $usuarioService);
     $loginController = new LoginController($usuarioRepository, $usuarioService, $loginService);
-    $protocoloController = new ProtocoloController($protocoloRepository, $protocoloService, $usuarioRepository);
+    $protocoloController = new ProtocoloController($protocoloRepository, $protocoloService, $usuarioRepository, $remessaRepository, $dashboardService);
 
     //Verificando autenticação
     $usuario_esta_logado = isset($_SESSION['usuario_logado_id']);
@@ -98,7 +98,7 @@ try {
         ----- */
         case '/equipe/dashboard':
             if($method === 'GET'){
-                //ProtocoloController->dashboardEquipe();
+                $protocoloController->dashboardEquipe();
             }
             break;
 

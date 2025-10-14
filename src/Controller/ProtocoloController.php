@@ -5,7 +5,9 @@ namespace Mateus\ProtocolTrackerV2\Controller;
 use Exception;
 use Mateus\ProtocolTrackerV2\Model\Usuario;
 use Mateus\ProtocolTrackerV2\Repository\ProtocoloRepository;
+use Mateus\ProtocolTrackerV2\Repository\RemessaRepository;
 use Mateus\ProtocolTrackerV2\Repository\UsuarioRepository;
+use Mateus\ProtocolTrackerV2\Service\DashboardService;
 use Mateus\ProtocolTrackerV2\Service\ProtocoloService;
 
 class ProtocoloController
@@ -16,7 +18,9 @@ class ProtocoloController
     public function __construct(
         private ProtocoloRepository $protocoloRepository,
         private ProtocoloService $protocoloService,
-        private UsuarioRepository $usuarioRepository
+        private UsuarioRepository $usuarioRepository,
+        private RemessaRepository $remessaRepository,
+        private DashboardService $dashboardService
     ) {
         $id_usuario = $_SESSION['usuario_logado_id'] ?? null;
         if ($id_usuario) {
@@ -31,7 +35,28 @@ class ProtocoloController
     //GET
     public function dashboardEquipe()
     {
+        try {
+            $id_remessa = $_GET['id_remessa'] ?? null;
+            
+            $metricas = null;
+            $remessaSelecionada = null;
+            
+            $listaDeRemessas = $this->remessaRepository->all();
 
+            if ($id_remessa) {
+                $metricas = $this->dashboardService->metricaPorRemessa($id_remessa);
+                $remessaSelecionada = $this->remessaRepository->findById($id_remessa);
+            }
+
+            $titulo_da_pagina = "Dashboard por Remessa";
+            $usuario_logado = $this->usuario_logado;
+            $permissao = $this->permissao;
+
+            require __DIR__ . '/../../templates/equipe-dashboard.php';
+            
+        } catch (Exception $e) {
+            $this->home($e->getMessage());
+        }
     }
 
     //GET
