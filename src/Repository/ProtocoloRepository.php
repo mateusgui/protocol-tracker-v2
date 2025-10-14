@@ -110,6 +110,18 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         return Protocolo::fromArray($dadosProtocolo);
     }
 
+    public function findByStatus(string $status): array
+    {
+        $sqlQuery = "SELECT * FROM protocolos WHERE status = :status;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':status', $status);
+
+        $stmt->execute();
+
+        return $this->hidrataLista($stmt);
+    }
+
     public function countByStatus(string $id_remessa, string $status): int
     {
         $sqlQuery = "SELECT COUNT(*) FROM protocolos WHERE id_remessa = :id_remessa AND status = :status;";
@@ -160,7 +172,7 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
     }
 
     //Método para preparadores e digitalizadores utilizarem
-    public function preparaProtocolo(string $id, string $data_preparacao, int $id_preparador): void
+    public function preparaProtocolo(string $id, string $data_preparacao, int $id_preparador, ?string $observacoes): void
     {
         $sqlQuery = "UPDATE protocolos SET status = 'PREPARADO', data_preparacao = :data_preparacao, id_preparador = :id_preparador WHERE id = :id;";
 
@@ -172,7 +184,7 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         $stmt->execute();
     }
 
-    public function digitalizaProtocolo(string $id, string $data_digitalizacao, int $id_digitalizador, int $quantidade_paginas): void
+    public function digitalizaProtocolo(string $id, string $data_digitalizacao, int $id_digitalizador, int $quantidade_paginas, ?string $observacoes): void
     {
         $sqlQuery = "UPDATE protocolos SET status = 'DIGITALIZADO', data_digitalizacao = :data_digitalizacao, id_digitalizador = :id_digitalizador, quantidade_paginas = :quantidade_paginas WHERE id = :id;";
 

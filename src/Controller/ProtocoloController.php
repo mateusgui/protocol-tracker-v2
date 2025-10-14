@@ -37,19 +37,39 @@ class ProtocoloController
     //GET
     public function preparadores_listaRecebidos()
     {
+        try {
+            $listaProtocolosRecebidos = $this->protocoloRepository->findByStatus('RECEBIDO');
+            $listaDePreparadores = $this->usuarioRepository->allByPermissao('preparador');
 
-    }
+            $titulo_da_pagina = "Lista de Protocolos Recebidos";
+            $usuario_logado = $this->usuario_logado;
+            $permissao = $this->permissao;
 
-    //GET
-    public function exibirPrepararProtocolo()
-    {
-
+            require __DIR__ . '/../../templates/preparadores/recebidos.php';
+        } catch (Exception $e) {
+            $this->home($e->getMessage());
+        }
     }
 
     //POST
     public function prepararProtocolo()
     {
+        try {
+            $id_preparador = $_POST['id_preparador'] ?? null;
+            $preparador = $this->usuarioRepository->findById($id_preparador);
+            $id_protocolo = $_POST['id_protocolo'] ?? null;
+            $observacoes = $_POST['observacoes'] ?? '';
+            $protocolo = $this->protocoloRepository->findById($id_protocolo);
 
+            $this->protocoloService->prepararProtocolo($preparador, $id_protocolo, $observacoes);
+
+            $_SESSION['mensagem_sucesso'] = "Protocolo Nº " . $protocolo->getNumeroProtocolo() . " Preparado";
+
+            header('Location: /preparadores/recebidos');
+            exit();
+        } catch (Exception $e) {
+            $this->home($e->getMessage());
+        }
     }
 
     //GET
@@ -89,7 +109,6 @@ class ProtocoloController
             $titulo_da_pagina = "Buscar Protocolos";
             $usuario_logado = $this->usuario_logado;
             $permissao = $this->permissao;
-            //public function search(?string $numero_protocolo = null, ?string $numero_remessa = null, ?string $status = null): array
 
             $numero_protocolo = $_GET['numero_protocolo'] ?? null;
             $numero_remessa = $_GET['numero_remessa'] ?? null;

@@ -94,7 +94,7 @@ try {
             break;
 
         /*----- 
-        rota views EQUIPE 
+        rota views EQUIPE --------------------- FALTANDO IMPLEMENTAR ------------------------------
         ----- */
         case '/equipe/dashboard':
             if($method === 'GET'){
@@ -103,19 +103,17 @@ try {
             break;
 
         /*----- 
-        rota views preparadores 
+        rota views preparadores --------------------- FALTANDO IMPLEMENTAR ------------------------------
         ----- */
         case '/preparadores/recebidos':
             if($method === 'GET'){
-                //ProtocoloController->preparadores_listaRecebidos();
+                $protocoloController->preparadores_listaRecebidos();
             }
             break;
 
         case '/preparadores/movimentar-protocolo':
-            if($method === 'GET'){
-                //ProtocoloController->exibirPrepararProtocolo();
-            } else if($method === 'POST'){
-                //ProtocoloController->prepararProtocolo();
+            if($method === 'POST'){
+                $protocoloController->prepararProtocolo();
             }
             break;
 
@@ -126,7 +124,7 @@ try {
             break;
 
         /*----- 
-        rota views digitalizadores 
+        rota views digitalizadores ------------------- FALTANDO IMPLEMENTAR ----------------------------
         ----- */
         case '/digitalizadores/preparados':
             if($method === 'GET'){
@@ -212,7 +210,7 @@ try {
             break;
 
         /*----- 
-        /ADMIN/PREPARAÇÃO
+        /ADMIN/PREPARAÇÃO --------------------- FALTANDO IMPLEMENTAR ------------------------------
         ----- */
         case '/admin/preparacao/dashboard':
             if($method === 'GET'){
@@ -221,7 +219,7 @@ try {
             break;
 
         /*----- 
-        /ADMIN/DIGITALIZAÇÃO
+        /ADMIN/DIGITALIZAÇÃO --------------------- FALTANDO IMPLEMENTAR ------------------------------
         ----- */
         case '/admin/digitalizacao/dashboard':
             if($method === 'GET'){
@@ -263,7 +261,7 @@ try {
             break;
 
         /*----- 
-        /ADMIN/EQUIPE
+        /ADMIN/EQUIPE --------------------- FALTANDO IMPLEMENTAR ------------------------------
         ----- */
         case '/admin/equipe/dashboard':
             if($method === 'GET'){

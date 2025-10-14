@@ -106,4 +106,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- LÓGICA PARA A MODAL DE PREPARAÇÃO DE PROTOCOLO ---
+    const modal = document.getElementById('modal-preparar');
+    const btnsAbrirModal = document.querySelectorAll('.open-modal-preparar');
+    const btnsFecharModal = document.querySelectorAll('.close-modal-btn');
+
+    // Verifica se os elementos da modal existem na página
+    if (modal && btnsAbrirModal.length > 0) {
+        
+        // Adiciona evento para todos os botões "Preparar"
+        btnsAbrirModal.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Pega os dados do protocolo a partir dos atributos data-* do botão
+                const protocoloId = this.dataset.protocoloId;
+                const protocoloNumero = this.dataset.protocoloNumero;
+
+                // Preenche os campos da modal com os dados
+                document.getElementById('modal-protocolo-id').value = protocoloId;
+                document.getElementById('modal-protocolo-numero').textContent = protocoloNumero;
+                
+                // Exibe a modal
+                modal.style.display = 'flex';
+            });
+        });
+
+        // Adiciona evento para fechar a modal
+        btnsFecharModal.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+        });
+
+        // Fecha a modal se o usuário clicar fora dela (no overlay)
+        window.addEventListener('click', (event) => {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
+
 });

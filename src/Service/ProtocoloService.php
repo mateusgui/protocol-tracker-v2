@@ -123,7 +123,7 @@ class ProtocoloService
         $this->protocoloRepository->update($protocolo);
     }
 
-    public function prepararProtocolo(string $id, Usuario $preparador): void
+    public function prepararProtocolo(Usuario $preparador, string $id, ?string $observacoes): void
     {
         if ($preparador->getPermissao() !== 'preparador') {
             throw new Exception("Apenas preparadores podem executar esta ação.");
@@ -139,10 +139,10 @@ class ProtocoloService
 
         $data_preparacao = new DateTimeImmutable('now')->format('Y-m-d H:i:s');
 
-        $this->protocoloRepository->preparaProtocolo($id, $data_preparacao, $preparador->getId());
+        $this->protocoloRepository->preparaProtocolo($id, $data_preparacao, $preparador->getId(), $observacoes);
     }
 
-    public function digitalizarProtocolo(string $id, int $quantidade_paginas, Usuario $digitalizador): void
+    public function digitalizarProtocolo(Usuario $digitalizador, string $id, int $quantidade_paginas, ?string $observacoes): void
     {
         if ($digitalizador->getPermissao() !== 'digitalizador') {
             throw new Exception("Apenas digitalizadores podem executar esta ação.");
@@ -161,6 +161,6 @@ class ProtocoloService
 
         $data_digitalizacao = new DateTimeImmutable('now')->format('Y-m-d H:i:s');
 
-        $this->protocoloRepository->digitalizaProtocolo($id, $data_digitalizacao, $digitalizador->getId(), $quantidade_paginas);
+        $this->protocoloRepository->digitalizaProtocolo($id, $data_digitalizacao, $digitalizador->getId(), $quantidade_paginas, $observacoes);
     }
 }
