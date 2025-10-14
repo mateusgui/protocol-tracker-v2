@@ -103,6 +103,16 @@ class RemessaRepository implements RemessaRepositoryInterface
         $stmt->execute();
     }
 
+    public function entregaRemessa(string $id_remessa): void
+    {
+        $sqlQuery = "UPDATE remessas SET status = 'ENTREGUE' WHERE id = :id;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':id', $id_remessa);
+
+        $stmt->execute();
+    }
+
     private function hidrataLista(PDOStatement $stmt): array
     {
         $listaDeRemessas = [];

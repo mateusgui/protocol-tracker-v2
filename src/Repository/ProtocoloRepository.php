@@ -214,6 +214,16 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         $stmt->execute();
     }
 
+    public function entregaProtocolos(string $id_remessa): void
+    {
+        $sqlQuery = "UPDATE protocolos SET status = 'ENTREGUE' WHERE id_remessa = :id_remessa;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':id_remessa', $id_remessa);
+
+        $stmt->execute();
+    }
+
     private function hidrataLista(PDOStatement $stmt): array
     {
         $listaDeProtocolos = [];

@@ -33,7 +33,7 @@ try {
     $dashboardService = new DashboardService($protocoloRepository, $remessaRepository);
     $loginService = new LoginService($usuarioRepository);
     $protocoloService = new ProtocoloService($protocoloRepository, $remessaRepository, $usuarioRepository);
-    $remessaService = new RemessaService($remessaRepository, $usuarioRepository);
+    $remessaService = new RemessaService($remessaRepository, $usuarioRepository, $protocoloRepository);
     $usuarioService = new UsuarioService($usuarioRepository);
 
     //Controllers
@@ -124,7 +124,7 @@ try {
             break;
 
         /*----- 
-        rota views digitalizadores ------------------- FALTANDO IMPLEMENTAR ----------------------------
+        rota views digitalizadores
         ----- */
         case '/digitalizadores/preparados':
             if($method === 'GET'){
@@ -181,6 +181,12 @@ try {
                 }
 
                 $remessaController->exibirProtocolos($id_remessa);
+            }
+            break;
+
+        case '/admin/remessas/entregar-remessa':
+            if ($method === 'POST') {
+                //$remessaController->entregaRemessa(); --------------------- FALTANDO IMPLEMENTAR ------------------------------
             }
             break;
 

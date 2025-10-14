@@ -13,4 +13,5 @@ interface RemessaRepositoryInterface
     public function add(Remessa $remessa): void;
     public function update(Remessa $remessa): void;
     public function adicionaProtocolo(string $id): void;
+    public function entregaRemessa(string $id_remessa): void;
 }

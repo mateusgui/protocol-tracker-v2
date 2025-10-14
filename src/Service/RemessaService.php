@@ -6,15 +6,18 @@ use DateTimeImmutable;
 use Exception;
 use Mateus\ProtocolTrackerV2\Interfaces\RemessaRepositoryInterface;
 use Mateus\ProtocolTrackerV2\Interfaces\UsuarioRepositoryInterface;
+use Mateus\ProtocolTrackerV2\Model\Protocolo;
 use Mateus\ProtocolTrackerV2\Model\Remessa;
 use Mateus\ProtocolTrackerV2\Model\Usuario;
+use Mateus\ProtocolTrackerV2\Repository\ProtocoloRepository;
 use Ramsey\Uuid\Uuid;
 
 class RemessaService
 {
     public function __construct(
         private RemessaRepositoryInterface $remessaRepository,
-        private UsuarioRepositoryInterface $usuarioRepository
+        private UsuarioRepositoryInterface $usuarioRepository,
+        private ProtocoloRepository $protocoloRepository
     ) {}
 
     public function novaRemessa(Usuario $usuarioLogado, string $data_recebimento, ?string $observacoes): Remessa
@@ -83,5 +86,24 @@ class RemessaService
         );
 
         $this->remessaRepository->update($remessa);
+    }
+
+    public function entregaRemessa(string $id_remessa): void
+    {
+        $remessa = $this->remessaRepository->findById($id_remessa);
+        if($remessa === null){
+            throw new Exception("Remessa informada não foi localizada");
+        }
+
+        $listaProtocolosRemessa = $this->protocoloRepository->findByRemessa($id_remessa);
+
+        foreach ($listaProtocolosRemessa as $protocolo) {
+            if($protocolo->getStatus() !== 'DIGITALIZADO'){
+                throw new Exception("A remessa possui protocolos que ainda não foram digitalizados");
+            }
+        }
+
+        $this->remessaRepository->entregaRemessa($id_remessa);
+        $this->protocoloRepository->entregaProtocolos($id_remessa);
     }
 }
