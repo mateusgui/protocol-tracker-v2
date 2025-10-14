@@ -186,7 +186,7 @@ try {
 
         case '/admin/remessas/entregar-remessa':
             if ($method === 'POST') {
-                //$remessaController->entregaRemessa(); --------------------- FALTANDO IMPLEMENTAR ------------------------------
+                $remessaController->entregaRemessa(); //--------------------- FALTANDO IMPLEMENTAR ------------------------------
             }
             break;
 

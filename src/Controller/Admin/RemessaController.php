@@ -251,6 +251,12 @@ class RemessaController
         }
     }
 
+    //POST
+    public function entregaRemessa()
+    {
+        //IMPLEMENTAR
+    }
+
     private function home(?string $erro = null)
     {
         $titulo_da_pagina = "Home";
