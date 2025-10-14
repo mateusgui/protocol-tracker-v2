@@ -422,10 +422,10 @@ textarea {
 }
 
 .acoes-cell {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+    display: table-cell; /* volta ao padrão da célula */
+    text-align: center;
+    vertical-align: middle;
+    gap: 5px;
 }
 
 /* Estilos dos botões de Ação (Editar/Excluir) */
@@ -437,6 +437,13 @@ textarea {
     cursor: pointer;
     transition: background-color 0.2s;
     color: #fff;
+}
+
+.acoes-cell .btn-acao {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
 }
 
 .btn-editar {

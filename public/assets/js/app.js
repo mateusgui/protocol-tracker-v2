@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         order: [], 
         pageLength: 5, 
         lengthMenu: [5, 10, 25, 50, 100],
+        autoWidth: false,
     });
 
     // --- LÓGICA PARA O MENU ACORDEÃO DA SIDEBAR ---
