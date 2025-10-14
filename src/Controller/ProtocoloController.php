@@ -100,7 +100,17 @@ class ProtocoloController
     //GET
     public function preparadores_listaPreparados()
     {
+        try {
+            $listaProtocolosPreparados = $this->protocoloRepository->findByStatus('PREPARADO');
 
+            $titulo_da_pagina = "Lista de Protocolos Recebidos";
+            $usuario_logado = $this->usuario_logado;
+            $permissao = $this->permissao;
+
+            require __DIR__ . '/../../templates/preparadores/preparados.php';
+        } catch (Exception $e) {
+            $this->home($e->getMessage());
+        }
     }
 
     //GET

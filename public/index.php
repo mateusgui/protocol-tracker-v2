@@ -119,7 +119,7 @@ try {
 
         case '/preparadores/preparados':
             if($method === 'GET'){
-                //ProtocoloController->preparadores_listaPreparados();
+                $protocoloController->preparadores_listaPreparados();
             }
             break;
 
