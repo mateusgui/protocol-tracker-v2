@@ -37,7 +37,7 @@ try {
     $usuarioService = new UsuarioService($usuarioRepository);
 
     //Controllers
-    $remessaController = new RemessaController($remessaRepository, $remessaService, $protocoloRepository, $protocoloService, $usuarioRepository, $dashboardService);
+    $remessaController = new RemessaController($remessaRepository, $remessaService, $protocoloRepository, $protocoloService, $usuarioRepository, $dashboardService, $usuarioService);
     $usuarioController = new UsuarioController($usuarioRepository, $usuarioService);
     $loginController = new LoginController($usuarioRepository, $usuarioService, $loginService);
     $protocoloController = new ProtocoloController($protocoloRepository, $protocoloService, $usuarioRepository, $remessaRepository, $dashboardService);

@@ -102,6 +102,16 @@ class UsuarioService
         $this->usuarioRepository->alteraSenha($id, $hash_senha);
     }
 
+    public function confirmarSenha(int $id_usuario, string $senhaFornecida): bool
+    {
+        $usuario = $this->usuarioRepository->findById($id_usuario);
+        if ($usuario === null) {
+            throw new Exception("Usuário não encontrado para verificação de senha.");
+        }
+
+        return password_verify($senhaFornecida, $usuario->getHashSenha());
+    }
+
     private function validaCpf(string $cpf): void
     {
         // Verifica se o CPF tem 11 dígitos numéricos

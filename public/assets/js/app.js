@@ -185,4 +185,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
+    // --- LÓGICA PARA A MODAL DE ENTREGA DE REMESSA ---
+const modalEntregar = document.getElementById('modal-entregar');
+const btnsAbrirModalEntregar = document.querySelectorAll('.open-modal-entregar');
+
+if (modalEntregar && btnsAbrirModalEntregar.length > 0) {
+    const btnsFecharModalEntregar = modalEntregar.querySelectorAll('.close-modal-btn');
+    
+    btnsAbrirModalEntregar.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const remessaId = this.dataset.remessaId;
+            const remessaNumero = this.dataset.remessaNumero;
+
+            // Preenche os campos da modal
+            modalEntregar.querySelector('#modal-remessa-id').value = remessaId;
+            modalEntregar.querySelector('#modal-remessa-numero').textContent = remessaNumero;
+            
+            // Limpa o campo de senha ao abrir
+            modalEntregar.querySelector('#senha_confirmacao').value = '';
+
+            // Exibe a modal
+            modalEntregar.style.display = 'flex';
+        });
+    });
+
+    btnsFecharModalEntregar.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modalEntregar.style.display = 'none';
+        });
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target == modalEntregar) {
+            modalEntregar.style.display = 'none';
+        }
+    });
+}
+
 });

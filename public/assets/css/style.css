@@ -1023,3 +1023,28 @@ textarea {
     border-top: 1px solid #e9ecef;
     padding-top: 20px;
 }
+
+
+
+
+/* === ESTILOS ADICIONAIS PARA MODAL DE ENTREGA === */
+
+/* Novo botão de ação para "Entregar" */
+.btn-entregar {
+    background-color: #28a745; /* Verde */
+}
+.btn-entregar:hover {
+    background-color: #218838;
+}
+
+/* Estilo para a mensagem de alerta dentro da modal */
+.alerta-irreversivel {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #dc3545; /* Vermelho */
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+}

@@ -11,6 +11,7 @@ use Mateus\ProtocolTrackerV2\Repository\UsuarioRepository;
 use Mateus\ProtocolTrackerV2\Service\DashboardService;
 use Mateus\ProtocolTrackerV2\Service\ProtocoloService;
 use Mateus\ProtocolTrackerV2\Service\RemessaService;
+use Mateus\ProtocolTrackerV2\Service\UsuarioService;
 
 class RemessaController
 {
@@ -23,7 +24,8 @@ class RemessaController
         private ProtocoloRepository $protocoloRepository,
         private ProtocoloService $protocoloService,
         private UsuarioRepository $usuarioRepository,
-        private DashboardService $dashboardService
+        private DashboardService $dashboardService,
+        private UsuarioService $usuarioService
     ) {
         $id_usuario = $_SESSION['usuario_logado_id'] ?? null;
         if ($id_usuario) {
@@ -254,7 +256,26 @@ class RemessaController
     //POST
     public function entregaRemessa()
     {
-        //IMPLEMENTAR
+        try {
+            $id_remessa = $_POST['id_remessa'] ?? null;
+            $senhaConfirmacao = $_POST['senha_confirmacao'] ?? '';
+            $idUsuarioLogado = $_SESSION['usuario_logado_id'] ?? null;
+            
+            $senhaCorreta = $this->usuarioService->confirmarSenha($idUsuarioLogado, $senhaConfirmacao);
+            
+            if (!$senhaCorreta) {
+                throw new Exception("Senha incorreta. Ação não autorizada.");
+            }
+            
+            $this->remessaService->entregaRemessa($id_remessa);
+
+            $_SESSION['mensagem_sucesso'] = "Remessa entregue com sucesso!";
+            header('Location: /admin/remessas/visualizar-remessas');
+            exit();
+
+        } catch (Exception $e) {
+            $this->home($e->getMessage());
+        }
     }
 
     private function home(?string $erro = null)
