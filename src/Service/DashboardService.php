@@ -2,9 +2,11 @@
 
 namespace Mateus\ProtocolTrackerV2\Service;
 
+use DateTimeImmutable;
 use Mateus\ProtocolTrackerV2\Interfaces\ProtocoloRepositoryInterface;
 use Mateus\ProtocolTrackerV2\Interfaces\RemessaRepositoryInterface;
 use Mateus\ProtocolTrackerV2\Interfaces\UsuarioRepositoryInterface;
+use Mateus\ProtocolTrackerV2\Model\Usuario;
 
 class DashboardService
 {
@@ -39,5 +41,11 @@ class DashboardService
             'protocolos_digitalizados' => $digitalizados,
             'percentual_digitalizado' => round($percentualDigitalizado, 2)
         ];
+    }
+
+    // ---------- MÉTRICAS PREPARAÇÃO ----------
+    public function metricaPorPreparadorDia(int $id_preparador, DateTimeImmutable $dia): int
+    {
+        return $this->protocoloRepository->countByDiaPreparador($id_preparador, $dia);
     }
 }

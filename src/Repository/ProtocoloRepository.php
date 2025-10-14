@@ -2,6 +2,7 @@
 
 namespace Mateus\ProtocolTrackerV2\Repository;
 
+use DateTimeImmutable;
 use Mateus\ProtocolTrackerV2\Interfaces\ProtocoloRepositoryInterface;
 use Mateus\ProtocolTrackerV2\Model\Protocolo;
 use PDO;
@@ -130,6 +131,19 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         $stmt->bindValue(':id_remessa', $id_remessa);
         $stmt->bindValue(':status', $status);
 
+        $stmt->execute();
+
+        return (int) $stmt->fetchColumn();
+    }
+
+    public function countByDiaPreparador(int $id_preparador, DateTimeImmutable $data_preparacao): int
+    {
+        $sqlQuery = "SELECT COUNT(*) FROM protocolos WHERE id_preparador = :id_preparador AND DATE(data_preparacao) = :data_preparacao;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':id_preparador', $id_preparador);
+        $stmt->bindValue(':data_preparacao', $data_preparacao->format('Y-m-d'));
+        
         $stmt->execute();
 
         return (int) $stmt->fetchColumn();

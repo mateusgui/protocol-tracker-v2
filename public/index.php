@@ -186,7 +186,7 @@ try {
 
         case '/admin/remessas/entregar-remessa':
             if ($method === 'POST') {
-                $remessaController->entregaRemessa(); //--------------------- FALTANDO IMPLEMENTAR ------------------------------
+                $remessaController->entregaRemessa();
             }
             break;
 
@@ -218,7 +218,7 @@ try {
         ----- */
         case '/admin/preparacao/dashboard':
             if($method === 'GET'){
-                //ProtocoloController->dashboardPreparados();
+                $protocoloController->dashboardPreparados();
             }
             break;
 
@@ -227,7 +227,7 @@ try {
         ----- */
         case '/admin/digitalizacao/dashboard':
             if($method === 'GET'){
-                //ProtocoloController->dashboardDigitalizados();
+                $protocoloController->dashboardDigitalizados();
             }
             break;
 

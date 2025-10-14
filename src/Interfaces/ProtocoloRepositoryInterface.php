@@ -2,6 +2,7 @@
 
 namespace Mateus\ProtocolTrackerV2\Interfaces;
 
+use DateTimeImmutable;
 use Mateus\ProtocolTrackerV2\Model\Protocolo;
 
 interface ProtocoloRepositoryInterface
@@ -13,6 +14,7 @@ interface ProtocoloRepositoryInterface
     public function findByNumber(string $numero_protocolo): ?Protocolo;
     public function findByStatus(string $status): array;
     public function countByStatus(string $id_remessa, string $status): int;
+    public function countByDiaPreparador(int $id_preparador, DateTimeImmutable $dia): int;
     public function sumPagesByRemessaAndStatus(string $id_remessa, string $status): int;
     public function add(Protocolo $protocolo): void;
     public function update(Protocolo $protocolo): void;
