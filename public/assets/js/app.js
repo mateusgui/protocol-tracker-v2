@@ -146,4 +146,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
+    // --- LÓGICA PARA A MODAL DE DIGITALIZAÇÃO DE PROTOCOLO ---
+    const modalDigitalizar = document.getElementById('modal-digitalizar');
+    const btnsAbrirModalDigitalizar = document.querySelectorAll('.open-modal-digitalizar');
+
+    // Seleciona os botões de fechar da nova modal
+    const btnsFecharModalDigitalizar = modalDigitalizar?.querySelectorAll('.close-modal-btn');
+
+    if (modalDigitalizar && btnsAbrirModalDigitalizar.length > 0) {
+        
+        btnsAbrirModalDigitalizar.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Pega os dados do protocolo a partir dos atributos data-*
+                const protocoloId = this.dataset.protocoloId;
+                const protocoloNumero = this.dataset.protocoloNumero;
+                const protocoloObservacoes = this.dataset.protocoloObservacoes;
+
+                // Preenche os campos da modal
+                document.getElementById('modal-protocolo-id-dig').value = protocoloId;
+                document.getElementById('modal-protocolo-numero-dig').textContent = protocoloNumero;
+                document.getElementById('observacoes_modal_dig').value = protocoloObservacoes; // Carrega a observação do preparador
+                
+                modalDigitalizar.style.display = 'flex';
+            });
+        });
+
+        btnsFecharModalDigitalizar.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modalDigitalizar.style.display = 'none';
+            });
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target == modalDigitalizar) {
+                modalDigitalizar.style.display = 'none';
+            }
+        });
+    }
+
 });

@@ -1,0 +1,88 @@
+<?php require __DIR__ . '/../components/_header.php'; ?>
+
+<div class="listagem-container">
+    <h3>Protocolos Aguardando Digitalização</h3>
+    <p>Selecione um protocolo abaixo para registrar a digitalização.</p>
+    
+    <table class="protocolos-table datatable-js">
+        <thead>
+            <tr>
+                <th>Nº do Protocolo</th>
+                <th>Observações do Preparador</th>
+                <th class="acoes-header">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($listaProtocolosPreparados as $protocolo): ?>
+                <tr>
+                    <td><?= htmlspecialchars($protocolo->getNumeroProtocolo()) ?></td>
+                    <td class="coluna-observacoes" title="<?= htmlspecialchars($protocolo->getObservacoes() ?? '') ?>">
+                        <?= htmlspecialchars($protocolo->getObservacoes() ?? 'N/A') ?>
+                    </td>
+                    <td class="acoes-cell">
+                        <button 
+                            type="button" 
+                            class="btn-acao-digitalizar open-modal-digitalizar" 
+                            data-protocolo-id="<?= htmlspecialchars($protocolo->getId()) ?>"
+                            data-protocolo-numero="<?= htmlspecialchars($protocolo->getNumeroProtocolo()) ?>"
+                            data-protocolo-observacoes="<?= htmlspecialchars($protocolo->getObservacoes() ?? '') ?>"
+                        >
+                            <span class="material-icons-outlined">adf_scanner</span> Digitalizar
+                        </button>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+
+<div id="modal-digitalizar" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Digitalizar Protocolo</h4>
+            <button class="close-modal-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>Você está digitalizando o Protocolo Nº <strong id="modal-protocolo-numero-dig"></strong>.</p>
+            
+            <form id="form-digitalizar-protocolo" action="/digitalizadores/movimentar-protocolo" method="post">
+                
+                <input type="hidden" name="id_protocolo" id="modal-protocolo-id-dig">
+
+                <div class="form-group">
+                    <label for="quantidade_paginas_modal">Quantidade de Páginas (Obrigatório)</label>
+                    <input type="number" id="quantidade_paginas_modal" name="quantidade_paginas" required min="1">
+                </div>
+
+                <div class="form-group">
+                    <label for="nome_digitalizador_modal">Responsável</label>
+                    <input 
+                        type="text" 
+                        id="nome_digitalizador_modal" 
+                        value="<?= htmlspecialchars($digitalizador->getNome()) ?>" 
+                        readonly 
+                        style="background-color: #e9ecef;"
+                    >
+                    <input 
+                        type="hidden" 
+                        id="id_digitalizador_modal" 
+                        name="id_digitalizador" 
+                        value="<?= htmlspecialchars($digitalizador->getId()) ?>"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="observacoes_modal_dig">Observações (Adicionar/Editar)</label>
+                    <textarea id="observacoes_modal_dig" name="observacoes" rows="3"></textarea>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancelar close-modal-btn">Cancelar</button>
+                    <button type="submit" class="btn-salvar">Confirmar Digitalização</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<?php require __DIR__ . '/../components/_footer.php'; ?>

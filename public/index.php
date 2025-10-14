@@ -94,7 +94,7 @@ try {
             break;
 
         /*----- 
-        rota views EQUIPE --------------------- FALTANDO IMPLEMENTAR ------------------------------
+        rota views EQUIPE
         ----- */
         case '/equipe/dashboard':
             if($method === 'GET'){
@@ -103,7 +103,7 @@ try {
             break;
 
         /*----- 
-        rota views preparadores --------------------- FALTANDO IMPLEMENTAR ------------------------------
+        rota views preparadores
         ----- */
         case '/preparadores/recebidos':
             if($method === 'GET'){
@@ -128,21 +128,19 @@ try {
         ----- */
         case '/digitalizadores/preparados':
             if($method === 'GET'){
-                //ProtocoloController->digitalizadores_listaPreparados();
+                $protocoloController->digitalizadores_listaPreparados();
             }
             break;
 
         case '/digitalizadores/movimentar-protocolo':
-            if($method === 'GET'){
-                //ProtocoloController->exibirDigitalizarProtocolo();
-            } else if($method === 'POST'){
-                //ProtocoloController->DigitalizarProtocolo();
+            if($method === 'POST'){
+                $protocoloController->DigitalizarProtocolo();
             }
             break;
 
         case '/digitalizadores/digitalizados':
             if($method === 'GET'){
-                //ProtocoloController->digitalizadores_listaDigitalizados();
+                $protocoloController->digitalizadores_listaDigitalizados();
             }
             break;
 

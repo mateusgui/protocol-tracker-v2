@@ -116,25 +116,57 @@ class ProtocoloController
     //GET
     public function digitalizadores_listaPreparados()
     {
+        try {
+            // Busca protocolos com status 'PREPARADO'
+            $listaProtocolosPreparados = $this->protocoloRepository->findByStatus('PREPARADO');
+            
+            $digitalizador = $this->usuario_logado;
 
-    }
+            $titulo_da_pagina = "Lista de Protocolos Preparados";
+            $usuario_logado = $this->usuario_logado;
+            $permissao = $this->permissao;
 
-    //GET
-    public function exibirDigitalizarProtocolo()
-    {
-
+            require __DIR__ . '/../../templates/digitalizadores/preparados.php';
+        } catch (Exception $e) {
+            $this->home($e->getMessage());
+        }
     }
 
     //POST
     public function DigitalizarProtocolo()
     {
+        try {
+            $digitalizador = $this->usuario_logado;
+            $id_protocolo = $_POST['id_protocolo'] ?? null;
+            $quantidade_paginas = $_POST['quantidade_paginas'];
+            $observacoes = $_POST['observacoes'] ?? '';
+            $protocolo = $this->protocoloRepository->findById($id_protocolo);
 
+            $this->protocoloService->digitalizarProtocolo($digitalizador, $id_protocolo, $quantidade_paginas, $observacoes);
+
+            $_SESSION['mensagem_sucesso'] = "Protocolo Nº " . $protocolo->getNumeroProtocolo() . " Digitalizado";
+
+            header('Location: /digitalizadores/preparados');
+            exit();
+        } catch (Exception $e) {
+            $this->home($e->getMessage());
+        }
     }
 
     //GET
     public function digitalizadores_listaDigitalizados()
     {
+        try {
+            $listaProtocolosDigitalizados = $this->protocoloRepository->findByStatus('DIGITALIZADO');
 
+            $titulo_da_pagina = "Lista de Protocolos Digitalizados";
+            $usuario_logado = $this->usuario_logado;
+            $permissao = $this->permissao;
+
+            require __DIR__ . '/../../templates/digitalizadores/digitalizados.php';
+        } catch (Exception $e) {
+            $this->home($e->getMessage());
+        }
     }
 
     //GET
