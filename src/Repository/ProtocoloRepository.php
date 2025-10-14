@@ -174,25 +174,27 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
     //Método para preparadores e digitalizadores utilizarem
     public function preparaProtocolo(string $id, string $data_preparacao, int $id_preparador, ?string $observacoes): void
     {
-        $sqlQuery = "UPDATE protocolos SET status = 'PREPARADO', data_preparacao = :data_preparacao, id_preparador = :id_preparador WHERE id = :id;";
+        $sqlQuery = "UPDATE protocolos SET status = 'PREPARADO', data_preparacao = :data_preparacao, id_preparador = :id_preparador, observacoes = :observacoes WHERE id = :id;";
 
         $stmt = $this->connection->prepare($sqlQuery);
         $stmt->bindValue(':data_preparacao', $data_preparacao);
         $stmt->bindValue(':id_preparador', $id_preparador);
         $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':observacoes', $observacoes);
 
         $stmt->execute();
     }
 
     public function digitalizaProtocolo(string $id, string $data_digitalizacao, int $id_digitalizador, int $quantidade_paginas, ?string $observacoes): void
     {
-        $sqlQuery = "UPDATE protocolos SET status = 'DIGITALIZADO', data_digitalizacao = :data_digitalizacao, id_digitalizador = :id_digitalizador, quantidade_paginas = :quantidade_paginas WHERE id = :id;";
+        $sqlQuery = "UPDATE protocolos SET status = 'DIGITALIZADO', data_digitalizacao = :data_digitalizacao, id_digitalizador = :id_digitalizador, quantidade_paginas = :quantidade_paginas, observacoes = :observacoes WHERE id = :id;";
 
         $stmt = $this->connection->prepare($sqlQuery);
         $stmt->bindValue(':data_digitalizacao', $data_digitalizacao);
         $stmt->bindValue(':id_digitalizador', $id_digitalizador);
         $stmt->bindValue(':quantidade_paginas', $quantidade_paginas);
         $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':observacoes', $observacoes);
 
         $stmt->execute();
     }
