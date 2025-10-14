@@ -48,4 +48,19 @@ class DashboardService
     {
         return $this->protocoloRepository->countByDiaPreparador($id_preparador, $dia);
     }
+
+    public function metricaPorPreparadorMes(): int
+    {
+        return 0; //IMPLEMENTAR ----------------------
+    }
+
+    public function metricaPorDigitalizadorDia(): int
+    {
+        return 0; //IMPLEMENTAR ----------------------
+    }
+
+    public function metricaPorDigitalizadorMes(): int
+    {
+        return 0; //IMPLEMENTAR ----------------------
+    }
 }
