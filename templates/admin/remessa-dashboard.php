@@ -52,6 +52,10 @@
                 <div class="label">Protocolos Digitalizados</div>
                 <div class="value total"><?= htmlspecialchars($metricas['protocolos_digitalizados']) ?></div>
             </div>
+            <div class="metric-card">
+                <div class="label">Protocolos Entregues</div>
+                <div class="value total"><?= htmlspecialchars($metricas['protocolos_entregues']) ?></div>
+            </div>
         </div>
         
         <div class="dashboard-row">

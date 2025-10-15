@@ -64,6 +64,42 @@ try {
     $url = parse_url($url, PHP_URL_PATH);
     $method = $_SERVER['REQUEST_METHOD'];
 
+    // ----- Validação de autenticação -----
+    function rotaAutenticada($usuario_esta_logado): void
+    {
+        if (!$usuario_esta_logado) {
+            header('Location: /login');
+            exit();
+        }
+    }
+
+    // ----- Validação de autenticação ADMIN -----
+    function rotaPreparador($permissao): void
+    {
+        if ($permissao !== 'preparador') {
+            header('Location: /home');
+            exit();
+        }
+    }
+
+    // ----- Validação de autenticação ADMIN -----
+    function rotaDigitalizador($permissao): void
+    {
+        if ($permissao !== 'digitalizador') {
+            header('Location: /home');
+            exit();
+        }
+    }
+
+    // ----- Validação de autenticação ADMIN -----
+    function rotaAdmin($permissao): void
+    {
+        if ($permissao !== 'administrador') {
+            header('Location: /home');
+            exit();
+        }
+    }
+
     switch ($url) {
         case '/':
             if ($usuario_esta_logado) {
@@ -88,6 +124,9 @@ try {
             break;
 
         case '/home':
+
+            rotaAutenticada($usuario_esta_logado);
+
             if($method === 'GET'){
                 $loginController->home();
             }
@@ -97,6 +136,9 @@ try {
         rota views EQUIPE
         ----- */
         case '/equipe/dashboard':
+
+            rotaAutenticada($usuario_esta_logado);
+
             if($method === 'GET'){
                 $protocoloController->dashboardEquipe();
             }
@@ -106,18 +148,30 @@ try {
         rota views preparadores
         ----- */
         case '/preparadores/recebidos':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaPreparador($permissao);
+
             if($method === 'GET'){
                 $protocoloController->preparadores_listaRecebidos();
             }
             break;
 
         case '/preparadores/movimentar-protocolo':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaPreparador($permissao);
+
             if($method === 'POST'){
                 $protocoloController->prepararProtocolo();
             }
             break;
 
         case '/preparadores/preparados':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaPreparador($permissao);
+
             if($method === 'GET'){
                 $protocoloController->preparadores_listaPreparados();
             }
@@ -127,18 +181,30 @@ try {
         rota views digitalizadores
         ----- */
         case '/digitalizadores/preparados':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaDigitalizador($permissao);
+
             if($method === 'GET'){
                 $protocoloController->digitalizadores_listaPreparados();
             }
             break;
 
         case '/digitalizadores/movimentar-protocolo':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaDigitalizador($permissao);
+
             if($method === 'POST'){
                 $protocoloController->DigitalizarProtocolo();
             }
             break;
 
         case '/digitalizadores/digitalizados':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaDigitalizador($permissao);
+
             if($method === 'GET'){
                 $protocoloController->digitalizadores_listaDigitalizados();
             }
@@ -148,6 +214,10 @@ try {
         /ADMIN/REMESSAS
         ----- */
         case '/admin/remessas/nova-remessa':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaAdmin($permissao);
+
             if($method === 'GET'){
                 $remessaController->exibirNovaRemessa();
             } else if($method === 'POST'){
@@ -156,12 +226,20 @@ try {
             break;
 
         case '/admin/remessas/visualizar-remessas':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaAdmin($permissao);
+
             if($method === 'GET'){
                 $remessaController->exibirRemessas();
             }
             break;
 
         case '/admin/remessas/editar-remessa':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaAdmin($permissao);
+
             if($method === 'GET'){
                 $remessaController->exibirEditarRemessa();
             } else if($method === 'POST'){
@@ -170,6 +248,10 @@ try {
             break;
 
         case '/admin/remessas/protocolos':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaAdmin($permissao);
+
             if ($method === 'POST') {
                 $remessaController->novoProtocolo();
             } else if($method === 'GET') {
@@ -185,12 +267,20 @@ try {
             break;
 
         case '/admin/remessas/entregar-remessa':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaAdmin($permissao);
+
             if ($method === 'POST') {
                 $remessaController->entregaRemessa();
             }
             break;
 
         case '/admin/remessas/editar-protocolo':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaAdmin($permissao);
+
             if($method === 'GET'){
                 $remessaController->exibirEditarProtocolo();
             } else if($method === 'POST'){
@@ -199,6 +289,10 @@ try {
             break;
 
         case '/admin/remessas/dashboard':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaAdmin($permissao);
+
             if($method === 'GET'){
                 $remessaController->dashboardRemessa();
             }
@@ -208,6 +302,10 @@ try {
         /ADMIN/PROTOCOLOS
         ----- */
         case '/admin/protocolos/buscar-protocolos':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaAdmin($permissao);
+
             if($method === 'GET'){
                 $protocoloController->buscarProtocolos();
             }
@@ -217,6 +315,10 @@ try {
         /ADMIN/PREPARAÇÃO --------------------- FALTANDO IMPLEMENTAR ------------------------------
         ----- */
         case '/admin/preparacao/dashboard':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaAdmin($permissao);
+
             if($method === 'GET'){
                 $protocoloController->dashboardPreparados();
             }
@@ -226,6 +328,10 @@ try {
         /ADMIN/DIGITALIZAÇÃO --------------------- FALTANDO IMPLEMENTAR ------------------------------
         ----- */
         case '/admin/digitalizacao/dashboard':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaAdmin($permissao);
+
             if($method === 'GET'){
                 $protocoloController->dashboardDigitalizados();
             }
@@ -235,6 +341,10 @@ try {
         /ADMIN/USUARIOS
         ----- */
         case '/admin/usuarios/novo-usuario':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaAdmin($permissao);
+
             if($method === 'GET'){
                 $usuarioController->exibirNovoUsuario();
             } else if($method === 'POST'){
@@ -243,12 +353,20 @@ try {
             break;
 
         case '/admin/usuarios/visualizar-usuarios':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaAdmin($permissao);
+
             if($method === 'GET'){
                 $usuarioController->exibirUsuarios();
             }
             break;
 
         case '/admin/usuarios/editar-usuario':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaAdmin($permissao);
+
             if($method === 'GET'){
                 $usuarioController->exibirEditarUsuario();
             } else if($method === 'POST'){
@@ -257,6 +375,10 @@ try {
             break;
 
         case '/admin/usuarios/resetar-senha':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaAdmin($permissao);
+
             if($method === 'GET'){
                 $usuarioController->exibirResetarSenhaUsuario();
             } else if($method === 'POST'){
@@ -268,6 +390,10 @@ try {
         /ADMIN/EQUIPE --------------------- FALTANDO IMPLEMENTAR ------------------------------
         ----- */
         case '/admin/equipe/dashboard':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaAdmin($permissao);
+
             if($method === 'GET'){
                 //ProtocoloController->adminDashboardEquipe();
             }
