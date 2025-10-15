@@ -2,6 +2,7 @@
 
 namespace Mateus\ProtocolTrackerV2\Controller;
 
+use DateTimeImmutable;
 use Exception;
 use Mateus\ProtocolTrackerV2\Model\Usuario;
 use Mateus\ProtocolTrackerV2\Repository\ProtocoloRepository;
@@ -191,13 +192,60 @@ class ProtocoloController
     //GET
     public function dashboardPreparados()
     {
+        try {
+            $dia_selecionado = !empty($_GET['dia']) ? new DateTimeImmutable($_GET['dia']) : new DateTimeImmutable('now');
+            $mes_selecionado = !empty($_GET['mes']) ? new DateTimeImmutable($_GET['mes']) : new DateTimeImmutable('now');
+            
+            if ($this->permissao === 'administrador') {
+                $id_usuario_selecionado = !empty($_GET['id_selecionado']) ? (int) $_GET['id_selecionado'] : null;
+            } else {
+                $id_usuario_selecionado = $this->usuario_logado->getId();
+            }
+            
+            $listaDePreparadores = $this->usuarioRepository->allByPermissao('preparador');
 
+            $protocolosDia = $this->dashboardService->protocolosPreparadosPorDia($id_usuario_selecionado, $dia_selecionado);
+            $protocolosMes = $this->dashboardService->protocolosPreparadosPorMes($id_usuario_selecionado, $mes_selecionado);
+
+            $titulo_da_pagina = "Dashboard de Preparadores";
+            $usuario_logado = $this->usuario_logado;
+            $permissao = $this->permissao;
+            
+            require __DIR__ . '/../../templates/preparadores/preparados-dashboard.php';
+        } catch (Exception $e) {
+            $this->home($e->getMessage());
+        }
     }
 
     //GET
     public function dashboardDigitalizados()
     {
+        try {
+            $dia_selecionado = !empty($_GET['dia']) ? new DateTimeImmutable($_GET['dia']) : new DateTimeImmutable('now');
+            $mes_selecionado = !empty($_GET['mes']) ? new DateTimeImmutable($_GET['mes']) : new DateTimeImmutable('now');
+            
+            if ($this->permissao === 'administrador') {
+                $id_usuario_selecionado = !empty($_GET['id_selecionado']) ? (int) $_GET['id_selecionado'] : null;
+            } else {
+                $id_usuario_selecionado = $this->usuario_logado->getId();
+            }
+            
+            $listaDeDigitalizadores = $this->usuarioRepository->allByPermissao('digitalizador');
 
+            $protocolosDia = $this->dashboardService->protocolosDigitalizadosPorDia($id_usuario_selecionado, $dia_selecionado);
+            $paginasDia = $this->dashboardService->paginasDigitalizadasPorDia($id_usuario_selecionado, $dia_selecionado);
+
+            $protocolosMes = $this->dashboardService->protocolosDigitalizadosPorMes($id_usuario_selecionado, $mes_selecionado);
+            $paginasMes = $this->dashboardService->paginasDigitalizadasPorMes($id_usuario_selecionado, $mes_selecionado);
+
+            $titulo_da_pagina = "Dashboard de Digitalizadores";
+            $usuario_logado = $this->usuario_logado;
+            $permissao = $this->permissao;
+            
+            require __DIR__ . '/../../templates/digitalizadores/digitalizados-dashboard.php';
+        } catch (Exception $e) {
+            $this->home($e->getMessage());
+        }
     }
 
     //GET

@@ -15,11 +15,17 @@ interface ProtocoloRepositoryInterface
     public function findByStatus(string $status): array;
     public function countByStatus(string $id_remessa, string $status): int;
     public function countByDiaPreparador(int $id_preparador, DateTimeImmutable $dia): int;
+    public function countTotalByDiaPreparacao(DateTimeImmutable $data): int;
     public function countByMesPreparador(int $id_preparador, DateTimeImmutable $data_preparacao): int;
+    public function countTotalByMesPreparacao(DateTimeImmutable $data): int;
     public function sumByDiaDigitalizador(int $id_digitalizador, DateTimeImmutable $dia): int;
+    public function sumTotalByDiaDigitalizacao(DateTimeImmutable $dia): int;
     public function countByDiaDigitalizador(int $id_digitalizador, DateTimeImmutable $data_digitalizacao): int;
+    public function countTotalByDiaDigitalizacao(DateTimeImmutable $dia): int;
     public function sumByMesDigitalizador(int $id_digitalizador, DateTimeImmutable $mes): int;
+    public function sumTotalByMesDigitalizacao(DateTimeImmutable $mes): int;
     public function countByMesDigitalizador(int $id_digitalizador, DateTimeImmutable $mes): int;
+    public function countTotalByMesDigitalizacao(DateTimeImmutable $mes): int;
     public function sumPagesByRemessaAndStatus(string $id_remessa, string $status): int;
     public function add(Protocolo $protocolo): void;
     public function update(Protocolo $protocolo): void;

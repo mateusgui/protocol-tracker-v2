@@ -43,34 +43,57 @@ class DashboardService
         ];
     }
 
-    // ---------- MÉTRICAS PREPARAÇÃO ----------
-    public function protocolosPreparadosPorDia(int $id_preparador, DateTimeImmutable $dia): int
+    public function protocolosPreparadosPorDia(?int $id_preparador, DateTimeImmutable $dia): int
     {
-        return $this->protocoloRepository->countByDiaPreparador($id_preparador, $dia);
+        if ($id_preparador !== null) {
+            return $this->protocoloRepository->countByDiaPreparador($id_preparador, $dia);
+        } else {
+            return $this->protocoloRepository->countTotalByDiaPreparacao($dia);
+        }
     }
 
-    public function protocolosPreparadosPorMes(int $id_preparador, DateTimeImmutable $mes): int
+    public function protocolosPreparadosPorMes(?int $id_preparador, DateTimeImmutable $mes): int
     {
-        return $this->protocoloRepository->countByMesPreparador($id_preparador, $mes);
+        if ($id_preparador !== null) {
+            return $this->protocoloRepository->countByMesPreparador($id_preparador, $mes);
+        } else {
+            return $this->protocoloRepository->countTotalByMesPreparacao($mes);
+        }
     }
 
-    public function paginasDigitalizadasPorDia(int $id_digitalizador, DateTimeImmutable $dia): int
+    public function paginasDigitalizadasPorDia(?int $id_digitalizador, DateTimeImmutable $dia): int
     {
-        return $this->protocoloRepository->sumByDiaDigitalizador($id_digitalizador, $dia);
+        if ($id_digitalizador !== null) {
+            return $this->protocoloRepository->sumByDiaDigitalizador($id_digitalizador, $dia);
+        } else {
+            return $this->protocoloRepository->sumTotalByDiaDigitalizacao($dia);
+        }
     }
 
-    public function protocolosDigitalizadosPorDia(int $id_digitalizador, DateTimeImmutable $dia): int
+    public function protocolosDigitalizadosPorDia(?int $id_digitalizador, DateTimeImmutable $dia): int
     {
-        return $this->protocoloRepository->countByDiaDigitalizador($id_digitalizador, $dia);
+        if ($id_digitalizador !== null) {
+            return $this->protocoloRepository->countByDiaDigitalizador($id_digitalizador, $dia);
+        } else {
+            return $this->protocoloRepository->countTotalByDiaDigitalizacao($dia);
+        }
     }
 
-    public function paginasDigitalizadasPorMes(int $id_digitalizador, DateTimeImmutable $mes): int
+    public function paginasDigitalizadasPorMes(?int $id_digitalizador, DateTimeImmutable $mes): int
     {
-        return $this->protocoloRepository->sumByMesDigitalizador($id_digitalizador, $mes);
+        if ($id_digitalizador !== null) {
+            return $this->protocoloRepository->sumByMesDigitalizador($id_digitalizador, $mes);
+        } else {
+            return $this->protocoloRepository->sumTotalByMesDigitalizacao($mes);
+        }
     }
 
-    public function protocolosDigitalizadosPorMes(int $id_digitalizador, DateTimeImmutable $mes): int
+    public function protocolosDigitalizadosPorMes(?int $id_digitalizador, DateTimeImmutable $mes): int
     {
-        return $this->protocoloRepository->countByMesDigitalizador($id_digitalizador, $mes);
+        if ($id_digitalizador !== null) {
+            return $this->protocoloRepository->countByMesDigitalizador($id_digitalizador, $mes);
+        } else {
+            return $this->protocoloRepository->countTotalByMesDigitalizacao($mes);
+        }
     }
 }
