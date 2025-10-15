@@ -138,11 +138,76 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
 
     public function countByDiaPreparador(int $id_preparador, DateTimeImmutable $data_preparacao): int
     {
-        $sqlQuery = "SELECT COUNT(*) FROM protocolos WHERE id_preparador = :id_preparador AND DATE(data_preparacao) = :data_preparacao;";
+        $sqlQuery = "SELECT COUNT(*) FROM protocolos WHERE id_preparador = :id_preparador AND DATE_FORMAT(data_preparacao, '%Y-%m-%d') = :data_preparacao";
 
         $stmt = $this->connection->prepare($sqlQuery);
         $stmt->bindValue(':id_preparador', $id_preparador);
         $stmt->bindValue(':data_preparacao', $data_preparacao->format('Y-m-d'));
+        
+        $stmt->execute();
+
+        return (int) $stmt->fetchColumn();
+    }
+
+    public function countByMesPreparador(int $id_preparador, DateTimeImmutable $data_preparacao): int
+    {
+        $sqlQuery = "SELECT COUNT(*) FROM protocolos WHERE id_preparador = :id_preparador AND DATE_FORMAT(data_preparacao, '%Y-%m') = :mes_ano;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':id_preparador', $id_preparador);
+        $stmt->bindValue(':mes_ano', $data_preparacao->format('Y-m'));
+        
+        $stmt->execute();
+
+        return (int) $stmt->fetchColumn();
+    }
+
+    public function sumByDiaDigitalizador(int $id_digitalizador, DateTimeImmutable $dia): int
+    {
+        $sqlQuery = "SELECT SUM(quantidade_paginas) FROM protocolos WHERE id_digitalizador = :id_digitalizador AND DATE_FORMAT(data_digitalizacao, '%Y-%m-%d') = :data_digitalizacao;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':id_digitalizador', $id_digitalizador);
+        $stmt->bindValue(':data_digitalizacao', $dia->format('Y-m-d') );
+        
+        $stmt->execute();
+
+        return (int) $stmt->fetchColumn();
+    }
+
+    public function countByDiaDigitalizador(int $id_digitalizador, DateTimeImmutable $data_digitalizacao): int
+    {
+        $sqlQuery = "SELECT COUNT(*) FROM protocolos WHERE id_digitalizador = :id_digitalizador AND DATE_FORMAT(data_digitalizacao, '%Y-%m-%d') = :data_digitalizacao;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':id_digitalizador', $id_digitalizador);
+        $stmt->bindValue(':data_digitalizacao', $data_digitalizacao->format('Y-m-d'));
+        
+        $stmt->execute();
+
+        return (int) $stmt->fetchColumn();
+    }
+
+    public function sumByMesDigitalizador(int $id_digitalizador, DateTimeImmutable $mes): int
+    {
+        $sqlQuery = "SELECT SUM(quantidade_paginas) FROM protocolos WHERE id_digitalizador = :id_digitalizador AND DATE_FORMAT(data_digitalizacao, '%Y-%m') = :data_mes;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':id_digitalizador', $id_digitalizador);
+        $stmt->bindValue(':data_mes', $mes->format('Y-m'));
+        
+        $stmt->execute();
+
+        return (int) $stmt->fetchColumn();
+    }
+
+    public function countByMesDigitalizador(int $id_digitalizador, DateTimeImmutable $mes): int
+    {
+        $sqlQuery = "SELECT COUNT(*) FROM protocolos WHERE id_digitalizador = :id_digitalizador AND DATE_FORMAT(data_digitalizacao, '%Y-%m') = :data_mes;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':id_digitalizador', $id_digitalizador);
+        $stmt->bindValue(':data_mes', $mes->format('Y-m'));
         
         $stmt->execute();
 

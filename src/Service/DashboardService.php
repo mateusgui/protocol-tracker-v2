@@ -44,23 +44,33 @@ class DashboardService
     }
 
     // ---------- MÉTRICAS PREPARAÇÃO ----------
-    public function metricaPorPreparadorDia(int $id_preparador, DateTimeImmutable $dia): int
+    public function protocolosPreparadosPorDia(int $id_preparador, DateTimeImmutable $dia): int
     {
         return $this->protocoloRepository->countByDiaPreparador($id_preparador, $dia);
     }
 
-    public function metricaPorPreparadorMes(): int
+    public function protocolosPreparadosPorMes(int $id_preparador, DateTimeImmutable $mes): int
     {
-        return 0; //IMPLEMENTAR ----------------------
+        return $this->protocoloRepository->countByMesPreparador($id_preparador, $mes);
     }
 
-    public function metricaPorDigitalizadorDia(): int
+    public function paginasDigitalizadasPorDia(int $id_digitalizador, DateTimeImmutable $dia): int
     {
-        return 0; //IMPLEMENTAR ----------------------
+        return $this->protocoloRepository->sumByDiaDigitalizador($id_digitalizador, $dia);
     }
 
-    public function metricaPorDigitalizadorMes(): int
+    public function protocolosDigitalizadosPorDia(int $id_digitalizador, DateTimeImmutable $dia): int
     {
-        return 0; //IMPLEMENTAR ----------------------
+        return $this->protocoloRepository->countByDiaDigitalizador($id_digitalizador, $dia);
+    }
+
+    public function paginasDigitalizadasPorMes(int $id_digitalizador, DateTimeImmutable $mes): int
+    {
+        return $this->protocoloRepository->sumByMesDigitalizador($id_digitalizador, $mes);
+    }
+
+    public function protocolosDigitalizadosPorMes(int $id_digitalizador, DateTimeImmutable $mes): int
+    {
+        return $this->protocoloRepository->countByMesDigitalizador($id_digitalizador, $mes);
     }
 }
