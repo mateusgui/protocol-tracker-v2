@@ -109,7 +109,7 @@ class ProtocoloService
 
         $protocolo = new Protocolo(
             $id,
-            $id_remessa,
+            $protocoloAntigo->getIdRemessa(),
             $numero_protocolo,
             $data_preparacao,
             $id_preparador,

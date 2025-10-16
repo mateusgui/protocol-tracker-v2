@@ -181,7 +181,8 @@ class RemessaController
             $id_protocolo = $_GET['id'] ?? null;
             $protocolo = $this->protocoloRepository->findById($id_protocolo);
 
-            $listaDeRemessas = $this->remessaRepository->all();
+            $id_remessa = $protocolo->getIdRemessa();
+            $remessa = $this->remessaRepository->findById($id_remessa);
             $listaDePreparadores = $this->usuarioRepository->allByPermissao('preparador');
             $listaDeDigitalizadores = $this->usuarioRepository->allByPermissao('digitalizador');
 

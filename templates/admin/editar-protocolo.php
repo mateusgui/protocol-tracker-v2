@@ -9,19 +9,12 @@
     <form action="/admin/remessas/editar-protocolo" method="post" class="protocolo-form">
         
         <input type="hidden" name="id" value="<?= htmlspecialchars($protocolo->getId()) ?>">
+        <input type="hidden" name="id_remessa" value="<?= htmlspecialchars($remessa->getId()) ?>">
 
         <div class="form-row">
             <div class="form-group">
-                <label for="id_remessa">Remessa</label>
-                <select id="id_remessa" name="id_remessa" required>
-                    <?php foreach ($listaDeRemessas as $remessa): ?>
-                        <option 
-                            value="<?= htmlspecialchars($remessa->getId()) ?>"
-                            <?= ($protocolo->getIdRemessa() === $remessa->getId()) ? 'selected' : '' ?>>
-                            Nº <?= htmlspecialchars($remessa->getNumeroRemessa()) ?> (<?= $remessa->getDataRecebimento()->format('d/m/Y') ?>)
-                        </option>
-                    <?php endforeach; ?>
-                </select>
+                <label for="numero_remessa">Número do Protocolo</label>
+                <input type="text" id="numero_remessa" name="numero_remessa" value="<?= htmlspecialchars($remessa->getNumeroRemessa()) ?>" readonly>
             </div>
             <div class="form-group">
                 <label for="numero_protocolo">Número do Protocolo</label>

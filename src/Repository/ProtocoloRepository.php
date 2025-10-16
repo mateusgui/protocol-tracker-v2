@@ -343,12 +343,11 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
 
     public function update(Protocolo $protocolo): void
     {
-        $sqlQuery = "UPDATE protocolos SET id_remessa = :id_remessa, numero_protocolo = :numero_protocolo, data_preparacao = :data_preparacao, id_preparador = :id_preparador, data_digitalizacao = :data_digitalizacao, id_digitalizador = :id_digitalizador, status = :status, quantidade_paginas = :quantidade_paginas, observacoes = :observacoes WHERE id = :id;";
+        $sqlQuery = "UPDATE protocolos SET numero_protocolo = :numero_protocolo, data_preparacao = :data_preparacao, id_preparador = :id_preparador, data_digitalizacao = :data_digitalizacao, id_digitalizador = :id_digitalizador, status = :status, quantidade_paginas = :quantidade_paginas, observacoes = :observacoes WHERE id = :id;";
 
         $protocoloArray = $protocolo->toArray();
 
         $stmt = $this->connection->prepare($sqlQuery);
-        $stmt->bindValue(':id_remessa', $protocoloArray['id_remessa']);
         $stmt->bindValue(':numero_protocolo', $protocoloArray['numero_protocolo']);
         $stmt->bindValue(':data_preparacao', $protocoloArray['data_preparacao']);
         $stmt->bindValue(':id_preparador', $protocoloArray['id_preparador']);
