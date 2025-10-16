@@ -104,9 +104,12 @@ class RemessaRepository implements RemessaRepositoryInterface
 
     public function entregaRemessa(string $id_remessa): void
     {
-        $sqlQuery = "UPDATE remessas SET status = 'ENTREGUE' WHERE id = :id;";
+        $data_entrega = new DateTimeImmutable('now');
+
+        $sqlQuery = "UPDATE remessas SET status = 'ENTREGUE', data_entrega = :data_entrega WHERE id = :id;";
 
         $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':data_entrega', $data_entrega->format('Y-m-d H:i:s'));
         $stmt->bindValue(':id', $id_remessa);
 
         $stmt->execute();
