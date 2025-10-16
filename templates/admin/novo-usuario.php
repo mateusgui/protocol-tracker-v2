@@ -16,13 +16,13 @@
         
         <div class="form-row">
             <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
                 <label for="cpf_formatado">CPF</label>
                 <input type="text" id="cpf_formatado" placeholder="000.000.000-00" required maxlength="14">
                 <input type="hidden" id="cpf_puro" name="cpf">
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required>
             </div>
         </div>
 
@@ -30,10 +30,6 @@
             <div class="form-group">
                 <label for="senha">Senha (mínimo 6 caracteres)</label>
                 <input type="password" id="senha" name="senha" required>
-            </div>
-            <div class="form-group">
-                <label for="confirmaSenha">Confirmar Senha</label>
-                <input type="password" id="confirmaSenha" name="confirmaSenha" required>
             </div>
         </div>
 

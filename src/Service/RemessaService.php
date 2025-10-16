@@ -50,7 +50,7 @@ class RemessaService
         return $remessa;
     }
 
-    public function atualizarRemessa(Usuario $usuarioLogado, string $data_recebimento, ?string $data_entrega, string $status, ?string $observacoes, string $id): void
+    public function atualizarRemessa(Usuario $usuarioLogado, string $data_recebimento, ?string $data_entrega, ?string $observacoes, string $id): void
     {
         if($usuarioLogado->getPermissao() !== 'administrador') {
             throw new Exception("Apenas administradores podem editar remessas.");
@@ -69,17 +69,13 @@ class RemessaService
                 throw new Exception("A data de entrega não pode ser anterior à data de recebimento");
             }
         }
-
-        if($status !== 'RECEBIDO' && $status !== 'ENTREGUE'){
-            throw new Exception("O status informado é inválido");
-        }
         
         $remessa = new Remessa(
             $id,
             $remessaAntiga->getNumeroRemessa(),
             $data_recebimento,
             $data_entrega,
-            $status,
+            $remessaAntiga->getStatus(),
             $remessaAntiga->getQuantidadeProtocolos(),
             $usuarioLogado->getId(),
             $observacoes

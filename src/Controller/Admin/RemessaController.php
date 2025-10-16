@@ -117,11 +117,10 @@ class RemessaController
             $usuario_logado = $this->usuario_logado;
             $data_recebimento = $_POST['data_recebimento'] ?? '';
             $data_entrega = $_POST['data_entrega'] ?? '';
-            $status = $_POST['status'] ?? '';
             $observacoes = $_POST['observacoes'] ?? '';
             $id = $_POST['id'] ?? '';
 
-            $this->remessaService->atualizarRemessa($usuario_logado, $data_recebimento, $data_entrega, $status, $observacoes, $id);
+            $this->remessaService->atualizarRemessa($usuario_logado, $data_recebimento, $data_entrega, $observacoes, $id);
 
             $_SESSION['mensagem_sucesso'] = "Remessa editada com sucesso!";
 

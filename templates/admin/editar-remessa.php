@@ -60,14 +60,6 @@
     </div>
 
     <div class="form-group">
-        <label for="status">Status</label>
-        <select id="status" name="status" required>
-            <option value="RECEBIDO" <?= ($remessa->getStatus() === 'RECEBIDO') ? 'selected' : '' ?>>Recebido</option>
-            <option value="ENTREGUE" <?= ($remessa->getStatus() === 'ENTREGUE') ? 'selected' : '' ?>>Entregue</option>
-        </select>
-    </div>
-
-    <div class="form-group">
         <label for="observacoes">Observações (Opcional):</label>
         <textarea id="observacoes" name="observacoes" rows="3"><?= htmlspecialchars($remessa->getObservacoes() ?? '') ?></textarea>
     </div>
