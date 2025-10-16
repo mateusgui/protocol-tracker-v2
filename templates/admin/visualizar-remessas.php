@@ -18,6 +18,7 @@
                     <th>Qtd. Protocolos</th>
                     <th>Data de Recebimento</th>
                     <th>Data de Entrega</th>
+                    <th>Quantidade de Páginas</th>
                     <th class="acoes-header">Ações</th>
                 </tr>
             </thead>
@@ -29,6 +30,14 @@
                         <td><?= htmlspecialchars($remessa->getQuantidadeProtocolos() ?? 0) ?></td>
                         <td><?= $remessa->getDataRecebimento() ? $remessa->getDataRecebimento()->format('d/m/Y') : 'N/A' ?></td>
                         <td><?= $remessa->getDataEntrega() ? $remessa->getDataEntrega()->format('d/m/Y') : 'Pendente' ?></td>
+                        <td>
+                            <?php
+                                $totalDigitalizadas = $this->protocoloRepository->sumPagesByRemessaAndStatus($remessa->getId(), 'DIGITALIZADO');
+                                $totalEntregues = $this->protocoloRepository->sumPagesByRemessaAndStatus($remessa->getId(), 'ENTREGUE');
+                                $totalPaginasDigitalizadas = $totalDigitalizadas + $totalEntregues;
+                                echo $totalPaginasDigitalizadas;
+                            ?>
+                        </td>
                         <td class="acoes-cell">
                             <a href="/admin/remessas/protocolos?id=<?= htmlspecialchars($remessa->getId()) ?>" class="btn-acao btn-detalhes" title="Ver Protocolos">
                                 <span class="material-icons-outlined">visibility</span>

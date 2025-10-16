@@ -13,7 +13,7 @@
 
         <div class="form-row">
             <div class="form-group">
-                <label for="numero_remessa">Número do Protocolo</label>
+                <label for="numero_remessa">Número da Remessa</label>
                 <input type="text" id="numero_remessa" name="numero_remessa" value="<?= htmlspecialchars($remessa->getNumeroRemessa()) ?>" readonly>
             </div>
             <div class="form-group">
