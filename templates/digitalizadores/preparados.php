@@ -4,7 +4,6 @@
 
 <div class="listagem-container">
     <h3>Protocolos Aguardando Digitalização</h3>
-    <p>Selecione um protocolo abaixo para registrar a digitalização.</p>
     
     <table class="protocolos-table datatable-js">
         <thead>
