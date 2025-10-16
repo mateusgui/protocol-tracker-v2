@@ -138,6 +138,8 @@ class RemessaController
             $id_remessa = $id_remessa_param;
             $remessa = $this->remessaRepository->findById($id_remessa);
 
+            $listaDePreparadores = $this->usuarioRepository->allByPermissao('preparador');
+            $listaDeDigitalizadores = $this->usuarioRepository->allByPermissao('digitalizador');
             $listaProtocolos = $this->protocoloRepository->findByRemessa($id_remessa);
 
             $titulo_da_pagina = "Lista de Protocolos";

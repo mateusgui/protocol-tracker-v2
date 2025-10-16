@@ -52,17 +52,23 @@
                     <td><?= htmlspecialchars($protocolo->getStatus()) ?></td>
                     <td>
                         <?php
-                            // Lógica para buscar o nome do preparador
-                            // (Esta parte exigiria que o Controller buscasse e passasse a lista de usuários)
-                            // Por enquanto, exibiremos o ID
-                            echo htmlspecialchars($protocolo->getIdPreparador() ?? 'N/A');
+                            foreach ($listaDePreparadores as $preparador) {
+                                if($preparador->getId() === $protocolo->getIdPreparador()){
+                                    $nomePreparador = $preparador->getNome();
+                                }
+                            }
+                            echo htmlspecialchars($nomePreparador ?? 'N/A');
                         ?>
                     </td>
                     <td><?= $protocolo->getDataPreparacao() ? $protocolo->getDataPreparacao()->format('d/m/Y H:i') : 'Pendente' ?></td>
                     <td>
                         <?php
-                            // Lógica para buscar o nome do digitalizador
-                            echo htmlspecialchars($protocolo->getIdDigitalizador() ?? 'N/A');
+                            foreach ($listaDeDigitalizadores as $digitalizador) {
+                                if($digitalizador->getId() === $protocolo->getIdDigitalizador()){
+                                    $nomeDigitalizador = $digitalizador->getNome();
+                                }
+                            }
+                            echo htmlspecialchars($nomeDigitalizador ?? 'N/A');
                         ?>
                     </td>
                     <td><?= $protocolo->getDataDigitalizacao() ? $protocolo->getDataDigitalizacao()->format('d/m/Y H:i') : 'Pendente' ?></td>
