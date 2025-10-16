@@ -37,7 +37,7 @@
     <section class="listagem-container">
         <h3>Protocolos da Remessa</h3>
 
-        <table id="tabela-protocolos-remessa" class="protocolos-table datatable-js">
+        <table id="tabela-protocolos" class="protocolos-table datatable-js">
             <thead>
                 <tr>
                     <th>Nº do Protocolo</th>
@@ -67,6 +67,7 @@
                                     }
                                 }
                                 echo htmlspecialchars($nomePreparador ?? 'N/A');
+                                $nomePreparador = 'N/A';
                             ?>
                         </td>
                         <td><?= $protocolo->getDataPreparacao() ? $protocolo->getDataPreparacao()->setTimezone($fusoHorarioLocal)->format('d/m/Y H:i') : 'Pendente' ?></td>
@@ -79,6 +80,7 @@
                                     }
                                 }
                                 echo htmlspecialchars($nomeDigitalizador ?? 'N/A');
+                                $nomeDigitalizador = 'N/A';
                             ?>
                         </td>
                         <td><?= $protocolo->getDataDigitalizacao() ? $protocolo->getDataDigitalizacao()->setTimezone($fusoHorarioLocal)->format('d/m/Y H:i') : 'Pendente' ?></td>

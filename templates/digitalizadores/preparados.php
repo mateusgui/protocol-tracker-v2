@@ -23,7 +23,7 @@
 <div class="listagem-container">
     <h3>Protocolos Aguardando Digitalização</h3>
     
-    <table class="protocolos-table datatable-js tabela-protocolos">
+    <table class="protocolos-table datatable-js tabela-protocolos" id="tabela-protocolos">
         <thead>
             <tr>
                 <th>Nº do Protocolo</th>

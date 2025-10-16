@@ -28,7 +28,7 @@
             <strong>Erro:</strong> <?= htmlspecialchars($erro) ?>
         </div>
     <?php endif; ?>
-    <table class="protocolos-table datatable-js tabela-protocolos">
+    <table class="protocolos-table datatable-js tabela-protocolos" id="tabela-protocolos">
         <thead>
             <tr>
                 <th>Nº do Protocolo</th>

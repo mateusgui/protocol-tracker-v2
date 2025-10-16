@@ -29,7 +29,7 @@
         </div>
     <?php endif; ?>
 
-    <table id="tabela-preparados" class="protocolos-table datatable-js tabela-protocolos">
+    <table id="tabela-protocolos" class="protocolos-table datatable-js tabela-protocolos">
         <thead>
             <tr>
                 <th>Nº do Protocolo</th>

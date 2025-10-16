@@ -59,6 +59,7 @@
                                     }
                                 }
                                 echo htmlspecialchars($nomePreparador ?? 'N/A');
+                                $nomePreparador = 'N/A';
                             ?>
                         </td>
                         <td><?= $protocolo['data_digitalizacao'] ? (new DateTimeImmutable($protocolo['data_digitalizacao']))->setTimezone($fusoHorarioLocal)->format('d/m/Y H:i') : 'N/A' ?></td>
@@ -71,6 +72,7 @@
                                     }
                                 }
                                 echo htmlspecialchars($nomeDigitalizador ?? 'N/A');
+                                $nomeDigitalizador = 'N/A';
                             ?>
                         </td>
                         <td><?= htmlspecialchars($protocolo['quantidade_paginas'] ?? 'N/A') ?></td>
