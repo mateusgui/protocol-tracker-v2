@@ -1052,3 +1052,43 @@ textarea {
 .dashboard-metricas {
     margin-top: 20px;
 }
+
+
+/* Estilo exclusivo da tabela de protocolos */
+.tabela-protocolos {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* necessário para respeitar os widths */
+}
+
+/* Estilo das células */
+.tabela-protocolos th,
+.tabela-protocolos td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word;
+}
+
+/* Largura das colunas (ajuste conforme preferir) */
+.tabela-protocolos th:nth-child(1),
+.tabela-protocolos td:nth-child(1) {
+    width: 18%; /* Nº do Protocolo */
+}
+
+.tabela-protocolos th:nth-child(3),
+.tabela-protocolos td:nth-child(3) {
+    width: 64%; /* Observações */
+}
+
+.tabela-protocolos th:nth-child(2),
+.tabela-protocolos td:nth-child(2) {
+    width: 18%; /* Ação */
+}
+
+/* Garante que o botão não estoure o limite da célula */
+.tabela-protocolos .acoes-cell button {
+    width: 100%;
+    max-width: 150px;
+    white-space: nowrap;
+}

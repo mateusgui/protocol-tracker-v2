@@ -5,21 +5,18 @@
 <div class="listagem-container">
     <h3>Protocolos Aguardando Digitalização</h3>
     
-    <table class="protocolos-table datatable-js">
+    <table class="protocolos-table datatable-js tabela-protocolos">
         <thead>
             <tr>
                 <th>Nº do Protocolo</th>
-                <th>Observações do Preparador</th>
                 <th class="acoes-header">Ação</th>
+                <th>Observações do Preparador</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($listaProtocolosPreparados as $protocolo): ?>
                 <tr>
                     <td><?= htmlspecialchars($protocolo->getNumeroProtocolo()) ?></td>
-                    <td class="coluna-observacoes" title="<?= htmlspecialchars($protocolo->getObservacoes() ?? '') ?>">
-                        <?= htmlspecialchars($protocolo->getObservacoes() ?? 'N/A') ?>
-                    </td>
                     <td class="acoes-cell">
                         <button 
                             type="button" 
@@ -30,6 +27,9 @@
                         >
                             <span class="material-icons-outlined">adf_scanner</span> Digitalizar
                         </button>
+                    </td>
+                    <td class="coluna-observacoes" title="<?= htmlspecialchars($protocolo->getObservacoes() ?? '') ?>">
+                        <?= htmlspecialchars($protocolo->getObservacoes() ?? '') ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

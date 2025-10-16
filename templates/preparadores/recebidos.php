@@ -4,21 +4,18 @@
 
 <div class="listagem-container">
     <h3>Protocolos Aguardando Preparação</h3>
-    <table class="protocolos-table datatable-js">
+    <table class="protocolos-table datatable-js tabela-protocolos">
         <thead>
             <tr>
                 <th>Nº do Protocolo</th>
-                <th>Observações</th>
                 <th class="acoes-header">Ação</th>
+                <th>Observações</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($listaProtocolosRecebidos as $protocolo): ?>
                 <tr>
                     <td><?= htmlspecialchars($protocolo->getNumeroProtocolo()) ?></td>
-                    <td class="coluna-observacoes" title="<?= htmlspecialchars($protocolo->getObservacoes() ?? '') ?>">
-                        <?= htmlspecialchars($protocolo->getObservacoes() ?? 'N/A') ?>
-                    </td>
                     <td class="acoes-cell">
                         <button 
                             type="button" 
@@ -29,10 +26,14 @@
                             <span class="material-icons-outlined">content_cut</span> Preparar
                         </button>
                     </td>
+                    <td class="coluna-observacoes" title="<?= htmlspecialchars($protocolo->getObservacoes() ?? '') ?>">
+                        <?= htmlspecialchars($protocolo->getObservacoes() ?? '') ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+
 </div>
 
 <div id="modal-preparar" class="modal-overlay" style="display: none;">
