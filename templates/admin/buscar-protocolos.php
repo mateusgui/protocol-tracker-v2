@@ -1,5 +1,7 @@
 <?php require __DIR__ . '/../components/_header.php'; ?>
 
+<h2>Busca de Protocolos</h2>
+
 <div class="container-principal-busca">
     <div class="form-container busca-form-container">
         <form action="/admin/protocolos/buscar-protocolos" method="get" class="busca-form">

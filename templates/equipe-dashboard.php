@@ -1,6 +1,8 @@
 <?php require __DIR__ . '/components/_header.php'; ?>
 
-<div class="form-container busca-container">
+<h2>Dashboard de produtividade da equipe</h2>
+
+<div class="metric-card">
     <form action="/admin/remessas/dashboard" method="get" class="busca-form">
         <div class="form-row">
             <div class="form-group">

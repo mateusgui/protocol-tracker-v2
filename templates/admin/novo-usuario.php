@@ -1,5 +1,7 @@
 <?php require __DIR__ . '/../components/_header.php'; ?>
 
+<h2>Cadastrar novo Usuário</h2>
+
 <div class="form-container home-container"> 
     <?php if (isset($erro) && $erro): ?>
         <div class="error-message">

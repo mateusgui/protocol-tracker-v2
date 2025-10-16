@@ -1,5 +1,7 @@
 <?php require __DIR__ . '/../components/_header.php'; ?>
 
+<h2>Protocolos Digitalizados</h2>
+
 <div class="listagem-container">
     <h3>Protocolos Digitalizados</h3>
 

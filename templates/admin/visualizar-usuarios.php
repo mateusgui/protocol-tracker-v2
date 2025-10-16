@@ -1,5 +1,7 @@
 <?php require __DIR__ . '/../components/_header.php'; ?>
 
+<h2>Usuários Cadastrados</h2>
+
 <div class="listagem-container">
 
     <?php if (isset($erro) && $erro): ?>

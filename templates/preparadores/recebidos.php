@@ -1,5 +1,7 @@
 <?php require __DIR__ . '/../components/_header.php'; ?>
 
+<h2>Protocolos Recebidos</h2>
+
 <div class="listagem-container">
     <h3>Protocolos Aguardando Preparação</h3>
     <table class="protocolos-table datatable-js">
