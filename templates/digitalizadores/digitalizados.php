@@ -20,6 +20,10 @@
             </tr>
         </thead>
         <tbody>
+            <?php 
+                $fusoHorarioLocal = new DateTimeZone('America/Campo_Grande');
+            ?>
+
             <?php if (empty($listaProtocolosDigitalizados)): ?>
                 <tr>
                     <td colspan="5" class="nenhum-resultado">Nenhum protocolo digitalizado encontrado.</td>
@@ -35,7 +39,7 @@
                         ?>
                     </td>
                     <td><?= htmlspecialchars($protocolo->getNumeroProtocolo()) ?></td>
-                    <td><?= $protocolo->getDataDigitalizacao() ? $protocolo->getDataDigitalizacao()->format('d/m/Y H:i') : 'N/A' ?></td>
+                    <td><?= $protocolo->getDataDigitalizacao() ? $protocolo->getDataDigitalizacao()->setTimezone($fusoHorarioLocal)->format('d/m/Y H:i') : 'N/A' ?></td>
                     <td><?= htmlspecialchars($protocolo->getQuantidadePaginas() ?? 'N/A') ?></td>
                     <td class="coluna-observacoes" title="<?= htmlspecialchars($protocolo->getObservacoes() ?? '') ?>">
                         <?= htmlspecialchars($protocolo->getObservacoes() ?? 'N/A') ?>

@@ -1048,3 +1048,7 @@ textarea {
     border-radius: 6px;
     margin-top: 10px;
 }
+
+.dashboard-metricas {
+    margin-top: 20px;
+}

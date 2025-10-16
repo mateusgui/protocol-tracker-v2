@@ -1,5 +1,7 @@
 <?php require __DIR__ . '/../components/_header.php'; ?>
 
+<h2>Remessas cadastradas</h2>
+
 <div class="container-principal-busca">
 
     <?php if (isset($erro) && $erro): ?>

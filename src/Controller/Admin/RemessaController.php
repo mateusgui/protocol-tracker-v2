@@ -244,7 +244,7 @@ class RemessaController
                 $remessaSelecionada = $this->remessaRepository->findById($id_remessa);
             }
 
-            $titulo_da_pagina = "Dashboard por Remessa";
+            $titulo_da_pagina = "Dashboard de Remessas";
             $usuario_logado = $this->usuario_logado;
             $permissao = $this->permissao;
 

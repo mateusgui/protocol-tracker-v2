@@ -19,6 +19,10 @@
             </tr>
         </thead>
         <tbody>
+            <?php 
+                $fusoHorarioLocal = new DateTimeZone('America/Campo_Grande');
+            ?>
+
             <?php if (empty($listaProtocolosPreparados)): ?>
                 <tr>
                     <td colspan="4" class="nenhum-resultado">Nenhum protocolo preparado encontrado.</td>
@@ -34,7 +38,7 @@
                         ?>
                     </td>
                     <td><?= htmlspecialchars($protocolo->getNumeroProtocolo()) ?></td>
-                    <td><?= $protocolo->getDataPreparacao() ? $protocolo->getDataPreparacao()->format('d/m/Y H:i') : 'N/A' ?></td>
+                    <td><?= $protocolo->getDataPreparacao() ? $protocolo->getDataPreparacao()->setTimezone($fusoHorarioLocal)->format('d/m/Y H:i') : 'N/A' ?></td>
                     <td class="coluna-observacoes" title="<?= htmlspecialchars($protocolo->getObservacoes() ?? '') ?>">
                         <?= htmlspecialchars($protocolo->getObservacoes() ?? 'N/A') ?>
                     </td>
