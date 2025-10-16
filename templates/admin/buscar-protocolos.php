@@ -39,12 +39,15 @@
                 </tr>
             </thead>
             <tbody>
+                <?php 
+                    $fusoHorarioLocal = new DateTimeZone('America/Campo_Grande');
+                ?>
                 <?php foreach ($listaProtocolos as $protocolo): ?>
                     <tr>
                         <td><?= htmlspecialchars($protocolo['numero_protocolo']) ?></td>
                         <td><?= htmlspecialchars($protocolo['numero_remessa']) ?></td>
                         <td><?= htmlspecialchars($protocolo['status_protocolo']) ?></td>
-                        <td><?= $protocolo['data_preparacao'] ? (new DateTimeImmutable($protocolo['data_preparacao']))->format('d/m/Y H:i') : 'N/A' ?></td>
+                        <td><?= $protocolo['data_preparacao'] ? (new DateTimeImmutable($protocolo['data_preparacao']))->setTimezone($fusoHorarioLocal)->format('d/m/Y H:i') : 'N/A' ?></td>
                         <td>
                             <?php
                                 foreach ($listaDePreparadores as $preparador) {
@@ -56,7 +59,7 @@
                                 echo htmlspecialchars($nomePreparador ?? 'N/A');
                             ?>
                         </td>
-                        <td><?= $protocolo['data_digitalizacao'] ? (new DateTimeImmutable($protocolo['data_digitalizacao']))->format('d/m/Y H:i') : 'N/A' ?></td>
+                        <td><?= $protocolo['data_digitalizacao'] ? (new DateTimeImmutable($protocolo['data_digitalizacao']))->setTimezone($fusoHorarioLocal)->format('d/m/Y H:i') : 'N/A' ?></td>
                         <td>
                             <?php
                                 foreach ($listaDeDigitalizadores as $digitalizador) {

@@ -13,7 +13,7 @@
     <div class="form-row">
         <div class="form-group">
             <label for="data_recebimento">Data do Recebimento:</label>
-            <input type="date" id="data_recebimento" name="data_recebimento">
+            <input type="date" id="data_recebimento" name="data_recebimento" required>
         </div>
 
         <div class="form-group">

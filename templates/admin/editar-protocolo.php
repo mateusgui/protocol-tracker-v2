@@ -7,6 +7,9 @@
     <?php endif; ?>
 
     <form action="/admin/remessas/editar-protocolo" method="post" class="protocolo-form">
+        <?php 
+            $fusoHorarioLocal = new DateTimeZone('America/Campo_Grande');
+        ?>
         
         <input type="hidden" name="id" value="<?= htmlspecialchars($protocolo->getId()) ?>">
         <input type="hidden" name="id_remessa" value="<?= htmlspecialchars($remessa->getId()) ?>">
@@ -38,7 +41,7 @@
             </div>
             <div class="form-group">
                 <label for="data_preparacao">Data da Preparação</label>
-                <input type="datetime-local" id="data_preparacao" name="data_preparacao" value="<?= $protocolo->getDataPreparacao() ? $protocolo->getDataPreparacao()->format('Y-m-d\TH:i') : '' ?>">
+                <input type="datetime-local" id="data_preparacao" name="data_preparacao" value="<?= $protocolo->getDataPreparacao() ? $protocolo->getDataPreparacao()->setTimezone($fusoHorarioLocal)->format('Y-m-d\TH:i') : '' ?>">
             </div>
         </div>
 
@@ -58,7 +61,7 @@
             </div>
             <div class="form-group">
                 <label for="data_digitalizacao">Data da Digitalização</label>
-                <input type="datetime-local" id="data_digitalizacao" name="data_digitalizacao" value="<?= $protocolo->getDataDigitalizacao() ? $protocolo->getDataDigitalizacao()->format('Y-m-d\TH:i') : '' ?>">
+                <input type="datetime-local" id="data_digitalizacao" name="data_digitalizacao" value="<?= $protocolo->getDataDigitalizacao() ? $protocolo->getDataDigitalizacao()->setTimezone($fusoHorarioLocal)->format('Y-m-d\TH:i') : '' ?>">
             </div>
         </div>
 

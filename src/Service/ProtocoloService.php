@@ -3,6 +3,7 @@
 namespace Mateus\ProtocolTrackerV2\Service;
 
 use DateTimeImmutable;
+use DateTimeZone;
 use Exception;
 use Mateus\ProtocolTrackerV2\Interfaces\ProtocoloRepositoryInterface;
 use Mateus\ProtocolTrackerV2\Interfaces\RemessaRepositoryInterface;
@@ -95,9 +96,12 @@ class ProtocoloService
                 throw new Exception("O digitalizador informado não foi localizado.");
             }
         }
-        
-        $data_preparacao = is_null($data_preparacao) ? null : new DateTimeImmutable($data_preparacao);
-        $data_digitalizacao = is_null($data_digitalizacao) ? null : new DateTimeImmutable($data_digitalizacao);
+
+        $fusoLocal = new DateTimeZone('America/Campo_Grande');
+        $fusoUtc = new DateTimeZone('UTC');
+
+        $data_preparacao_obj = !empty($data_preparacao) ? new DateTimeImmutable($data_preparacao, $fusoLocal) : null;
+        $data_digitalizacao_obj = !empty($data_digitalizacao) ? new DateTimeImmutable($data_digitalizacao, $fusoLocal) : null;
 
         if($status !== 'RECEBIDO' && $status !== 'PREPARADO' && $status !== 'DIGITALIZADO' && $status !== 'ENTREGUE'){
             throw new Exception("O status informado é inválido");
@@ -111,9 +115,9 @@ class ProtocoloService
             $id,
             $protocoloAntigo->getIdRemessa(),
             $numero_protocolo,
-            $data_preparacao,
+            $data_preparacao ? $data_preparacao_obj->setTimezone($fusoUtc) : null,
             $id_preparador,
-            $data_digitalizacao,
+            $data_digitalizacao ? $data_digitalizacao_obj->setTimezone($fusoUtc) : null,
             $id_digitalizador,
             $status,
             $quantidade_paginas,

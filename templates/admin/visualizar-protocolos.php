@@ -51,6 +51,9 @@
             </tr>
         </thead>
         <tbody>
+            <?php 
+                $fusoHorarioLocal = new DateTimeZone('America/Campo_Grande');
+            ?>
             <?php foreach ($listaProtocolos as $protocolo): ?>
                 <tr>
                     <td><?= htmlspecialchars($protocolo->getNumeroProtocolo()) ?></td>
@@ -66,7 +69,7 @@
                             echo htmlspecialchars($nomePreparador ?? 'N/A');
                         ?>
                     </td>
-                    <td><?= $protocolo->getDataPreparacao() ? $protocolo->getDataPreparacao()->format('d/m/Y H:i') : 'Pendente' ?></td>
+                    <td><?= $protocolo->getDataPreparacao() ? $protocolo->getDataPreparacao()->setTimezone($fusoHorarioLocal)->format('d/m/Y H:i') : 'Pendente' ?></td>
                     <td>
                         <?php
                             foreach ($listaDeDigitalizadores as $digitalizador) {
@@ -78,7 +81,7 @@
                             echo htmlspecialchars($nomeDigitalizador ?? 'N/A');
                         ?>
                     </td>
-                    <td><?= $protocolo->getDataDigitalizacao() ? $protocolo->getDataDigitalizacao()->format('d/m/Y H:i') : 'Pendente' ?></td>
+                    <td><?= $protocolo->getDataDigitalizacao() ? $protocolo->getDataDigitalizacao()->setTimezone($fusoHorarioLocal)->format('d/m/Y H:i') : 'Pendente' ?></td>
                     <td><?= htmlspecialchars($protocolo->getQuantidadePaginas() ?? 'N/A') ?></td>
                     <td class="acoes-cell">
                         <a href="/admin/remessas/editar-protocolo?id=<?= htmlspecialchars($protocolo->getId()) ?>" class="btn-acao btn-editar" title="Editar Protocolo">
