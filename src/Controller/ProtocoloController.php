@@ -181,6 +181,8 @@ class ProtocoloController
             $numero_protocolo = $_GET['numero_protocolo'] ?? null;
             $numero_remessa = $_GET['numero_remessa'] ?? null;
 
+            $listaDePreparadores = $this->usuarioRepository->allByPermissao('preparador');
+            $listaDeDigitalizadores = $this->usuarioRepository->allByPermissao('digitalizador');
             $listaProtocolos = $this->protocoloRepository->search($numero_protocolo, $numero_remessa);
 
             require __DIR__ . '/../../templates/admin/buscar-protocolos.php';

@@ -1,6 +1,6 @@
 <?php require __DIR__ . '/../components/_header.php'; ?>
 
-<h2>Visualizar Protocolos</h2>
+<h2>Cadastrar novos protocolos</h2>
 
 <?php if (isset($erro) && $erro): ?>
     <div class="error-message">
@@ -10,24 +10,29 @@
 
 <div class="container-principal-busca">
 
-    <form action="/admin/remessas/protocolos" method="post" class="busca-form-container">
+<section class="busca-form-container">
+    <form action="/admin/remessas/protocolos" method="post" class="busca-form">
         
         <input type="hidden" name="id_remessa" value="<?= htmlspecialchars($id_remessa) ?>">
 
-        <div class="form-group">
-            <label for="numero_protocolo">Número do Protocolo (6 dígitos)</label>
-            <input type="text" id="numero_protocolo" name="numero_protocolo" required maxlength="6" pattern="\d{6}"placeholder="Ex: 123456">
-
-            <label for="numero_remessa">Número da Remessa</label>
-            <input type="text" id="numero_remessa" readonly  name="numero_remessa" value="<?= htmlspecialchars($remessa->getNumeroRemessa()) ?>">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="numero_protocolo">Número do Protocolo (6 dígitos)</label>
+                <input type="text" id="numero_protocolo" name="numero_protocolo" required maxlength="6" pattern="\d{6}"placeholder="Ex: 123456">
+            </div>
+            <div class="form-group">
+                <label for="numero_remessa">Número da Remessa</label>
+                <input type="text" id="numero_remessa" readonly  name="numero_remessa" value="<?= htmlspecialchars($remessa->getNumeroRemessa()) ?>">
+            </div>
         </div>
 
         <div class="form-actions">
             <button type="submit">
-                <span class="material-icons-outlined">add</span> Adicionar
+                <span class="material-icons-outlined">add</span> Adicionar Protocolo
             </button>
         </div>
     </form>
+</section>
 
 <section class="listagem-container">
     <h3>Protocolos da Remessa</h3>
@@ -55,6 +60,7 @@
                             foreach ($listaDePreparadores as $preparador) {
                                 if($preparador->getId() === $protocolo->getIdPreparador()){
                                     $nomePreparador = $preparador->getNome();
+                                    break;
                                 }
                             }
                             echo htmlspecialchars($nomePreparador ?? 'N/A');
@@ -66,6 +72,7 @@
                             foreach ($listaDeDigitalizadores as $digitalizador) {
                                 if($digitalizador->getId() === $protocolo->getIdDigitalizador()){
                                     $nomeDigitalizador = $digitalizador->getNome();
+                                    break;
                                 }
                             }
                             echo htmlspecialchars($nomeDigitalizador ?? 'N/A');
