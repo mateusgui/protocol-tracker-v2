@@ -11,14 +11,13 @@
         </div>
     <?php endif; ?>
 
-    <table id="tabela-digitalizados" class="protocolos-table datatable-js">
+    <table id="tabela-digitalizados" class="protocolos-table datatable-js tabela-protocolos">
         <thead>
             <tr>
-                <th>Nº da Remessa</th>
                 <th>Nº do Protocolo</th>
                 <th>Data da Digitalização</th>
-                <th>Qtd. Páginas</th>
                 <th>Observações</th>
+                <th>Qtd. Páginas</th>
             </tr>
         </thead>
         <tbody>
@@ -34,18 +33,12 @@
 
             <?php foreach ($listaProtocolosDigitalizados as $protocolo): ?>
                 <tr>
-                    <td>
-                        <?php
-                            // Lógica para buscar o número da remessa (via JOIN no Repository)
-                            echo htmlspecialchars($protocolo->getIdRemessa()); 
-                        ?>
-                    </td>
                     <td><?= htmlspecialchars($protocolo->getNumeroProtocolo()) ?></td>
                     <td><?= $protocolo->getDataDigitalizacao() ? $protocolo->getDataDigitalizacao()->setTimezone($fusoHorarioLocal)->format('d/m/Y H:i') : 'N/A' ?></td>
-                    <td><?= htmlspecialchars($protocolo->getQuantidadePaginas() ?? 'N/A') ?></td>
                     <td class="coluna-observacoes" title="<?= htmlspecialchars($protocolo->getObservacoes() ?? '') ?>">
                         <?= htmlspecialchars($protocolo->getObservacoes() ?? 'N/A') ?>
                     </td>
+                    <td><?= htmlspecialchars($protocolo->getQuantidadePaginas() ?? 'N/A') ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

@@ -11,10 +11,9 @@
         </div>
     <?php endif; ?>
 
-    <table id="tabela-preparados" class="protocolos-table datatable-js">
+    <table id="tabela-preparados" class="protocolos-table datatable-js tabela-protocolos">
         <thead>
             <tr>
-                <th>Nº da Remessa</th>
                 <th>Nº do Protocolo</th>
                 <th>Data da Preparação</th>
                 <th>Observações</th>
@@ -33,12 +32,6 @@
 
             <?php foreach ($listaProtocolosPreparados as $protocolo): ?>
                 <tr>
-                    <td>
-                        <?php
-                            // Lógica para buscar o número da remessa (via JOIN no Repository)
-                            echo htmlspecialchars($protocolo->getIdRemessa()); 
-                        ?>
-                    </td>
                     <td><?= htmlspecialchars($protocolo->getNumeroProtocolo()) ?></td>
                     <td><?= $protocolo->getDataPreparacao() ? $protocolo->getDataPreparacao()->setTimezone($fusoHorarioLocal)->format('d/m/Y H:i') : 'N/A' ?></td>
                     <td class="coluna-observacoes" title="<?= htmlspecialchars($protocolo->getObservacoes() ?? '') ?>">
