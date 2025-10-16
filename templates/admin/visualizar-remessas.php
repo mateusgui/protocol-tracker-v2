@@ -28,7 +28,7 @@
                 <?php foreach ($listaRemessas as $remessa): ?>
                     <tr>
                         <td><?= htmlspecialchars($remessa->getNumeroRemessa()) ?></td>
-                        <td><?= htmlspecialchars($remessa->getStatus()) ?></td>
+                        <td class="<?= htmlspecialchars($remessa->getStatus()) ?>"><?= htmlspecialchars($remessa->getStatus()) ?></td>
                         <td><?= htmlspecialchars($remessa->getQuantidadeProtocolos() ?? 0) ?></td>
                         <td><?= $remessa->getDataRecebimento() ? $remessa->getDataRecebimento()->format('d/m/Y') : 'N/A' ?></td>
                         <td><?= $remessa->getDataEntrega() ? $remessa->getDataEntrega()->format('d/m/Y') : 'Pendente' ?></td>

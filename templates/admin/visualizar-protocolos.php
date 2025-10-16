@@ -57,7 +57,7 @@
                 <?php foreach ($listaProtocolos as $protocolo): ?>
                     <tr>
                         <td><?= htmlspecialchars($protocolo->getNumeroProtocolo()) ?></td>
-                        <td><?= htmlspecialchars($protocolo->getStatus()) ?></td>
+                        <td class="<?= htmlspecialchars($protocolo->getStatus()) ?>"><?= htmlspecialchars($protocolo->getStatus()) ?></td>
                         <td>
                             <?php
                                 foreach ($listaDePreparadores as $preparador) {

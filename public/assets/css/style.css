@@ -1098,3 +1098,23 @@ textarea {
     max-width: 150px;
     white-space: nowrap;
 }
+
+.RECEBIDO {
+    font-weight: bold;
+    color: #33a1eb;
+}
+
+.PREPARADO {
+    font-weight: bold;
+    color: #f7d345;
+}
+
+.DIGITALIZADO {
+    font-weight: bold;
+    color: #20d16d;
+}
+
+.ENTREGUE {
+    font-weight: bold;
+    color: #ff432e;
+}

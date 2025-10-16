@@ -48,7 +48,7 @@
                     <tr>
                         <td><?= htmlspecialchars($protocolo['numero_protocolo']) ?></td>
                         <td><?= htmlspecialchars($protocolo['numero_remessa']) ?></td>
-                        <td><?= htmlspecialchars($protocolo['status_protocolo']) ?></td>
+                        <td class="<?= htmlspecialchars($protocolo['status_protocolo']) ?>"><?= htmlspecialchars($protocolo['status_protocolo']) ?></td>
                         <td><?= $protocolo['data_preparacao'] ? (new DateTimeImmutable($protocolo['data_preparacao']))->setTimezone($fusoHorarioLocal)->format('d/m/Y H:i') : 'N/A' ?></td>
                         <td>
                             <?php
