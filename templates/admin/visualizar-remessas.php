@@ -1,8 +1,6 @@
 <?php require __DIR__ . '/../components/_header.php'; ?>
 
-<h2>Visualizar Remessas</h2>
-
-<div class="listagem-container">
+<div class="container-principal-busca">
 
     <?php if (isset($erro) && $erro): ?>
         <div class="error-message">
@@ -10,48 +8,51 @@
         </div>
     <?php endif; ?>
 
-    <table id="tabela-remessas" class="protocolos-table datatable-js">
-        <thead>
-            <tr>
-                <th>Nº da Remessa</th>
-                <th>Status</th>
-                <th>Qtd. Protocolos</th>
-                <th>Data de Recebimento</th>
-                <th>Data de Entrega</th>
-                <th class="acoes-header">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($listaRemessas as $remessa): ?>
+    <div class="listagem-container">
+        <h3>Remessas Cadastradas</h3>
+        <table id="tabela-protocolos" class="protocolos-table datatable-js">
+            <thead>
                 <tr>
-                    <td><?= htmlspecialchars($remessa->getNumeroRemessa()) ?></td>
-                    <td><?= htmlspecialchars($remessa->getStatus()) ?></td>
-                    <td><?= htmlspecialchars($remessa->getQuantidadeProtocolos() ?? 0) ?></td>
-                    <td><?= $remessa->getDataRecebimento() ? $remessa->getDataRecebimento()->format('d/m/Y') : 'N/A' ?></td>
-                    <td><?= $remessa->getDataEntrega() ? $remessa->getDataEntrega()->format('d/m/Y') : 'Pendente' ?></td>
-                    <td class="acoes-cell">
-                        <a href="/admin/remessas/protocolos?id=<?= htmlspecialchars($remessa->getId()) ?>" class="btn-acao btn-detalhes" title="Ver Protocolos">
-                            <span class="material-icons-outlined">visibility</span>
-                        </a>
-                        <a href="/admin/remessas/editar-remessa?id=<?= htmlspecialchars($remessa->getId()) ?>" class="btn-acao btn-editar" title="Editar Remessa">
-                            <span class="material-icons-outlined">edit</span>
-                        </a>
-                        <?php if ($remessa->getStatus() !== 'ENTREGUE'): ?>
-                            <button 
-                                type="button" 
-                                class="btn-acao btn-entregar open-modal-entregar"
-                                data-remessa-id="<?= htmlspecialchars($remessa->getId()) ?>"
-                                data-remessa-numero="<?= htmlspecialchars($remessa->getNumeroRemessa()) ?>"
-                                title="Entregar Remessa">
-                                <span class="material-icons-outlined">task_alt</span>
-                            </button>
-                        <?php endif; ?>
-                    </td>
+                    <th>Nº da Remessa</th>
+                    <th>Status</th>
+                    <th>Qtd. Protocolos</th>
+                    <th>Data de Recebimento</th>
+                    <th>Data de Entrega</th>
+                    <th class="acoes-header">Ações</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</section>
+            </thead>
+            <tbody>
+                <?php foreach ($listaRemessas as $remessa): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($remessa->getNumeroRemessa()) ?></td>
+                        <td><?= htmlspecialchars($remessa->getStatus()) ?></td>
+                        <td><?= htmlspecialchars($remessa->getQuantidadeProtocolos() ?? 0) ?></td>
+                        <td><?= $remessa->getDataRecebimento() ? $remessa->getDataRecebimento()->format('d/m/Y') : 'N/A' ?></td>
+                        <td><?= $remessa->getDataEntrega() ? $remessa->getDataEntrega()->format('d/m/Y') : 'Pendente' ?></td>
+                        <td class="acoes-cell">
+                            <a href="/admin/remessas/protocolos?id=<?= htmlspecialchars($remessa->getId()) ?>" class="btn-acao btn-detalhes" title="Ver Protocolos">
+                                <span class="material-icons-outlined">visibility</span>
+                            </a>
+                            <a href="/admin/remessas/editar-remessa?id=<?= htmlspecialchars($remessa->getId()) ?>" class="btn-acao btn-editar" title="Editar Remessa">
+                                <span class="material-icons-outlined">edit</span>
+                            </a>
+                            <?php if ($remessa->getStatus() !== 'ENTREGUE'): ?>
+                                <button 
+                                    type="button" 
+                                    class="btn-acao btn-entregar open-modal-entregar"
+                                    data-remessa-id="<?= htmlspecialchars($remessa->getId()) ?>"
+                                    data-remessa-numero="<?= htmlspecialchars($remessa->getNumeroRemessa()) ?>"
+                                    title="Entregar Remessa">
+                                    <span class="material-icons-outlined">task_alt</span>
+                                </button>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <div id="modal-entregar" class="modal-overlay" style="display: none;">
     <div class="modal-content">

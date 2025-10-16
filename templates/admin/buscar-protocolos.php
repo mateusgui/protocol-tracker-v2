@@ -24,7 +24,7 @@
 
     <div class="listagem-container">
         <h3>Resultados da Busca</h3>
-        <table class="protocolos-table datatable-js">
+        <table class="protocolos-table datatable-js" id="tabela-protocolos">
             <thead>
                 <tr>
                     <th>Nº Protocolo</th>
