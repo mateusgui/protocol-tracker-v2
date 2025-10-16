@@ -13,6 +13,11 @@
             </tr>
         </thead>
         <tbody>
+            <?php if (empty($listaProtocolosRecebidos)): ?>
+                <tr>
+                    <td colspan="4" class="nenhum-resultado">Nenhum protocolo recebido encontrado.</td>
+                </tr>
+            <?php endif; ?>
             <?php foreach ($listaProtocolosRecebidos as $protocolo): ?>
                 <tr>
                     <td><?= htmlspecialchars($protocolo->getNumeroProtocolo()) ?></td>
