@@ -64,7 +64,9 @@ class ProtocoloController
     public function preparadores_listaRecebidos()
     {
         try {
-            $listaProtocolosRecebidos = $this->protocoloRepository->findByStatus('RECEBIDO');
+            $numeroFiltro = $_GET['numero_protocolo'] ?? null;
+        
+            $listaProtocolosRecebidos = $this->protocoloRepository->searchByNumeroEStatus($numeroFiltro, 'RECEBIDO');
             $listaDePreparadores = $this->usuarioRepository->allByPermissao('preparador');
 
             $titulo_da_pagina = "Lista de Protocolos Recebidos";
@@ -102,7 +104,9 @@ class ProtocoloController
     public function preparadores_listaPreparados()
     {
         try {
-            $listaProtocolosPreparados = $this->protocoloRepository->findByStatus('PREPARADO');
+            $numeroFiltro = $_GET['numero_protocolo'] ?? null;
+        
+            $listaProtocolosPreparados = $this->protocoloRepository->searchByNumeroEStatus($numeroFiltro, 'PREPARADO');
 
             $titulo_da_pagina = "Lista de Protocolos Recebidos";
             $usuario_logado = $this->usuario_logado;
@@ -118,8 +122,9 @@ class ProtocoloController
     public function digitalizadores_listaPreparados()
     {
         try {
-            // Busca protocolos com status 'PREPARADO'
-            $listaProtocolosPreparados = $this->protocoloRepository->findByStatus('PREPARADO');
+            $numeroFiltro = $_GET['numero_protocolo'] ?? null;
+        
+            $listaProtocolosPreparados = $this->protocoloRepository->searchByNumeroEStatus($numeroFiltro, 'PREPARADO');
             
             $digitalizador = $this->usuario_logado;
 
@@ -158,7 +163,9 @@ class ProtocoloController
     public function digitalizadores_listaDigitalizados()
     {
         try {
-            $listaProtocolosDigitalizados = $this->protocoloRepository->findByStatus('DIGITALIZADO');
+            $numeroFiltro = $_GET['numero_protocolo'] ?? null;
+        
+            $listaProtocolosDigitalizados = $this->protocoloRepository->searchByNumeroEStatus($numeroFiltro, 'DIGITALIZADO');
 
             $titulo_da_pagina = "Lista de Protocolos Digitalizados";
             $usuario_logado = $this->usuario_logado;

@@ -65,6 +65,27 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         return $stmt->fetchAll();
     }
 
+    public function searchByNumeroEStatus(?string $numero_protocolo = null, string $status): array
+    {
+        $sqlConditions = [];
+        $parameters = [];
+
+        $sqlConditions[] = 'status = :status';
+        $parameters[':status'] = $status;
+
+        if (!empty($numero_protocolo)) {
+            $sqlConditions[] = 'numero_protocolo = :numero_protocolo';
+            $parameters[':numero_protocolo'] = $numero_protocolo;
+        }
+
+        $sqlQuery = 'SELECT * FROM protocolos WHERE ' . implode(' AND ', $sqlConditions) . ' ORDER BY numero_protocolo DESC;';
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->execute($parameters);
+
+        return $this->hidrataLista($stmt);
+    }
+
     public function findByRemessa(string $id_remessa): array
     {
         $sqlQuery = "SELECT * FROM protocolos WHERE id_remessa = :id_remessa;";
