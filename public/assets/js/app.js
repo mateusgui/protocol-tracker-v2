@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    $.fn.dataTable.ext.errMode = 'none';
 
     // --- LÓGICA PARA INICIALIZAR O DATATABLES ---
     $('#tabela-protocolos').DataTable({
