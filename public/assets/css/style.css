@@ -1074,17 +1074,17 @@ textarea {
 /* Largura das colunas (ajuste conforme preferir) */
 .tabela-protocolos th:nth-child(1),
 .tabela-protocolos td:nth-child(1) {
-    width: 17%; /* Nº do Protocolo */
+    width: 20%; /* Nº do Protocolo */
 }
 
 .tabela-protocolos th:nth-child(3),
 .tabela-protocolos td:nth-child(3) {
-    width: 76%; /* Observações */
+    width: 60%; /* Observações */
 }
 
 .tabela-protocolos th:nth-child(2),
 .tabela-protocolos td:nth-child(2) {
-    width: 17%; /* Ação */
+    width: 22%; /* Ação */
 }
 
 .tabela-protocolos th:nth-child(4),
