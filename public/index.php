@@ -22,7 +22,7 @@ require __DIR__ . '/../vendor/autoload.php';
 try {
     
     //$connection = ConnectionCreator::createConnection();
-    $connection = ConnectionCreator::createConnection(); 
+    $connection = ConnectionCreatorSqlite::createConnectionSqlite();
 
     //Repositórios
     $protocoloRepository = new ProtocoloRepository($connection);

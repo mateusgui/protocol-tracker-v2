@@ -126,8 +126,14 @@ a {
     font-size: 36px;
 }
 
+/* ALTERAÇÕES */
+/* ALTERAÇÕES */
+/* ALTERAÇÕES */
 .div-conteudo-principal {
     width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow-x: auto;
 }
 
 .container-principal {
@@ -394,7 +400,6 @@ textarea {
 .protocolos-table .coluna-observacoes {
     max-width: 200px;
     width: 10%;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -1068,28 +1073,29 @@ textarea {
     padding: 12px;
     text-align: center;
     border-bottom: 1px solid #ddd;
-    word-wrap: break-word;
+    word-wrap: break-word; /* <-- Garante a quebra de palavras longas */
+    overflow-wrap: break-word;
 }
 
-/* Largura das colunas (ajuste conforme preferir) */
+/* Ajuste as larguras para somar 100% */
 .tabela-protocolos th:nth-child(1),
 .tabela-protocolos td:nth-child(1) {
     width: 20%; /* Nº do Protocolo */
 }
 
-.tabela-protocolos th:nth-child(3),
-.tabela-protocolos td:nth-child(3) {
-    width: 60%; /* Observações */
-}
-
 .tabela-protocolos th:nth-child(2),
 .tabela-protocolos td:nth-child(2) {
-    width: 22%; /* Ação */
+    width: 20%; /* Ação */
+}
+
+.tabela-protocolos th:nth-child(3),
+.tabela-protocolos td:nth-child(3) {
+    width: 45%; /* Observações */
 }
 
 .tabela-protocolos th:nth-child(4),
 .tabela-protocolos td:nth-child(4) {
-    width: 15%; /* Observações */
+    width: 15%; /* Status (Exemplo) */
 }
 
 /* Garante que o botão não estoure o limite da célula */
@@ -1118,3 +1124,5 @@ textarea {
     font-weight: bold;
     color: #ff432e;
 }
+
+
