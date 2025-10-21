@@ -72,8 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lengthMenu: [5, 10, 25, 50, 100],
     });
 
-    // --- LÓGICA PARA O MENU ACORDEÃO DA SIDEBAR ---
-    // Aplica a altura correta para os menus que já carregam abertos
+    // --- LÓGICA PARA O MENU DA SIDEBAR ---
     document.querySelectorAll('.has-submenu.open').forEach(openLi => {
         const submenu = openLi.querySelector('.submenu');
         if (submenu) {
@@ -87,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             const parentLi = this.parentElement;
 
-            // Fecha todos os outros submenus abertos para ter apenas um aberto por vez
             document.querySelectorAll('.has-submenu.open').forEach(openLi => {
                 if (openLi !== parentLi) {
                     openLi.classList.remove('open');
@@ -95,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Abre ou fecha o submenu atual
             parentLi.classList.toggle('open');
             
             const submenu = this.nextElementSibling;
@@ -112,33 +109,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnsAbrirModal = document.querySelectorAll('.open-modal-preparar');
     const btnsFecharModal = document.querySelectorAll('.close-modal-btn');
 
-    // Verifica se os elementos da modal existem na página
     if (modal && btnsAbrirModal.length > 0) {
         
-        // Adiciona evento para todos os botões "Preparar"
         btnsAbrirModal.forEach(btn => {
             btn.addEventListener('click', function() {
-                // Pega os dados do protocolo a partir dos atributos data-* do botão
                 const protocoloId = this.dataset.protocoloId;
                 const protocoloNumero = this.dataset.protocoloNumero;
 
-                // Preenche os campos da modal com os dados
                 document.getElementById('modal-protocolo-id').value = protocoloId;
                 document.getElementById('modal-protocolo-numero').textContent = protocoloNumero;
                 
-                // Exibe a modal
                 modal.style.display = 'flex';
             });
         });
 
-        // Adiciona evento para fechar a modal
         btnsFecharModal.forEach(btn => {
             btn.addEventListener('click', () => {
                 modal.style.display = 'none';
             });
         });
 
-        // Fecha a modal se o usuário clicar fora dela (no overlay)
         window.addEventListener('click', (event) => {
             if (event.target == modal) {
                 modal.style.display = 'none';
@@ -151,19 +141,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalDigitalizar = document.getElementById('modal-digitalizar');
     const btnsAbrirModalDigitalizar = document.querySelectorAll('.open-modal-digitalizar');
 
-    // Seleciona os botões de fechar da nova modal
     const btnsFecharModalDigitalizar = modalDigitalizar?.querySelectorAll('.close-modal-btn');
 
     if (modalDigitalizar && btnsAbrirModalDigitalizar.length > 0) {
         
         btnsAbrirModalDigitalizar.forEach(btn => {
             btn.addEventListener('click', function() {
-                // Pega os dados do protocolo a partir dos atributos data-*
                 const protocoloId = this.dataset.protocoloId;
                 const protocoloNumero = this.dataset.protocoloNumero;
                 const protocoloObservacoes = this.dataset.protocoloObservacoes;
 
-                // Preenche os campos da modal
                 document.getElementById('modal-protocolo-id-dig').value = protocoloId;
                 document.getElementById('modal-protocolo-numero-dig').textContent = protocoloNumero;
                 document.getElementById('observacoes_modal_dig').value = protocoloObservacoes; // Carrega a observação do preparador
@@ -198,14 +185,11 @@ if (modalEntregar && btnsAbrirModalEntregar.length > 0) {
             const remessaId = this.dataset.remessaId;
             const remessaNumero = this.dataset.remessaNumero;
 
-            // Preenche os campos da modal
             modalEntregar.querySelector('#modal-remessa-id').value = remessaId;
             modalEntregar.querySelector('#modal-remessa-numero').textContent = remessaNumero;
             
-            // Limpa o campo de senha ao abrir
             modalEntregar.querySelector('#senha_confirmacao').value = '';
 
-            // Exibe a modal
             modalEntregar.style.display = 'flex';
         });
     });
