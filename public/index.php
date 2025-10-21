@@ -312,7 +312,7 @@ try {
             break;
 
         /*----- 
-        /ADMIN/PREPARAÇÃO --------------------- FALTANDO IMPLEMENTAR ------------------------------
+        /ADMIN/PREPARAÇÃO 
         ----- */
         case '/admin/preparacao/dashboard':
 
@@ -325,7 +325,7 @@ try {
             break;
 
         /*----- 
-        /ADMIN/DIGITALIZAÇÃO --------------------- FALTANDO IMPLEMENTAR ------------------------------
+        /ADMIN/DIGITALIZAÇÃO
         ----- */
         case '/admin/digitalizacao/dashboard':
 
