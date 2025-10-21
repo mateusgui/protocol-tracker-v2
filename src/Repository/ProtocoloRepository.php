@@ -237,13 +237,12 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
     public function sumTotalByDiaDigitalizacao(DateTimeImmutable $dia): int
     {
         // A query agora filtra apenas pela data.
-        $sqlQuery = "SELECT SUM(quantidade_paginas) 
-                    FROM protocolos 
-                    WHERE DATE_FORMAT(data_digitalizacao, '%Y-%m-%d') = :data_digitalizacao;";
+        $sqlQuery = "SELECT SUM(quantidade_paginas) FROM protocolos WHERE DATE_FORMAT(data_digitalizacao, '%Y-%m-%d') = :data_digitalizacao;";
 
         $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':data_digitalizacao', $dia->format('Y-m-d'));
         
-        $stmt->execute([':data_digitalizacao' => $dia->format('Y-m-d')]);
+        $stmt->execute();
 
         return (int) $stmt->fetchColumn();
     }
@@ -265,13 +264,12 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
     // =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
     public function countTotalByDiaDigitalizacao(DateTimeImmutable $dia): int
     {
-        $sqlQuery = "SELECT COUNT(*) 
-                    FROM protocolos 
-                    WHERE DATE_FORMAT(data_digitalizacao, '%Y-%m-%d') = :data_digitalizacao;";
+        $sqlQuery = "SELECT COUNT(*) FROM protocolos WHERE DATE_FORMAT(data_digitalizacao, '%Y-%m-%d') = :data_digitalizacao;";
 
         $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':data_digitalizacao', $dia->format('Y-m-d'));
         
-        $stmt->execute([':data_digitalizacao' => $dia->format('Y-m-d')]);
+        $stmt->execute();
 
         return (int) $stmt->fetchColumn();
     }
@@ -293,13 +291,12 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
     // =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
     public function sumTotalByMesDigitalizacao(DateTimeImmutable $mes): int
     {
-        $sqlQuery = "SELECT SUM(quantidade_paginas) 
-                    FROM protocolos 
-                    WHERE DATE_FORMAT(data_digitalizacao, '%Y-%m') = :data_mes;";
+        $sqlQuery = "SELECT SUM(quantidade_paginas) FROM protocolos WHERE DATE_FORMAT(data_digitalizacao, '%Y-%m') = :data_mes;";
 
         $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':data_mes', $mes->format('Y-m'));
         
-        $stmt->execute([':data_mes' => $mes->format('Y-m')]);
+        $stmt->execute();
 
         return (int) $stmt->fetchColumn();
     }
@@ -321,13 +318,12 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
     // =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
     public function countTotalByMesDigitalizacao(DateTimeImmutable $mes): int
     {
-        $sqlQuery = "SELECT COUNT(*) 
-                    FROM protocolos 
-                    WHERE DATE_FORMAT(data_digitalizacao, '%Y-%m') = :data_mes;";
+        $sqlQuery = "SELECT COUNT(*) FROM protocolos WHERE DATE_FORMAT(data_digitalizacao, '%Y-%m') = :data_mes;";
 
         $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':data_mes', $mes->format('Y-m'));
         
-        $stmt->execute([':data_mes' => $mes->format('Y-m')]);
+        $stmt->execute();
 
         return (int) $stmt->fetchColumn();
     }
@@ -342,9 +338,7 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         
         $stmt->execute();
 
-        $total = $stmt->fetchColumn();
-
-        return (int)$total;
+        return (int) $stmt->fetchColumn();;
     }
 
     public function add(Protocolo $protocolo): void
