@@ -21,10 +21,6 @@
                     <label for="numero_protocolo">Número do Protocolo (6 dígitos)</label>
                     <input type="text" id="numero_protocolo" name="numero_protocolo" required maxlength="6" pattern="\d{6}"placeholder="Ex: 123456">
                 </div>
-                <div class="form-group">
-                    <label for="numero_remessa">Número da Remessa</label>
-                    <input type="text" id="numero_remessa" readonly  name="numero_remessa" value="<?= htmlspecialchars($remessa->getNumeroRemessa()) ?>">
-                </div>
             </div>
 
             <div class="form-actions">
