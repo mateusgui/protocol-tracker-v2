@@ -15,24 +15,24 @@
         <table id="tabela-protocolos" class="protocolos-table datatable-js">
             <thead>
                 <tr>
-                    <th>Nº da Remessa</th>
+                    <th class="numero_remessa">Nº da Remessa</th>
                     <th>Status</th>
-                    <th>Qtd. Protocolos</th>
-                    <th>Data de Recebimento</th>
-                    <th>Data de Entrega</th>
-                    <th>Quantidade de Páginas</th>
+                    <th class="quantidade_paginas">Qtd. Protocolos</th>
+                    <th class="data">Data de Recebimento</th>
+                    <th class="data">Data de Entrega</th>
+                    <th class="quantidade_paginas">Quantidade de Páginas</th>
                     <th class="acoes-header">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($listaRemessas as $remessa): ?>
                     <tr>
-                        <td><?= htmlspecialchars($remessa->getNumeroRemessa()) ?></td>
+                        <td class="numero_remessa"><?= htmlspecialchars($remessa->getNumeroRemessa()) ?></td>
                         <td class="<?= htmlspecialchars($remessa->getStatus()) ?>"><?= htmlspecialchars($remessa->getStatus()) ?></td>
-                        <td><?= htmlspecialchars($remessa->getQuantidadeProtocolos() ?? 0) ?></td>
-                        <td><?= $remessa->getDataRecebimento() ? $remessa->getDataRecebimento()->format('d/m/Y') : 'N/A' ?></td>
-                        <td><?= $remessa->getDataEntrega() ? $remessa->getDataEntrega()->format('d/m/Y') : 'Pendente' ?></td>
-                        <td>
+                        <td class="quantidade_paginas"><?= htmlspecialchars($remessa->getQuantidadeProtocolos() ?? 0) ?></td>
+                        <td class="data"><?= $remessa->getDataRecebimento() ? $remessa->getDataRecebimento()->format('d/m/Y') : 'N/A' ?></td>
+                        <td class="data"><?= $remessa->getDataEntrega() ? $remessa->getDataEntrega()->format('d/m/Y') : 'Pendente' ?></td>
+                        <td class="quantidade_paginas">
                             <?php
                                 $totalDigitalizadas = $this->protocoloRepository->sumPagesByRemessaAndStatus($remessa->getId(), 'DIGITALIZADO');
                                 $totalEntregues = $this->protocoloRepository->sumPagesByRemessaAndStatus($remessa->getId(), 'ENTREGUE');

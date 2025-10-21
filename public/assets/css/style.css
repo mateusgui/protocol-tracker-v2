@@ -1015,7 +1015,7 @@ textarea {
 .close-modal-btn {
     border: none;
     background: none;
-    font-size: 2rem;
+    font-size: 0.9rem;
     cursor: pointer;
     color: #6c757d;
 }
@@ -1104,6 +1104,26 @@ textarea {
     max-width: 150px;
     white-space: nowrap;
 }
+
+/* CSS Colunas expecíficas */
+.protocolos-table .numero_protocolo {
+    width: 40px; /* Você pode ajustar este valor como preferir */
+}
+.protocolos-table .numero_remessa {
+    width: 30px; /* Você pode ajustar este valor como preferir */
+}
+.protocolos-table .quantidade_paginas {
+    width: 40px; /* Você pode ajustar este valor como preferir */
+}
+.protocolos-table .status {
+    width: 50px; /* Você pode ajustar este valor como preferir */
+}
+.protocolos-table .data {
+    width: 50px; /* Você pode ajustar este valor como preferir */
+}
+
+
+
 
 .RECEBIDO {
     font-weight: bold;
