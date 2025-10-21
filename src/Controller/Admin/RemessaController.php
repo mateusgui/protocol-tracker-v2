@@ -239,6 +239,13 @@ class RemessaController
             
             $listaDeRemessas = $this->remessaRepository->all();
 
+            foreach ($listaDeRemessas as $remessa) {
+                if($remessa->getStatus() === 'RECEBIDO'){
+                    $metricas = $this->dashboardService->metricaPorRemessa($remessa->getId());
+                    $remessaSelecionada = $this->remessaRepository->findById($remessa->getId());
+                }
+            }
+
             if ($id_remessa) {
                 $metricas = $this->dashboardService->metricaPorRemessa($id_remessa);
                 $remessaSelecionada = $this->remessaRepository->findById($id_remessa);
