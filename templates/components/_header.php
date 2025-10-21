@@ -102,7 +102,7 @@
                                 <li><a href="/admin/usuarios/visualizar-usuarios">Visualizar Usuários</a></li>
                             </ul>
                         </li>
-                        <!-- <li class="has-submenu">
+                        <!-- DESATIVADO, ESPERANDO IMPLEMENTAÇÃO <li class="has-submenu">
                             <a><span class="material-icons-outlined">group</span> Equipe</a>
                             <ul class="submenu">
                                 <li><a href="/admin/equipe/dashboard">Produtividade Equipe</a></li>
