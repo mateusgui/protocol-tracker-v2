@@ -3,7 +3,7 @@
 <h2>Dashboard de produtividade da equipe</h2>
 
 <div class="metric-card">
-    <form action="/admin/remessas/dashboard" method="get" class="busca-form">
+    <form action="/equipe/dashboard" method="get" class="busca-form">
         <div class="form-row">
             <div class="form-group">
                 <label for="id_remessa">Selecione uma Remessa:</label>
@@ -29,7 +29,7 @@
 </div>
 
 <?php if (isset($metricas)): ?>
-    <div class="dashboard-container">
+    <div class="dashboard-container dashboard-metricas">
         <div class="dashboard-row">
             <div class="metric-card">
                 <div class="label">Total de Protocolos</div>

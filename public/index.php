@@ -291,7 +291,7 @@ try {
         case '/admin/remessas/dashboard':
 
             rotaAutenticada($usuario_esta_logado);
-            //rotaAdmin($permissao);
+            rotaAdmin($permissao);
 
             if($method === 'GET'){
                 $remessaController->dashboardRemessa();
