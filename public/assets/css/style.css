@@ -431,13 +431,12 @@ h3 {
 }
 
 .acoes-cell {
-    display: table-cell; /* volta ao padrão da célula */
+    display: table-cell;
     text-align: center;
     vertical-align: middle;
     gap: 5px;
 }
 
-/* Estilos dos botões de Ação (Editar/Excluir) */
 .btn-acao {
     display: inline-flex;
     padding: 6px;
@@ -847,36 +846,32 @@ h3 {
 
 
 /* === ESTILOS PARA O MENU ACORDEÃO DA SIDEBAR === */
-/* Garante que o <li> seja posicionado corretamente */
 .sidebar nav ul li {
     position: relative;
 }
 
 /* Adiciona a seta (ícone) para itens que têm submenu */
 .sidebar nav ul li.has-submenu > a::after {
-    content: 'expand_more'; /* Ícone de seta para baixo do Google Icons */
+    content: 'expand_more';
     font-family: 'Material Icons Outlined';
     position: absolute;
-    right: 15px; /* Alinha a seta à direita */
-    transition: transform 0.3s ease-in-out; /* Animação da rotação da seta */
+    right: 15px;
+    transition: transform 0.3s ease-in-out; 
 }
 
-/* Gira a seta para cima quando o menu está aberto (classe 'open' adicionada via JS) */
 .sidebar nav ul li.has-submenu.open > a::after {
     transform: rotate(180deg);
 }
 
-/* Estilo do submenu (começa "fechado") */
 .sidebar .submenu {
     list-style: none;
-    max-height: 0; /* Começa com altura zero, efetivamente escondido */
-    overflow: hidden; /* Esconde o conteúdo que transborda */
-    transition: max-height 0.4s ease-in-out; /* A mágica da animação de deslizar */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
     border-radius: 6px;
-    margin: 0 10px; /* Pequeno recuo */
+    margin: 0 10px;
 }
 
-/* Estilo dos links dentro do submenu */
 .sidebar .submenu li a {
     cursor: pointer;
     font-size: 0.9em;
@@ -884,7 +879,6 @@ h3 {
     margin-bottom: 0;
 }
 
-/* Garante que os ícones nos links principais fiquem alinhados */
 .sidebar nav ul li > a {
     cursor: pointer;
     display: flex;
@@ -894,8 +888,6 @@ h3 {
 
 
 /* === ESTILOS ADICIONAIS PARA A LISTA DE USUÁRIOS === */
-
-/* Para o cabeçalho da listagem (título + botão "novo") */
 .listagem-header {
     display: flex;
     justify-content: space-between;
@@ -926,16 +918,15 @@ h3 {
     text-decoration: none;
 }
 
-/* Novo botão de Ação para Resetar Senha */
 .btn-reset-senha {
-    background-color: #6c757d; /* Cinza */
+    background-color: #6c757d;
 }
 
 .btn-reset-senha:hover {
     background-color: #5a6268;
 }
 
-/* Estilo para o botão de ação na tela de preparação */
+
 .btn-acao-preparar {
     display: inline-flex;
     align-items: center;
@@ -944,7 +935,7 @@ h3 {
     font-size: 0.9rem;
     font-weight: bold;
     color: #fff;
-    background-color: #ffc107; /* Amarelo */
+    background-color: #ffc107;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -956,8 +947,6 @@ h3 {
     background-color: #e0a800;
 }
 
-
-/* Estilo para o botão de ação na tela de digitalização */
 .btn-acao-digitalizar {
     display: inline-flex;
     align-items: center;
@@ -966,7 +955,7 @@ h3 {
     font-size: 0.9rem;
     font-weight: bold;
     color: #fff;
-    background-color: #2563eb; /* Amarelo */
+    background-color: #2563eb;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -1034,11 +1023,7 @@ h3 {
 }
 
 
-
-
 /* === ESTILOS ADICIONAIS PARA MODAL DE ENTREGA === */
-
-/* Novo botão de ação para "Entregar" */
 .btn-entregar {
     background-color: #28a745; /* Verde */
 }
@@ -1046,7 +1031,7 @@ h3 {
     background-color: #218838;
 }
 
-/* Estilo para a mensagem de alerta dentro da modal */
+
 .alerta-irreversivel {
     font-size: 0.9em;
     font-weight: bold;
@@ -1063,46 +1048,41 @@ h3 {
 }
 
 
-
-/* Estilo exclusivo da tabela de protocolos */
 .tabela-protocolos {
     width: 100%;
     border-collapse: collapse;
-    table-layout: fixed; /* necessário para respeitar os widths */
+    table-layout: fixed;
 }
 
-/* Estilo das células */
 .tabela-protocolos th,
 .tabela-protocolos td {
     padding: 12px;
     text-align: center;
     border-bottom: 1px solid #ddd;
-    word-wrap: break-word; /* <-- Garante a quebra de palavras longas */
+    word-wrap: break-word;
     overflow-wrap: break-word;
 }
 
-/* Ajuste as larguras para somar 100% */
 .tabela-protocolos th:nth-child(1),
 .tabela-protocolos td:nth-child(1) {
-    width: 20%; /* Nº do Protocolo */
+    width: 20%;
 }
 
 .tabela-protocolos th:nth-child(2),
 .tabela-protocolos td:nth-child(2) {
-    width: 20%; /* Ação */
+    width: 20%;
 }
 
 .tabela-protocolos th:nth-child(3),
 .tabela-protocolos td:nth-child(3) {
-    width: 45%; /* Observações */
+    width: 45%;
 }
 
 .tabela-protocolos th:nth-child(4),
 .tabela-protocolos td:nth-child(4) {
-    width: 15%; /* Status (Exemplo) */
+    width: 15%;
 }
 
-/* Garante que o botão não estoure o limite da célula */
 .tabela-protocolos .acoes-cell button {
     width: 100%;
     max-width: 150px;
@@ -1111,24 +1091,23 @@ h3 {
 
 /* CSS Colunas expecíficas */
 .protocolos-table .numero_protocolo {
-    width: 40px; /* Você pode ajustar este valor como preferir */
+    width: 40px;
 }
 .protocolos-table .numero_remessa {
-    width: 30px; /* Você pode ajustar este valor como preferir */
+    width: 30px;
 }
 .protocolos-table .quantidade_paginas {
-    width: 40px; /* Você pode ajustar este valor como preferir */
+    width: 40px;
 }
 .protocolos-table .status {
-    width: 50px; /* Você pode ajustar este valor como preferir */
+    width: 50px; 
 }
 .protocolos-table .data {
-    width: 50px; /* Você pode ajustar este valor como preferir */
+    width: 50px; 
 }
 
 
-
-
+/* CSS STATUS*/
 .RECEBIDO {
     font-weight: bold;
     color: #33a1eb;
