@@ -100,7 +100,7 @@ class Usuario {
             'hash_senha' => $this->hash_senha,
             'permissao' => $this->permissao,
             'data_criacao' => $this->data_criacao?->format('Y-m-d H:i:s'),
-            'status' => $this->status ?? null
+            'status' => (int)$this->status
         ];
     }
 }

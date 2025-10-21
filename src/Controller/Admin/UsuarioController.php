@@ -102,7 +102,7 @@ class UsuarioController
             $email = $_POST['email'] ?? '';
             $cpf = $_POST['cpf'] ?? '';
             $permissao = $_POST['permissao'] ?? '';
-            $status = $_POST['status'] ?? '';
+            $status = (bool) ($_POST['status'] ?? false);
             $id = $_POST['id'] ?? '';
 
             $this->usuarioService->atualizaUsuario($nome, $email, $cpf, $permissao, $status, $id);
