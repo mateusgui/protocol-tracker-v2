@@ -170,8 +170,6 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         return (int) $stmt->fetchColumn();
     }
 
-    // =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
-    // =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
     public function countTotalByDiaPreparacao(DateTimeImmutable $data): int
     {
         // A query agora filtra apenas pela data, sem a condição do id_preparador.
@@ -201,8 +199,6 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         return (int) $stmt->fetchColumn();
     }
 
-    // =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
-    // =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
     public function countTotalByMesPreparacao(DateTimeImmutable $data): int
     {
         // A query agora filtra apenas pelo mês e ano.
@@ -232,8 +228,6 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         return (int) $stmt->fetchColumn();
     }
 
-    // =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
-    // =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
     public function sumTotalByDiaDigitalizacao(DateTimeImmutable $dia): int
     {
         // A query agora filtra apenas pela data.
@@ -260,8 +254,6 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         return (int) $stmt->fetchColumn();
     }
 
-    // =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
-    // =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
     public function countTotalByDiaDigitalizacao(DateTimeImmutable $dia): int
     {
         $sqlQuery = "SELECT COUNT(*) FROM protocolos WHERE DATE_FORMAT(data_digitalizacao, '%Y-%m-%d') = :data_digitalizacao;";
@@ -287,8 +279,6 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         return (int) $stmt->fetchColumn();
     }
 
-    // =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
-    // =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
     public function sumTotalByMesDigitalizacao(DateTimeImmutable $mes): int
     {
         $sqlQuery = "SELECT SUM(quantidade_paginas) FROM protocolos WHERE DATE_FORMAT(data_digitalizacao, '%Y-%m') = :data_mes;";
@@ -314,8 +304,6 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         return (int) $stmt->fetchColumn();
     }
 
-    // =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
-    // =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
     public function countTotalByMesDigitalizacao(DateTimeImmutable $mes): int
     {
         $sqlQuery = "SELECT COUNT(*) FROM protocolos WHERE DATE_FORMAT(data_digitalizacao, '%Y-%m') = :data_mes;";
@@ -376,7 +364,6 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         $stmt->execute();
     }
 
-    //Método para preparadores e digitalizadores utilizarem
     public function preparaProtocolo(string $id, string $data_preparacao, int $id_preparador, ?string $observacoes): void
     {
         $sqlQuery = "UPDATE protocolos SET status = 'PREPARADO', data_preparacao = :data_preparacao, id_preparador = :id_preparador, observacoes = :observacoes WHERE id = :id;";
