@@ -44,7 +44,6 @@ class UsuarioController
     public function novoUsuario()
     {
         try {
-            //public function novoUsuario(string $nome, string $email, string $cpf, string $senha, string $permissao): void
             $nome = $_POST['nome'] ?? '';
             $email = $_POST['email'] ?? '';
             $cpf = $_POST['cpf'] ?? '';
