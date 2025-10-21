@@ -3,7 +3,6 @@
 namespace Mateus\ProtocolTrackerV2\Controller\Admin;
 
 use Exception;
-use Mateus\ProtocolTrackerV2\Controller\LoginController;
 use Mateus\ProtocolTrackerV2\Model\Usuario;
 use Mateus\ProtocolTrackerV2\Repository\ProtocoloRepository;
 use Mateus\ProtocolTrackerV2\Repository\RemessaRepository;
@@ -47,7 +46,6 @@ class RemessaController
 
             require __DIR__ . '/../../../templates/admin/nova-remessa.php';
         } catch (Exception $e) {
-            //retorno padrão de erro para todas as exibições primárias vindas do menu
             $this->home($e->getMessage());
         }
     }
@@ -56,7 +54,6 @@ class RemessaController
     public function novaRemessa()
     {
         try {
-            //public function novaRemessa(Usuario $usuarioLogado, string $data_recebimento, ?string $observacoes): void
             $usuario_logado = $this->usuario_logado;
             $data_recebimento = $_POST['data_recebimento'] ?? '';
             $observacoes = $_POST['observacoes'] ?? null;
@@ -87,7 +84,6 @@ class RemessaController
 
             require __DIR__ . '/../../../templates/admin/visualizar-remessas.php';
         } catch (Exception $e) {
-            //retorno padrão de erro para todas as exibições primárias vindas do menu
             $this->home($e->getMessage());
         }
     }
@@ -113,7 +109,6 @@ class RemessaController
     public function editarRemessa()
     {
         try {
-            //public function atualizarRemessa(Usuario $usuarioLogado, string $data_recebimento, ?string $data_entrega, string $status, ?string $observacoes, string $id): void
             $usuario_logado = $this->usuario_logado;
             $data_recebimento = $_POST['data_recebimento'] ?? '';
             $data_entrega = $_POST['data_entrega'] ?? '';
@@ -158,7 +153,6 @@ class RemessaController
         $id_remessa = $_POST['id_remessa'] ?? '';
 
         try {
-            //public function novoProtocolo(Usuario $usuarioLogado, string $id_remessa, string $numero_protocolo): void
             $usuario_logado = $this->usuario_logado;
             $numero_protocolo = $_POST['numero_protocolo'] ?? '';
 
@@ -202,7 +196,6 @@ class RemessaController
     public function editarProtocolo()
     {
         try {
-            //public function atualizarProtocolo(Usuario $usuarioLogado, string $id_remessa, string $numero_protocolo, ?string $data_preparacao, ?int $id_preparador, ?string $data_digitalizacao, ?int $id_digitalizador, string $status, ?int $quantidade_paginas, ?string $observacoes, string $id): void
             $usuario_logado = $this->usuario_logado;
             $id_remessa = $_POST['id_remessa'] ?? '';
             $numero_protocolo = $_POST['numero_protocolo'] ?? '';
