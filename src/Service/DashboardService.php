@@ -5,8 +5,6 @@ namespace Mateus\ProtocolTrackerV2\Service;
 use DateTimeImmutable;
 use Mateus\ProtocolTrackerV2\Interfaces\ProtocoloRepositoryInterface;
 use Mateus\ProtocolTrackerV2\Interfaces\RemessaRepositoryInterface;
-use Mateus\ProtocolTrackerV2\Interfaces\UsuarioRepositoryInterface;
-use Mateus\ProtocolTrackerV2\Model\Usuario;
 
 class DashboardService
 {
