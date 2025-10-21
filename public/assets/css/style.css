@@ -386,6 +386,10 @@ textarea {
     text-decoration: none;
 }
 
+h3 {
+    margin-bottom: 1rem;
+}
+
 /* === ESTILOS TABELA DE LISTAGEM === */
 .listagem-container h3 {
     margin-bottom: 1rem;

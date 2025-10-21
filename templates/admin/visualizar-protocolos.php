@@ -1,6 +1,7 @@
 <?php require __DIR__ . '/../components/_header.php'; ?>
 
 <h2>Cadastrar novos protocolos</h2>
+<h3>Remessa Nº <?= $remessa->getNumeroRemessa() ?></h3>
 
 <?php if (isset($erro) && $erro): ?>
     <div class="error-message">
