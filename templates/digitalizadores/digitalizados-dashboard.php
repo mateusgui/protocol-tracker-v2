@@ -1,7 +1,7 @@
 <?php require __DIR__ . '/../components/_header.php'; ?>
 
 <div class="form-container dashboard-filters">
-    <form action="/digitalizadores/dashboard" method="get">
+    <form action="/admin/digitalizacao/dashboard" method="get">
         <p>Selecione um período para visualizar a produtividade.</p>
         <div class="form-row">
             <?php if ($permissao === 'administrador'): ?>

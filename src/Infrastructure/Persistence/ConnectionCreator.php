@@ -10,7 +10,7 @@ class ConnectionCreator
     public static function createConnection() : PDO
     {
         //$dsn = 'mysql:host=127.0.0.1;port=3306;dbname=estudoMySql;charset=utf8mb4';
-        $dsn = 'mysql:host=127.0.0.1;port=3306;dbname=meu-mysql;charset=utf8mb4';
+        $dsn = 'mysql:host=127.0.0.1;port=3306;dbname=meu_projeto_db;charset=utf8mb4';
         
         try {
             //$connection = new PDO($dsn, 'root', 'sua_senha_super_secreta');
