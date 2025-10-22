@@ -221,7 +221,10 @@ class ProtocoloController
             $listaDePreparadores = $this->usuarioRepository->allByPermissao('preparador');
 
             $protocolosDia = $this->dashboardService->protocolosPreparadosPorDia($id_usuario_selecionado, $dia_selecionado);
+            $paginasDia = $this->dashboardService->paginasPreparadasPorDia($id_usuario_selecionado, $dia_selecionado);
+
             $protocolosMes = $this->dashboardService->protocolosPreparadosPorMes($id_usuario_selecionado, $mes_selecionado);
+            $paginasMes = $this->dashboardService->paginasPreparadasPorMes($id_usuario_selecionado, $mes_selecionado);
 
             $titulo_da_pagina = "Dashboard de Preparadores";
             $usuario_logado = $this->usuario_logado;

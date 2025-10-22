@@ -46,6 +46,7 @@ class DashboardService
         ];
     }
 
+    //PREPARADOR
     public function protocolosPreparadosPorDia(?int $id_preparador, DateTimeImmutable $dia): int
     {
         if ($id_preparador !== null) {
@@ -64,6 +65,27 @@ class DashboardService
         }
     }
 
+    //IMPLEMENTANDO
+    public function paginasPreparadasPorDia(?int $id_preparador, DateTimeImmutable $dia): int
+    {
+        if ($id_preparador !== null) {
+            return $this->protocoloRepository->sumByDiaPreparador($id_preparador, $dia); //fzr
+        } else {
+            return $this->protocoloRepository->sumTotalByDiaDigitalizacao($dia);
+        }
+    }
+
+    //IMPLEMENTANDO
+    public function paginasPreparadasPorMes(?int $id_preparador, DateTimeImmutable $mes): int
+    {
+        if ($id_preparador !== null) {
+            return $this->protocoloRepository->sumByMesPreparador($id_preparador, $mes); //fzr
+        } else {
+            return $this->protocoloRepository->sumTotalByMesDigitalizacao($mes);
+        }
+    }
+
+    //DIGITALIZADOR
     public function paginasDigitalizadasPorDia(?int $id_digitalizador, DateTimeImmutable $dia): int
     {
         if ($id_digitalizador !== null) {

@@ -201,16 +201,38 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
 
     public function countTotalByMesPreparacao(DateTimeImmutable $data): int
     {
-        // A query agora filtra apenas pelo mês e ano.
-        $sqlQuery = "SELECT COUNT(*) 
-                    FROM protocolos 
-                    WHERE DATE_FORMAT(data_preparacao, '%Y-%m') = :mes_ano;";
+        $sqlQuery = "SELECT COUNT(*) FROM protocolos WHERE DATE_FORMAT(data_preparacao, '%Y-%m') = :mes_ano;";
 
         $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':mes_ano', $data->format('Y-m'));
         
-        $stmt->execute([
-            ':mes_ano' => $data->format('Y-m')
-        ]);
+        $stmt->execute();
+
+        return (int) $stmt->fetchColumn();
+    }
+
+    public function sumByDiaPreparador(int $id_preparador, DateTimeImmutable $dia): int
+    { //MÉTODO NOVO
+        $sqlQuery = "SELECT SUM(quantidade_paginas) FROM protocolos WHERE id_preparador = :id_preparador AND DATE_FORMAT(data_preparacao, '%Y-%m-%d') = :data_preparacao;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':id_preparador', $id_preparador);
+        $stmt->bindValue(':data_preparacao', $dia->format('Y-m-d'));
+
+        $stmt->execute();
+
+        return (int) $stmt->fetchColumn();
+    }
+
+    public function sumByMesPreparador(int $id_preparador, DateTimeImmutable $mes): int
+    { //MÉTODO NOVO
+        $sqlQuery = "SELECT SUM(quantidade_paginas) FROM protocolos WHERE id_preparador = :id_preparador AND DATE_FORMAT(data_preparacao, '%Y-%m') = :data_preparacao;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':id_preparador', $id_preparador);
+        $stmt->bindValue(':data_preparacao', $mes->format('Y-m'));
+
+        $stmt->execute();
 
         return (int) $stmt->fetchColumn();
     }
@@ -230,7 +252,6 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
 
     public function sumTotalByDiaDigitalizacao(DateTimeImmutable $dia): int
     {
-        // A query agora filtra apenas pela data.
         $sqlQuery = "SELECT SUM(quantidade_paginas) FROM protocolos WHERE DATE_FORMAT(data_digitalizacao, '%Y-%m-%d') = :data_digitalizacao;";
 
         $stmt = $this->connection->prepare($sqlQuery);

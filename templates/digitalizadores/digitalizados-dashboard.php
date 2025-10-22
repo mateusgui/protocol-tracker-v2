@@ -40,23 +40,23 @@
 <div class="dashboard-container">
     <div class="dashboard-row">
         <div class="metric-card">
-            <div class="label">Protocolos Digitalizados no Dia (<?= $dia_selecionado->format('d/m/Y') ?>)</div>
-            <div class="value dia"><?= htmlspecialchars($protocolosDia) ?></div>
-        </div>
-        <div class="metric-card">
             <div class="label">Páginas Digitalizadas no Dia (<?= $dia_selecionado->format('d/m/Y') ?>)</div>
             <div class="value dia"><?= htmlspecialchars($paginasDia) ?></div>
+        </div>
+        <div class="metric-card">
+            <div class="label">Páginas Digitalizadas no Mês (<?= $mes_selecionado->format('m/Y') ?>)</div>
+            <div class="value mes"><?= htmlspecialchars($paginasMes) ?></div>
         </div>
     </div>
 
     <div class="dashboard-row">
         <div class="metric-card">
-            <div class="label">Protocolos Digitalizados no Mês (<?= $mes_selecionado->format('m/Y') ?>)</div>
-            <div class="value mes"><?= htmlspecialchars($protocolosMes) ?></div>
+            <div class="label">Protocolos Digitalizados no Dia (<?= $dia_selecionado->format('d/m/Y') ?>)</div>
+            <div class="value dia"><?= htmlspecialchars($protocolosDia) ?></div>
         </div>
         <div class="metric-card">
-            <div class="label">Páginas Digitalizadas no Mês (<?= $mes_selecionado->format('m/Y') ?>)</div>
-            <div class="value mes"><?= htmlspecialchars($paginasMes) ?></div>
+            <div class="label">Protocolos Digitalizados no Mês (<?= $mes_selecionado->format('m/Y') ?>)</div>
+            <div class="value mes"><?= htmlspecialchars($protocolosMes) ?></div>
         </div>
     </div>
 </div>
