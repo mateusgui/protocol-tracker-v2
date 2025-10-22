@@ -1091,39 +1091,43 @@ h3 {
 
 /* CSS Colunas expecíficas */
 .protocolos-table .numero_protocolo {
-    width: 40px;
+    max-width: 90px;
 }
 .protocolos-table .numero_remessa {
-    width: 30px;
+    max-width: 80px;
 }
 .protocolos-table .quantidade_paginas {
-    width: 40px;
+    max-width: 80px;
 }
 .protocolos-table .status {
     width: 50px; 
 }
 .protocolos-table .data {
-    width: 50px; 
+    max-width: 50px; 
 }
 
 
 /* CSS STATUS*/
 .RECEBIDO {
+    font-size: small;
     font-weight: bold;
     color: #33a1eb;
 }
 
 .PREPARADO {
+    font-size: small;
     font-weight: bold;
     color: #f7d345;
 }
 
 .DIGITALIZADO {
+    font-size: small;
     font-weight: bold;
     color: #20d16d;
 }
 
 .ENTREGUE {
+    font-size: small;
     font-weight: bold;
     color: #ff432e;
 }
