@@ -69,12 +69,12 @@
 
         <div class="dashboard-row">
             <div class="metric-card">
-                <div class="label">Média de Preparação por Dia</div>
+                <div class="label">Média de Preparação dos últimos 30 dias</div>
                 <div class="value dia"><?= $mediaPreparacaoDia ?></div>
                 <p>Protocolos / Dia</p>
             </div>
             <div class="metric-card">
-                <div class="label">Média de Digitalização por Dia</div>
+                <div class="label">Média de Digitalização dos últimos 30 dias</div>
                 <div class="value mes"><?= $mediaDigitalizacaoDia ?></div>
                 <p>Protocolos / Dia</p>
             </div>
