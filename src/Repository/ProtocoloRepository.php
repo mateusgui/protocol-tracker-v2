@@ -422,6 +422,32 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         $stmt->execute();
     }
 
+    public function getContagemPreparadosPorDia(DateTimeImmutable $dataInicio, DateTimeImmutable $dataFim): array
+    {
+        $sql = "SELECT DATE_FORMAT(data_preparacao, '%Y-%m-%d') AS dia, COUNT(id) AS contagem FROM protocolos WHERE data_preparacao BETWEEN :data_inicio AND :data_fim GROUP BY dia ORDER BY dia ASC;";
+
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindValue(':data_inicio', $dataInicio->format('Y-m-d 00:00:00'));
+        $stmt->bindValue(':data_fim', $dataFim->format('Y-m-d 23:59:59'));
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
+    }
+
+    public function getContagemDigitalizadosPorDia(DateTimeImmutable $dataInicio, DateTimeImmutable $dataFim): array
+    {
+        $sql = "SELECT DATE_FORMAT(data_digitalizacao, '%Y-%m-%d') AS dia, COUNT(id) AS contagem FROM protocolos WHERE data_digitalizacao BETWEEN :data_inicio AND :data_fim GROUP BY dia ORDER BY dia ASC;";
+
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindValue(':data_inicio', $dataInicio->format('Y-m-d 00:00:00'));
+        $stmt->bindValue(':data_fim', $dataFim->format('Y-m-d 23:59:59'));
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
+    }
+
     private function hidrataLista(PDOStatement $stmt): array
     {
         $listaDeProtocolos = [];

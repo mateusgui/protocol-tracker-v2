@@ -35,4 +35,6 @@ interface ProtocoloRepositoryInterface
     public function preparaProtocolo(string $id, string $data_preparacao, int $id_preparador, ?string $observacoes): void;
     public function digitalizaProtocolo(string $id, string $data_digitalizacao, int $id_digitalizador, int $quantidade_paginas, ?string $observacoes): void;
     public function entregaProtocolos(string $id_remessa): void;
+    public function getContagemPreparadosPorDia(DateTimeImmutable $dataInicio, DateTimeImmutable $dataFim): array;
+    public function getContagemDigitalizadosPorDia(DateTimeImmutable $dataInicio, DateTimeImmutable $dataFim): array;
 }

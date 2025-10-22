@@ -3,6 +3,7 @@
 namespace Mateus\ProtocolTrackerV2\Service;
 
 use DateTimeImmutable;
+use DateTimeZone;
 use Mateus\ProtocolTrackerV2\Interfaces\ProtocoloRepositoryInterface;
 use Mateus\ProtocolTrackerV2\Interfaces\RemessaRepositoryInterface;
 
@@ -120,5 +121,85 @@ class DashboardService
         } else {
             return $this->protocoloRepository->countTotalByMesDigitalizacao($mes);
         }
+    }
+
+    public function mediaPreparacaoDia(): int
+    {
+        $dataFim = new DateTimeImmutable('now', new DateTimeZone('America/Campo_Grande'));
+        $dataInicio = $dataFim->modify('-30 days');
+
+        $contagemPorDia = $this->protocoloRepository->getContagemPreparadosPorDia($dataInicio, $dataFim);
+
+        if (empty($contagemPorDia)) {
+            return 0;
+        }
+
+        $totalProtocolosNoPeriodo = array_sum($contagemPorDia);
+        $diasTrabalhados = count($contagemPorDia);
+
+        $media = $totalProtocolosNoPeriodo / $diasTrabalhados;
+        
+        return (int) round($media);
+    }
+
+    public function mediaDigitalizacaoDia(): int
+    {
+        $dataFim = new DateTimeImmutable('now', new DateTimeZone('America/Campo_Grande'));
+        $dataInicio = $dataFim->modify('-30 days');
+
+        $contagemPorDia = $this->protocoloRepository->getContagemDigitalizadosPorDia($dataInicio, $dataFim);
+
+        if (empty($contagemPorDia)) {
+            return 0;
+        }
+
+        $totalProtocolosNoPeriodo = array_sum($contagemPorDia);
+        $diasTrabalhados = count($contagemPorDia);
+
+        $media = $totalProtocolosNoPeriodo / $diasTrabalhados;
+        
+        return (int) round($media);
+    }
+
+    public function calcularPrevisaoEntrega(?string $id_remessa): ?DateTimeImmutable
+    {
+        if($id_remessa === null){
+            return null;
+        }
+
+        $remessa = $this->remessaRepository->findById($id_remessa);
+
+        if ($remessa === null || $remessa->getStatus() === 'ENTREGUE') {
+            return null; 
+        }
+
+        $totalProtocolos = $remessa->getQuantidadeProtocolos();
+
+        $digitalizados = $this->protocoloRepository->countByStatus($id_remessa, 'DIGITALIZADO');
+        $entregues = $this->protocoloRepository->countByStatus($id_remessa, 'ENTREGUE');
+        $protocolosFinalizados = $digitalizados + $entregues;
+
+        $trabalhoRestante = $totalProtocolos - $protocolosFinalizados;
+
+        if ($trabalhoRestante <= 0) {
+            return new DateTimeImmutable('now', new DateTimeZone('America/Campo_Grande'));
+        }
+
+        $velocidadePreparacao = $this->mediaPreparacaoDia();
+        $velocidadeDigitalizacao = $this->mediaDigitalizacaoDia();
+
+        $velocidadeDoSistema = min($velocidadePreparacao, $velocidadeDigitalizacao);
+
+        if ($velocidadeDoSistema <= 0) {
+            return null;
+        }
+
+        $diasRestantes = ceil($trabalhoRestante / $velocidadeDoSistema); 
+
+        $hoje = new DateTimeImmutable('now', new DateTimeZone('America/Campo_Grande'));
+        
+        $dataPrevista = $hoje->modify("+$diasRestantes days");
+
+        return $dataPrevista;
     }
 }

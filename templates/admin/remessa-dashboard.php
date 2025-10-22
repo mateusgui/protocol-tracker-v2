@@ -66,6 +66,23 @@
                 <div class="value"><?= htmlspecialchars($metricas['percentual_digitalizado']) ?>%</div>
             </div>
         </div>
+
+        <div class="dashboard-row">
+            <div class="metric-card">
+                <div class="label">Média de Preparação por Dia</div>
+                <div class="value dia"><?= $mediaPreparacaoDia ?></div>
+                <p>Protocolos / Dia</p>
+            </div>
+            <div class="metric-card">
+                <div class="label">Média de Digitalização por Dia</div>
+                <div class="value mes"><?= $mediaDigitalizacaoDia ?></div>
+                <p>Protocolos / Dia</p>
+            </div>
+            <div class="metric-card">
+                <div class="label">Data prevista para entrega da remessa</div>
+                <div class="value total"><?= $previsao?->format('d/m/Y') ?></div>
+            </div>
+        </div>
     </div>
 <?php endif; ?>
 

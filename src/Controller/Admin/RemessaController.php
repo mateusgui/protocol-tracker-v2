@@ -236,13 +236,18 @@ class RemessaController
                 if($remessa->getStatus() === 'RECEBIDO'){
                     $metricas = $this->dashboardService->metricaPorRemessa($remessa->getId());
                     $remessaSelecionada = $this->remessaRepository->findById($remessa->getId());
+                    $previsao = $this->dashboardService->calcularPrevisaoEntrega($remessa->getId());
                 }
             }
 
             if ($id_remessa) {
                 $metricas = $this->dashboardService->metricaPorRemessa($id_remessa);
                 $remessaSelecionada = $this->remessaRepository->findById($id_remessa);
+                $previsao = $this->dashboardService->calcularPrevisaoEntrega($id_remessa);
             }
+
+            $mediaPreparacaoDia = $this->dashboardService->mediaPreparacaoDia();
+            $mediaDigitalizacaoDia = $this->dashboardService->mediaDigitalizacaoDia();
 
             $titulo_da_pagina = "Dashboard de Remessas";
             $usuario_logado = $this->usuario_logado;
