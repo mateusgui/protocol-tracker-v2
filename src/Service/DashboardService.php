@@ -196,10 +196,19 @@ class DashboardService
 
         $diasRestantes = ceil($trabalhoRestante / $velocidadeDoSistema); 
 
-        $hoje = new DateTimeImmutable('now', new DateTimeZone('America/Campo_Grande'));
-        
-        $dataPrevista = $hoje->modify("+$diasRestantes days");
+        $dataAtual = new DateTimeImmutable('now', new DateTimeZone('America/Campo_Grande'));
+        $diasUteisAdicionados = 0;
 
-        return $dataPrevista;
+        while ($diasUteisAdicionados < $diasRestantes) {
+
+            $dataAtual = $dataAtual->modify('+1 day');
+            $diaDaSemana = (int) $dataAtual->format('N');
+
+            if ($diaDaSemana < 6) {
+                $diasUteisAdicionados++;
+            }
+        }
+
+        return $dataAtual;
     }
 }
