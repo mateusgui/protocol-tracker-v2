@@ -65,7 +65,7 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         return $stmt->fetchAll();
     }
 
-    public function searchByNumeroEStatus(?string $numero_protocolo = null, string $status): array
+    public function searchByNumeroEStatus(string $status, ?string $numero_protocolo = null): array
     {
         $sqlConditions = [];
         $parameters = [];

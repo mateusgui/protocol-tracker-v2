@@ -76,7 +76,9 @@
                             ?>
                         </td>-->
                         <td><?= htmlspecialchars($protocolo['quantidade_paginas'] ?? 'N/A') ?></td>
-                        <td class="coluna-observacoes" title="<?= htmlspecialchars($protocolo['observacoes'] ?? '') ?>"><?= htmlspecialchars($protocolo['observacoes']) ?? '' ?></td>
+                        <td class="coluna-observacoes" title="<?= htmlspecialchars($protocolo['observacoes'] ?? '') ?>">
+                            <?= htmlspecialchars($protocolo['observacoes'] ?? '') ?>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

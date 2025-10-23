@@ -73,7 +73,7 @@ class ProtocoloController
         try {
             $numeroFiltro = $_GET['numero_protocolo'] ?? null;
         
-            $listaProtocolosRecebidos = $this->protocoloRepository->searchByNumeroEStatus($numeroFiltro, 'RECEBIDO');
+            $listaProtocolosRecebidos = $this->protocoloRepository->searchByNumeroEStatus('RECEBIDO', $numeroFiltro);
             $listaDePreparadores = $this->usuarioRepository->allByPermissao('preparador');
 
             $titulo_da_pagina = "Lista de Protocolos Recebidos";
@@ -113,7 +113,7 @@ class ProtocoloController
         try {
             $numeroFiltro = $_GET['numero_protocolo'] ?? null;
         
-            $listaProtocolosPreparados = $this->protocoloRepository->searchByNumeroEStatus($numeroFiltro, 'PREPARADO');
+            $listaProtocolosPreparados = $this->protocoloRepository->searchByNumeroEStatus('PREPARADO', $numeroFiltro);
 
             $titulo_da_pagina = "Lista de Protocolos Recebidos";
             $usuario_logado = $this->usuario_logado;
@@ -131,7 +131,7 @@ class ProtocoloController
         try {
             $numeroFiltro = $_GET['numero_protocolo'] ?? null;
         
-            $listaProtocolosPreparados = $this->protocoloRepository->searchByNumeroEStatus($numeroFiltro, 'PREPARADO');
+            $listaProtocolosPreparados = $this->protocoloRepository->searchByNumeroEStatus('PREPARADO', $numeroFiltro);
             
             $digitalizador = $this->usuario_logado;
 
@@ -172,7 +172,7 @@ class ProtocoloController
         try {
             $numeroFiltro = $_GET['numero_protocolo'] ?? null;
         
-            $listaProtocolosDigitalizados = $this->protocoloRepository->searchByNumeroEStatus($numeroFiltro, 'DIGITALIZADO');
+            $listaProtocolosDigitalizados = $this->protocoloRepository->searchByNumeroEStatus('DIGITALIZADO', $numeroFiltro);
 
             $titulo_da_pagina = "Lista de Protocolos Digitalizados";
             $usuario_logado = $this->usuario_logado;
