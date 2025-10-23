@@ -1,0 +1,11 @@
+.git
+.gitignore
+.dockerignore
+Dockerfile
+docker-compose.yml
+mysql_data/
+vendor/
+docs/
+*.log
+.idea/
+.vscode/

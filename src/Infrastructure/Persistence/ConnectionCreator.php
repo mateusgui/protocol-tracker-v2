@@ -9,12 +9,20 @@ class ConnectionCreator
 {
     public static function createConnection() : PDO
     {
-        $dsn = 'mysql:host=127.0.0.1;port=3306;dbname=estudoMySql;charset=utf8mb4';
+        //$dsn = 'mysql:host=127.0.0.1;port=3306;dbname=estudoMySql;charset=utf8mb4';
         //$dsn = 'mysql:host=127.0.0.1;port=3306;dbname=meu_projeto_db;charset=utf8mb4';
+        $host = 'db'; 
+        $port = 3306;
+        $dbname = 'protocol_tracker';
+        $user = 'user';
+        $pass = 'password';
         
+        $dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4";
+         
         try {
-            $connection = new PDO($dsn, 'root', 'sua_senha_super_secreta');
+            //$connection = new PDO($dsn, 'root', 'sua_senha_super_secreta');
             //$connection = new PDO($dsn, 'root', 'sua_senha_secreta');
+            $connection = new PDO($dsn, $user, $pass);
 
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);

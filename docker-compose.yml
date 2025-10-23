@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: protocol_tracker_app
+    volumes:
+      - .:/var/www/html
+
+  nginx:
+    image: nginx:alpine
+    container_name: protocol_tracker_nginx
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+
+  db:
+    image: mysql:8.0
+    container_name: protocol_tracker_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: protocol_tracker
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
