@@ -33,9 +33,9 @@
                     <th class="numero_remessa">Nº Remessa</th>
                     <th class="status">Status</th>
                     <th class="data">Data Preparação</th>
-                    <th>Preparador</th>
+                    <!--<th>Preparador</th>-->
                     <th class="data">Data Digitalização</th>
-                    <th>Digitalizador</th>
+                    <!--<th>Digitalizador</th>-->
                     <th class="quantidade_paginas">Qtd. Páginas</th>
                     <th>Observacoes</th>
                 </tr>
@@ -50,7 +50,7 @@
                         <td><?= htmlspecialchars($protocolo['numero_remessa']) ?></td>
                         <td class="<?= htmlspecialchars($protocolo['status_protocolo']) ?>"><?= htmlspecialchars($protocolo['status_protocolo']) ?></td>
                         <td><?= $protocolo['data_preparacao'] ? (new DateTimeImmutable($protocolo['data_preparacao']))->setTimezone($fusoHorarioLocal)->format('d/m/Y H:i') : 'N/A' ?></td>
-                        <td>
+                        <!--<td>
                             <?php
                                 foreach ($listaDePreparadores as $preparador) {
                                     if($preparador->getId() == $protocolo['id_preparador']){
@@ -61,9 +61,9 @@
                                 echo htmlspecialchars($nomePreparador ?? 'N/A');
                                 $nomePreparador = 'N/A';
                             ?>
-                        </td>
+                        </td>-->
                         <td><?= $protocolo['data_digitalizacao'] ? (new DateTimeImmutable($protocolo['data_digitalizacao']))->setTimezone($fusoHorarioLocal)->format('d/m/Y H:i') : 'N/A' ?></td>
-                        <td>
+                        <!--<td>
                             <?php
                                 foreach ($listaDeDigitalizadores as $digitalizador) {
                                     if($digitalizador->getId() === $protocolo['id_digitalizador']){
@@ -74,7 +74,7 @@
                                 echo htmlspecialchars($nomeDigitalizador ?? 'N/A');
                                 $nomeDigitalizador = 'N/A';
                             ?>
-                        </td>
+                        </td>-->
                         <td><?= htmlspecialchars($protocolo['quantidade_paginas'] ?? 'N/A') ?></td>
                         <td class="coluna-observacoes" title="<?= htmlspecialchars($protocolo['observacoes'] ?? '') ?>"><?= htmlspecialchars($protocolo['observacoes']) ?? '' ?></td>
                     </tr>
