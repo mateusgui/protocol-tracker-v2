@@ -86,13 +86,24 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         return $this->hidrataLista($stmt);
     }
 
-    public function findByRemessa(string $id_remessa): array
+    public function findByRemessa(string $id_remessa, ?string $numero_protocolo = null): array
     {
-        $sqlQuery = "SELECT * FROM protocolos WHERE id_remessa = :id_remessa;";
+        $sqlQuery = "";
+        $stmt = "";
 
-        $stmt = $this->connection->prepare($sqlQuery);
-        $stmt->bindValue(':id_remessa', $id_remessa);
+        if($numero_protocolo === null){
+            $sqlQuery = "SELECT * FROM protocolos WHERE id_remessa = :id_remessa;";
 
+            $stmt = $this->connection->prepare($sqlQuery);
+            $stmt->bindValue(':id_remessa', $id_remessa);
+        } else{
+            $sqlQuery = "SELECT * FROM protocolos WHERE id_remessa = :id_remessa AND numero_protocolo = :numero_protocolo;";
+
+            $stmt = $this->connection->prepare($sqlQuery);
+            $stmt->bindValue(':id_remessa', $id_remessa);
+            $stmt->bindValue(':numero_protocolo', $numero_protocolo);
+        }
+        
         $stmt->execute();
 
         return $this->hidrataLista($stmt);

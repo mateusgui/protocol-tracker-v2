@@ -133,11 +133,13 @@ class RemessaController
             $id_remessa = $id_remessa_param;
             $remessa = $this->remessaRepository->findById($id_remessa);
 
+            $numero_protocolo = $_GET['numero_protocolo'] ?? null;
+
             $listaDePreparadores = $this->usuarioRepository->allByPermissao('preparador');
             $listaDeDigitalizadores = $this->usuarioRepository->allByPermissao('digitalizador');
-            $listaProtocolos = $this->protocoloRepository->findByRemessa($id_remessa);
+            $listaProtocolos = $this->protocoloRepository->findByRemessa($id_remessa, $numero_protocolo);
 
-            $titulo_da_pagina = "Lista de Protocolos";
+            $titulo_da_pagina = "Cadastrar novos protocolos";
             $usuario_logado = $this->usuario_logado;
             $permissao = $this->permissao;
 

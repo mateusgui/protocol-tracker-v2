@@ -1,6 +1,5 @@
 <?php require __DIR__ . '/../components/_header.php'; ?>
 
-<h2>Cadastrar novos protocolos</h2>
 <h3>Remessa Nº <?= $remessa->getNumeroRemessa() ?></h3>
 
 <?php if (isset($erro) && $erro): ?>
@@ -19,7 +18,8 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="numero_protocolo">Número do Protocolo (6 dígitos)</label>
-                    <input type="text" id="numero_protocolo" name="numero_protocolo" required maxlength="6" pattern="\d{6}"placeholder="Ex: 123456" autofocus>
+                    <input type="text" id="numero_protocolo" name="numero_protocolo" required maxlength="6" pattern="\d{6}"placeholder="Ex: 123456" autofocus
+                    >
                 </div>
             </div>
 
@@ -29,7 +29,29 @@
                 </button>
             </div>
         </form>
+
+        <div class="form-container busca-form-container" style="box-shadow: none; padding: 0; margin-top: 25px;">
+            <form action="/admin/remessas/protocolos" method="get" class="busca-form">
+
+                <input type="hidden" name="id" value="<?= htmlspecialchars($id_remessa) ?>">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="numero_protocolo">Buscar Protocolo</label>
+                        <input type="text" id="numero_protocolo" name="numero_protocolo" value="<?= htmlspecialchars($_GET['numero_protocolo'] ?? '') ?>">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-buscar">
+                        <span class="material-icons-outlined">search</span> Buscar
+                    </button>
+                    <a href="/admin/remessas/protocolos?id=<?= htmlspecialchars($id_remessa) ?>" class="btn-limpar">Limpar Filtros</a>
+                </div>
+            </form>
+        </div>
     </section>
+
+    
 
     <section class="listagem-container">
         <h3>Protocolos da Remessa</h3>
