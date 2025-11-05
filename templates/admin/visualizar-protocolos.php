@@ -19,7 +19,7 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="numero_protocolo">Número do Protocolo (6 dígitos)</label>
-                    <input type="text" id="numero_protocolo" name="numero_protocolo" required maxlength="6" pattern="\d{6}"placeholder="Ex: 123456">
+                    <input type="text" id="numero_protocolo" name="numero_protocolo" required maxlength="6" pattern="\d{6}"placeholder="Ex: 123456" autofocus>
                 </div>
             </div>
 
