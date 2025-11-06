@@ -6,6 +6,7 @@ use DateTimeImmutable;
 use DateTimeZone;
 use Mateus\ProtocolTrackerV2\Interfaces\ProtocoloRepositoryInterface;
 use Mateus\ProtocolTrackerV2\Interfaces\RemessaRepositoryInterface;
+use Mateus\ProtocolTrackerV2\Model\Usuario;
 
 class DashboardService
 {
@@ -211,4 +212,22 @@ class DashboardService
 
         return $dataAtual;
     }
+
+    /* public function maiorProducaoSemanaPreparacao(array $preparadores)//: array
+    {
+        $maiorProducao = 0;
+        $preparadorMaiorProducao = 0;
+
+        foreach ($preparadores as $preparador) {
+            //Passar dia inicio e fim como datetimeimmutable
+            $producao = $this->protocoloRepository->sumSemanaPreparador($id_digitalizador, $inicioSemana, $fimSemana);
+            
+            if($producao > $maiorProducao){
+                $maiorProducao = $producao;
+                $preparadorMaiorProducao = $preparador;
+            }
+        }
+
+        return ;
+    } */
 }
