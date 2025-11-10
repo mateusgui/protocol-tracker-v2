@@ -213,21 +213,14 @@ class DashboardService
         return $dataAtual;
     }
 
-    /* public function maiorProducaoSemanaPreparacao(array $preparadores)//: array
+    public function getRankingPreparacao(DateTimeImmutable $inicio, DateTimeImmutable $fim): array
     {
-        $maiorProducao = 0;
-        $preparadorMaiorProducao = 0;
-
-        foreach ($preparadores as $preparador) {
-            //Passar dia inicio e fim como datetimeimmutable
-            $producao = $this->protocoloRepository->sumSemanaPreparador($id_digitalizador, $inicioSemana, $fimSemana);
-            
-            if($producao > $maiorProducao){
-                $maiorProducao = $producao;
-                $preparadorMaiorProducao = $preparador;
-            }
+        // Validação simples de datas
+        if ($fim < $inicio) {
+            throw new \Exception("A data final não pode ser anterior à data inicial.");
         }
 
-        return ;
-    } */
+        // Chama o método do repositório que retorna o ranking
+        return $this->protocoloRepository->getRankingPreparadoresPorPeriodo($inicio, $fim);
+    }
 }

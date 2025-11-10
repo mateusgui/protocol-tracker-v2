@@ -87,6 +87,7 @@
                             <a><span class="material-icons-outlined">content_cut</span> Preparação</a>
                             <ul class="submenu">
                                 <li><a href="/admin/preparacao/dashboard">Dashboard Preparados</a></li>
+                                <li><a href="/admin/preparacao/ranking">Ranking Preparação</a></li>
                             </ul>
                         </li>
                         <li class="has-submenu">

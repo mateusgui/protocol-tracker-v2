@@ -237,6 +237,27 @@ class ProtocoloController
     }
 
     //GET
+    public function rankingPreparados()
+    {
+        try {
+            $inicio = !empty($_GET['inicio']) ? new DateTimeImmutable($_GET['inicio']) : new DateTimeImmutable('now');
+            $fim = !empty($_GET['fim']) ? new DateTimeImmutable($_GET['fim']) : new DateTimeImmutable('now');
+
+            $listaDePreparadores = $this->usuarioRepository->allByPermissao('preparador');
+
+            $ranking = $this->dashboardService->getRankingPreparacao($inicio, $fim);
+
+            $titulo_da_pagina = "Ranking dos Preparadores";
+            $usuario_logado = $this->usuario_logado;
+            $permissao = $this->permissao;
+
+            require __DIR__ . '/../../templates/preparadores/preparadores-ranking.php';
+        } catch (Exception $e) {
+            $this->home($e->getMessage());
+        }
+    }
+
+    //GET
     public function dashboardDigitalizados()
     {
         try {

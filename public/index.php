@@ -324,6 +324,16 @@ try {
             }
             break;
 
+        case '/admin/preparacao/ranking':
+
+            rotaAutenticada($usuario_esta_logado);
+            rotaAdmin($permissao);
+
+            if($method === 'GET'){
+                $protocoloController->rankingPreparados();
+            }
+            break;
+
         /*----- 
         /ADMIN/DIGITALIZAÇÃO
         ----- */

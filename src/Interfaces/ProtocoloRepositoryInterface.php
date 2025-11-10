@@ -37,4 +37,5 @@ interface ProtocoloRepositoryInterface
     public function entregaProtocolos(string $id_remessa): void;
     public function getContagemPreparadosPorDia(DateTimeImmutable $dataInicio, DateTimeImmutable $dataFim): array;
     public function getContagemDigitalizadosPorDia(DateTimeImmutable $dataInicio, DateTimeImmutable $dataFim): array;
+    public function getRankingPreparadoresPorPeriodo(DateTimeImmutable $inicio, DateTimeImmutable $fim): array;
 }
