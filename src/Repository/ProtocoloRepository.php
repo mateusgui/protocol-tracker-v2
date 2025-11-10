@@ -462,21 +462,14 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
     //Ranking Preparados
     public function getRankingPreparadoresPorPeriodo(DateTimeImmutable $inicio, DateTimeImmutable $fim): array
     {
-        // A query agora usa LEFT JOIN para incluir protocolos mesmo se o preparador for NULL
-        $sqlQuery = "SELECT 
-                        COALESCE(u.nome, 'Não Atribuído') AS nome, 
-                        COUNT(p.id) AS total_protocolos,
-                        SUM(p.quantidade_paginas) AS total_paginas
-                    FROM 
-                        protocolos AS p
-                    JOIN 
-                        usuarios AS u ON p.id_preparador = u.id
-                    WHERE 
-                        p.data_preparacao BETWEEN :data_inicio AND :data_fim
-                    GROUP BY 
-                        u.id, u.nome
-                    ORDER BY 
-                        total_paginas DESC, total_protocolos DESC;";
+        $sqlQuery = "SELECT COALESCE(u.nome, 'Não Atribuído') AS nome, 
+                            COUNT(p.id) AS total_protocolos,
+                            SUM(p.quantidade_paginas) AS total_paginas
+                        FROM protocolos AS p
+                        JOIN usuarios AS u ON p.id_preparador = u.id
+                        WHERE p.data_preparacao BETWEEN :data_inicio AND :data_fim
+                        GROUP BY u.id, u.nome
+                        ORDER BY total_paginas DESC, total_protocolos DESC;";
 
         $stmt = $this->connection->prepare($sqlQuery);
         
