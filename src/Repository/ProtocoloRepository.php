@@ -262,7 +262,7 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
 
     public function sumTotalByMesPreparacao(DateTimeImmutable $mes): int
     {
-        $sqlQuery = "SELECT SUM(quantidade_paginas) FROM protocolos WHERE AND DATE_FORMAT(data_preparacao, '%Y-%m') = :data_preparacao;";
+        $sqlQuery = "SELECT SUM(quantidade_paginas) FROM protocolos WHERE DATE_FORMAT(data_preparacao, '%Y-%m') = :data_preparacao;";
 
         $stmt = $this->connection->prepare($sqlQuery);
         $stmt->bindValue(':data_preparacao', $mes->format('Y-m'));
