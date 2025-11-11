@@ -223,7 +223,7 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
     }
 
     public function sumByDiaPreparador(int $id_preparador, DateTimeImmutable $dia): int
-    { //MÉTODO NOVO
+    {
         $sqlQuery = "SELECT SUM(quantidade_paginas) FROM protocolos WHERE id_preparador = :id_preparador AND DATE_FORMAT(data_preparacao, '%Y-%m-%d') = :data_preparacao;";
 
         $stmt = $this->connection->prepare($sqlQuery);
@@ -235,12 +235,36 @@ class ProtocoloRepository implements ProtocoloRepositoryInterface
         return (int) $stmt->fetchColumn();
     }
 
+    public function sumTotalByDiaPreparacao(DateTimeImmutable $dia): int
+    {
+        $sqlQuery = "SELECT SUM(quantidade_paginas) FROM protocolos WHERE DATE_FORMAT(data_preparacao, '%Y-%m-%d') = :data_preparacao;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
+        $stmt->bindValue(':data_preparacao', $dia->format('Y-m-d'));
+
+        $stmt->execute();
+
+        return (int) $stmt->fetchColumn();
+    }
+
     public function sumByMesPreparador(int $id_preparador, DateTimeImmutable $mes): int
-    { //MÉTODO NOVO
+    {
         $sqlQuery = "SELECT SUM(quantidade_paginas) FROM protocolos WHERE id_preparador = :id_preparador AND DATE_FORMAT(data_preparacao, '%Y-%m') = :data_preparacao;";
 
         $stmt = $this->connection->prepare($sqlQuery);
         $stmt->bindValue(':id_preparador', $id_preparador);
+        $stmt->bindValue(':data_preparacao', $mes->format('Y-m'));
+
+        $stmt->execute();
+
+        return (int) $stmt->fetchColumn();
+    }
+
+    public function sumTotalByMesPreparacao(DateTimeImmutable $mes): int
+    {
+        $sqlQuery = "SELECT SUM(quantidade_paginas) FROM protocolos WHERE AND DATE_FORMAT(data_preparacao, '%Y-%m') = :data_preparacao;";
+
+        $stmt = $this->connection->prepare($sqlQuery);
         $stmt->bindValue(':data_preparacao', $mes->format('Y-m'));
 
         $stmt->execute();

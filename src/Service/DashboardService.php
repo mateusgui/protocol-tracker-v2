@@ -71,9 +71,9 @@ class DashboardService
     public function paginasPreparadasPorDia(?int $id_preparador, DateTimeImmutable $dia): int
     {
         if ($id_preparador !== null) {
-            return $this->protocoloRepository->sumByDiaPreparador($id_preparador, $dia); //fzr
+            return $this->protocoloRepository->sumByDiaPreparador($id_preparador, $dia);
         } else {
-            return $this->protocoloRepository->sumTotalByDiaDigitalizacao($dia);
+            return $this->protocoloRepository->sumTotalByDiaPreparacao($dia);
         }
     }
 
@@ -81,9 +81,9 @@ class DashboardService
     public function paginasPreparadasPorMes(?int $id_preparador, DateTimeImmutable $mes): int
     {
         if ($id_preparador !== null) {
-            return $this->protocoloRepository->sumByMesPreparador($id_preparador, $mes); //fzr
+            return $this->protocoloRepository->sumByMesPreparador($id_preparador, $mes);
         } else {
-            return $this->protocoloRepository->sumTotalByMesDigitalizacao($mes);
+            return $this->protocoloRepository->sumTotalByMesPreparacao($mes);
         }
     }
 

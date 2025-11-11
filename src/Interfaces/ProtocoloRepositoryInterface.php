@@ -20,7 +20,9 @@ interface ProtocoloRepositoryInterface
     public function countByMesPreparador(int $id_preparador, DateTimeImmutable $data_preparacao): int;
     public function countTotalByMesPreparacao(DateTimeImmutable $data): int;
     public function sumByDiaPreparador(int $id_preparador, DateTimeImmutable $dia): int;
+    public function sumTotalByDiaPreparacao(DateTimeImmutable $dia): int;
     public function sumByMesPreparador(int $id_preparador, DateTimeImmutable $mes): int;
+    public function sumTotalByMesPreparacao(DateTimeImmutable $mes): int;
     public function sumByDiaDigitalizador(int $id_digitalizador, DateTimeImmutable $dia): int;
     public function sumTotalByDiaDigitalizacao(DateTimeImmutable $dia): int;
     public function countByDiaDigitalizador(int $id_digitalizador, DateTimeImmutable $data_digitalizacao): int;
